@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Questionnaire – Plan Alimentaire 100% Personnalisé</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #222;
+      line-height: 1.5;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    h1, h2 {
+      color: #111;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      margin: 0.2rem 0 0.6rem;
+    }
+
+    .switcher {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 12px 16px;
+      margin: 12px 0 20px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 0.95rem;
+    }
+
+    .switcher label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    form {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px 14px 20px;
+      border: 1px solid #e1e1e1;
+      margin-top: 8px;
+    }
+
+    .form-step {
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .form-step:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .step-description {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.8rem;
+    }
+
+    .form-group {
+      margin: 0.7rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      padding: 7px 9px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      width: 100%;
+      box-sizing: border-box;
+      background: #fafafa;
+    }
+
+    textarea {
+      min-height: 60px;
+      resize: vertical;
+    }
+
+    fieldset.form-group {
+      border: none;
+      padding: 0;
+      margin: 0.7rem 0;
+    }
+
+    fieldset.form-group legend {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    fieldset.form-group label {
+      font-weight: 400;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-right: 14px;
+      margin-top: 4px;
+      font-size: 0.9rem;
+    }
+
+    .form-actions {
+      margin-top: 18px;
+      text-align: right;
+    }
+
+    button[type="submit"] {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #111827;
+      color: #fff;
+    }
+
+    button[type="submit"]:hover {
+      opacity: 0.9;
+    }
+
+    /* Affichage des deux versions */
+    .questionnaire-femme,
+    .questionnaire-homme {
+      display: none;
+    }
+
+    .questionnaire-femme.active,
+    .questionnaire-homme.active {
+      display: block;
+    }
+
+    @media (min-width: 700px) {
+      .page {
+        padding: 30px 0 50px;
+      }
+      form {
+        padding: 20px 20px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <h1>Questionnaire – Plan Alimentaire 100% Personnalisé</h1>
+    <p>
+      Choisis ta version puis remplis le questionnaire. Je m’occupe du reste pour te construire
+      un plan alimentaire réellement adapté à ton corps, ton rythme et ton objectif.
+    </p>
+
+    <!-- Sélecteur Femme / Homme -->
+    <div class="switcher">
+      <span>Je suis :</span>
+      <label>
+        <input type="radio" name="type-questionnaire" value="femme" checked>
+        Une femme
+      </label>
+      <label>
+        <input type="radio" name="type-questionnaire" value="homme">
+        Un homme
+      </label>
+    </div>
+
+    <!-- VERSION FEMME -->
+    <section class="questionnaire-femme active">
+      <!-- Description globale -->
+      <header>
+        <h1>🥗 Questionnaire – Plan Alimentaire 100% Personnalisé (Version Femme)</h1>
+        <p>
+          Bienvenue dans ton questionnaire personnalisé. Il me permet de comprendre
+          ton corps, ton rythme, tes goûts et ton mode de vie afin de créer pour toi
+          un plan alimentaire 100% sur mesure, réellement adapté à ta réalité, et non
+          un modèle générique.
+        </p>
+        <p>
+          Chaque réponse compte : plus tu es précise, plus ton plan sera efficace pour
+          t’aider à perdre du poids, retrouver ton énergie et atteindre la silhouette
+          que tu veux — sans frustration.
+        </p>
+        <p>
+          Le questionnaire dure environ 3 minutes. Respire, prends ton temps.
+          C’est la première étape de ta transformation.
+        </p>
+      </header>
+
+      <form id="questionnaire-femme-form" action="#" method="post">
+        <!-- ÉTAPE 1 — Profil -->
+        <section class="form-step" id="step-1">
+          <h2>Étape 1 — Profil</h2>
+          <p class="step-description">
+            Cette première section me permet de mieux te connaître : ton âge, ta taille,
+            ton poids actuel et ton objectif. Ces informations sont essentielles pour
+            calculer tes besoins énergétiques, définir un déficit adapté et éviter
+            toute frustration ou fatigue inutile. Ton niveau d’activité quotidienne
+            m’aide à ajuster ton plan pour qu’il respecte ton mode de vie réel.
+          </p>
+
+          <div class="form-group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" required>
+          </div>
+
+          <div class="form-group">
+            <label for="age">Âge *</label>
+            <input type="number" id="age" name="age" min="10" max="100" required>
+          </div>
+
+          <div class="form-group">
+            <span>Sexe *</span>
+            <!-- Version femme : valeur pré-définie -->
+            <input type="hidden" name="sexe" value="feminin">
+            <p>Sexe : féminin</p>
+          </div>
+
+          <div class="form-group">
+            <label for="taille">Taille (cm) *</label>
+            <input type="number" id="taille" name="taille_cm" min="120" max="220" required>
+          </div>
+
+          <div class="form-group">
+            <label for="poids">Poids actuel (kg) *</label>
+            <input type="number" id="poids" name="poids_kg" step="0.1" min="30" max="200" required>
+          </div>
+
+          <div class="form-group">
+            <label for="objectif">Objectif (-10 à -15 kg, silhouette, énergie…)</label>
+            <textarea id="objectif" name="objectif" rows="2"></textarea>
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Niveau d’activité quotidienne *</legend>
+            <label>
+              <input type="radio" name="activite_quotidienne" value="sedentaire" required>
+              Sédentaire
+            </label>
+            <label>
+              <input type="radio" name="activite_quotidienne" value="modere">
+              Modéré
+            </label>
+            <label>
+              <input type="radio" name="activite_quotidienne" value="actif">
+              Actif
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- ÉTAPE 2 — Activité physique -->
+        <section class="form-step" id="step-2">
+          <h2>Étape 2 — Activité physique</h2>
+          <p class="step-description">
+            Ici, j’analyse ton niveau de dépense sportive : type d’entraînement, durée,
+            intensité et fréquence. Ces données influencent directement la quantité
+            de glucides dont tu as besoin, les jours où tu t’entraînes ou non.
+            Un plan efficace doit suivre ton rythme sportif, et non l’inverse.
+          </p>
+
+          <fieldset class="form-group">
+            <legend>Pratiques-tu une activité physique ? *</legend>
+            <label>
+              <input type="radio" name="pratique_sport" value="oui" required>
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="pratique_sport" value="non">
+              Non
+            </label>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="sports">Si oui, quels sports ?</label>
+            <textarea id="sports" name="sports" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="frequence_sport">Fréquence (séances / semaine)</label>
+            <input type="number" id="frequence_sport" name="frequence_sport" min="0" max="14">
+          </div>
+
+          <div class="form-group">
+            <label for="duree_seance">Durée moyenne d’une séance (en minutes)</label>
+            <input type="number" id="duree_seance" name="duree_seance" min="0" max="300">
+          </div>
+
+          <div class="form-group">
+            <label for="heures_entrainement">Heures habituelles d’entraînement</label>
+            <textarea id="heures_entrainement" name="heures_entrainement" rows="2"
+              placeholder="Ex : Lundi 18h, Mercredi 19h, Samedi matin…"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="jours_sans_sport">Jours sans sport</label>
+            <textarea id="jours_sans_sport" name="jours_sans_sport" rows="2"
+              placeholder="Ex : Mardi, Jeudi, Dimanche…"></textarea>
+          </div>
+        </section>
+
+        <!-- ÉTAPE 3 — Rythme alimentaire -->
+        <section class="form-step" id="step-3">
+          <h2>Étape 3 — Rythme alimentaire</h2>
+          <p class="step-description">
+            Chaque personne mange selon un timing qui lui est propre. Ici, tu me donnes
+            ton horloge alimentaire, indispensable pour créer un plan réaliste :
+            heures des repas, collations, fin de journée. Ce rythme me permet de
+            structurer un plan qui s’intègre naturellement dans ton quotidien,
+            sans te désorganiser.
+          </p>
+
+          <div class="form-group">
+            <label for="heure_petit_dejeuner">Petit-déjeuner (heure)</label>
+            <input type="text" id="heure_petit_dejeuner" name="heure_petit_dejeuner"
+              placeholder="Ex : 7h30, parfois sauté…">
+          </div>
+
+          <div class="form-group">
+            <label for="heure_collation_matin">Collation matin (heure)</label>
+            <input type="text" id="heure_collation_matin" name="heure_collation_matin">
+          </div>
+
+          <div class="form-group">
+            <label for="heure_dejeuner">Déjeuner (heure)</label>
+            <input type="text" id="heure_dejeuner" name="heure_dejeuner">
+          </div>
+
+          <div class="form-group">
+            <label for="heure_collation_apresmidi">Collation après-midi (heure)</label>
+            <input type="text" id="heure_collation_apresmidi" name="heure_collation_apresmidi">
+          </div>
+
+          <div class="form-group">
+            <label for="heure_diner">Dîner (heure)</label>
+            <input type="text" id="heure_diner" name="heure_diner">
+          </div>
+
+          <div class="form-group">
+            <label for="heure_collation_soir">Collation du soir (heure)</label>
+            <input type="text" id="heure_collation_soir" name="heure_collation_soir">
+          </div>
+        </section>
+
+        <!-- ÉTAPE 4 — Habitudes & sensations -->
+        <section class="form-step" id="step-4">
+          <h2>Étape 4 — Habitudes &amp; sensations</h2>
+          <p class="step-description">
+            Cette section m’aide à comprendre ton rapport actuel à la nourriture :
+            grignotages, envies sucrées, irrégularités, sensations de faim.
+            C’est ici que je repère les zones à apaiser (stress, fatigue, habitudes
+            émotionnelles) et les points forts sur lesquels on peut s’appuyer.
+            Le but : créer un plan qui répond à tes besoins physiologiques et émotionnels.
+          </p>
+
+          <fieldset class="form-group">
+            <legend>Grignotes-tu entre les repas ?</legend>
+            <label>
+              <input type="radio" name="grignotage" value="oui">
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="grignotage" value="non">
+              Non
+            </label>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>As-tu des fringales ?</legend>
+            <label>
+              <input type="radio" name="fringales" value="oui">
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="fringales" value="non">
+              Non
+            </label>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="details_fringales">Si oui, préciser (sucré / salé / moments)</label>
+            <textarea id="details_fringales" name="details_fringales" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="nb_repas_collations">Nombre de repas/collations par jour</label>
+            <input type="number" id="nb_repas_collations" name="nb_repas_collations" min="1" max="10">
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Ton rythme est :</legend>
+            <label>
+              <input type="radio" name="rythme_alimentaire" value="regulier">
+              Régulier
+            </label>
+            <label>
+              <input type="radio" name="rythme_alimentaire" value="variable">
+              Variable / horaires décalés
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- ÉTAPE 5 — Préférences & restrictions -->
+        <section class="form-step" id="step-5">
+          <h2>Étape 5 — Préférences &amp; restrictions</h2>
+          <p class="step-description">
+            Pour que ton plan soit durable, il doit respecter tes goûts, tes intolérances
+            et ton niveau d’envie de cuisiner. Cette section me permet d’éliminer les
+            aliments que tu n’aimes pas ou qui te posent problème, et d’intégrer ceux
+            que tu adores. Un bon plan alimentaire, c’est un plan que tu as plaisir à suivre.
+          </p>
+
+          <div class="form-group">
+            <label for="allergies_intolerances">Allergies ou intolérances ?</label>
+            <textarea id="allergies_intolerances" name="allergies_intolerances" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="regime_particulier">Régime particulier ? (végétarien, sans gluten…)</label>
+            <textarea id="regime_particulier" name="regime_particulier" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="aliments_a_eviter">Aliments à éviter ?</label>
+            <textarea id="aliments_a_eviter" name="aliments_a_eviter" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="aliments_a_garder">Aliments que tu veux absolument garder ?</label>
+            <textarea id="aliments_a_garder" name="aliments_a_garder" rows="2"></textarea>
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Temps disponible pour cuisiner</legend>
+            <label>
+              <input type="radio" name="temps_cuisine" value="tres_peu">
+              Très peu
+            </label>
+            <label>
+              <input type="radio" name="temps_cuisine" value="moyen">
+              Moyen
+            </label>
+            <label>
+              <input type="radio" name="temps_cuisine" value="jaime_cuisiner">
+              J’aime cuisiner
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- ÉTAPE 6 — Sommeil & stress -->
+        <section class="form-step" id="step-6">
+          <h2>Étape 6 — Sommeil &amp; stress</h2>
+          <p class="step-description">
+            Le stress et le sommeil jouent un rôle énorme dans la perte de poids,
+            la digestion et les envies alimentaires. Cette partie m’aide à adapter
+            le plan selon ton niveau de fatigue, tes horaires, et à prévoir des
+            stratégies nutritionnelles pour réguler ton énergie et ta satiété.
+          </p>
+
+          <div class="form-group">
+            <label for="heure_coucher">Heure de coucher</label>
+            <input type="text" id="heure_coucher" name="heure_coucher"
+              placeholder="Ex : 22h30, minuit…">
+          </div>
+
+          <div class="form-group">
+            <label for="heure_lever">Heure de lever</label>
+            <input type="text" id="heure_lever" name="heure_lever"
+              placeholder="Ex : 6h30, 8h…">
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Qualité du sommeil</legend>
+            <label>
+              <input type="radio" name="qualite_sommeil" value="bonne">
+              Bonne
+            </label>
+            <label>
+              <input type="radio" name="qualite_sommeil" value="moyenne">
+              Moyenne
+            </label>
+            <label>
+              <input type="radio" name="qualite_sommeil" value="mauvaise">
+              Mauvaise
+            </label>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Niveau de stress</legend>
+            <label>
+              <input type="radio" name="niveau_stress" value="bas">
+              Bas
+            </label>
+            <label>
+              <input type="radio" name="niveau_stress" value="moyen">
+              Moyen
+            </label>
+            <label>
+              <input type="radio" name="niveau_stress" value="eleve">
+              Élevé
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- ÉTAPE 7 — Suppléments -->
+        <section class="form-step" id="step-7">
+          <h2>Étape 7 — Suppléments</h2>
+          <p class="step-description">
+            Cette section me permet de savoir si tu prends déjà des compléments,
+            et si tu es ouverte à en utiliser pour optimiser tes résultats : énergie,
+            faim émotionnelle, récupération, gestion du stress… Rien n’est obligatoire :
+            l’objectif est d’adapter selon ton confort.
+          </p>
+
+          <div class="form-group">
+            <label for="complements_actuels">Compléments actuels</label>
+            <textarea id="complements_actuels" name="complements_actuels" rows="2"
+              placeholder="Ex : oméga-3, magnésium, whey…"></textarea>
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Ouverte à en prendre ?</legend>
+            <label>
+              <input type="radio" name="ouverte_complements" value="oui">
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="ouverte_complements" value="non">
+              Non
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- ÉTAPE 8 — Matériel & organisation -->
+        <section class="form-step" id="step-8">
+          <h2>Étape 8 — Matériel &amp; organisation</h2>
+          <p class="step-description">
+            Ici, je m’assure que ton plan reste pratique : matériel disponible,
+            cuisine équipée, habitudes de meal prep, budget si nécessaire.
+            Un bon plan doit s’adapter à ta logistique, pour éviter toute charge mentale.
+          </p>
+
+          <fieldset class="form-group">
+            <legend>Cuisine équipée ?</legend>
+            <label>
+              <input type="radio" name="cuisine_equipee" value="oui">
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="cuisine_equipee" value="non">
+              Non
+            </label>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Préparation de repas à l’avance ?</legend>
+            <label>
+              <input type="radio" name="prep_avancee" value="oui">
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="prep_avancee" value="non">
+              Non
+            </label>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="budget_courses">Budget courses (optionnel)</label>
+            <input type="text" id="budget_courses" name="budget_courses"
+              placeholder="Ex : 300€/mois, 70€/semaine…">
+          </div>
+        </section>
+
+        <!-- ÉTAPE 9 — Objectif final -->
+        <section class="form-step" id="step-9">
+          <h2>Étape 9 — Objectif final</h2>
+          <p class="step-description">
+            Cette dernière étape me permet d’aligner ton plan avec ton véritable objectif :
+            perte de poids, silhouette, énergie, bien-être. Si tu as une date précise
+            (événement, vacances…), cela m’aide à structurer un plan progressif,
+            efficace et sans pression inutile.
+          </p>
+
+          <div class="form-group">
+            <label for="objectif_principal">
+              Ton objectif principal (perte de poids, énergie, forme…)
+            </label>
+            <textarea id="objectif_principal" name="objectif_principal" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="deadline_evenement">
+              Deadline ou événement à préparer
+            </label>
+            <textarea id="deadline_evenement" name="deadline_evenement" rows="2"
+              placeholder="Ex : vacances d’été, mariage, rentrée, date précise…"></textarea>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button type="submit">Envoyer mon questionnaire</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- VERSION HOMME -->
+    <section class="questionnaire-homme">
+      <!-- Description globale -->
+      <header>
+        <h1>🥗 Questionnaire – Plan Alimentaire 100% Personnalisé (Version Homme)</h1>
+        <p>
+          Bienvenue dans ton questionnaire personnalisé. Il me permet de comprendre
+          ton niveau d’activité, tes objectifs physiques, ton rythme de vie et tes
+          préférences alimentaires afin de créer pour toi un plan alimentaire 100% sur mesure,
+          parfaitement adapté à tes besoins.
+        </p>
+        <p>
+          Que ton objectif soit la perte de gras, la prise de muscle, la sèche
+          ou simplement retrouver la forme, ce questionnaire est la première étape
+          pour construire un plan efficace, réaliste et optimisé pour tes résultats.
+        </p>
+        <p>
+          Le questionnaire dure environ 3 minutes. Plus tu es précis,
+          plus ton plan sera performant.
+        </p>
+      </header>
+
+      <form id="questionnaire-homme-form" action="#" method="post">
+        <!-- ÉTAPE 1 — Profil -->
+        <section class="form-step" id="h-step-1">
+          <h2>Étape 1 — Profil</h2>
+          <p class="step-description">
+            Ici, je récupère les informations essentielles pour calculer tes besoins
+            caloriques et ajuster ton plan selon ton physique actuel et ton objectif :
+            perte de gras, recomposition corporelle, prise de masse ou énergie.
+            Ton niveau d’activité quotidienne m’aide à calibrer ton plan sur ton mode de vie réel.
+          </p>
+
+          <div class="form-group">
+            <label for="h-prenom">Prénom *</label>
+            <input type="text" id="h-prenom" name="prenom" required>
+          </div>
+
+          <div class="form-group">
+            <label for="h-age">Âge *</label>
+            <input type="number" id="h-age" name="age" min="10" max="100" required>
+          </div>
+
+          <div class="form-group">
+            <span>Sexe *</span>
+            <!-- Version homme : valeur pré-définie -->
+            <input type="hidden" name="sexe" value="masculin">
+            <p>Sexe : masculin</p>
+          </div>
+
+          <div class="form-group">
+            <label for="h-taille">Taille (cm) *</label>
+            <input type="number" id="h-taille" name="taille_cm" min="140" max="230" required>
+          </div>
+
+          <div class="form-group">
+            <label for="h-poids">Poids actuel (kg) *</label>
+            <input type="number" id="h-poids" name="poids_kg" step="0.1" min="40" max="250" required>
+          </div>
+
+          <div class="form-group">
+            <label for="h-objectif">
+              Objectif (perdre du gras, prendre du muscle, sèche, recomposition...)
+            </label>
+            <textarea id="h-objectif" name="objectif" rows="2"></textarea>
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Niveau d’activité quotidienne *</legend>
+            <label>
+              <input type="radio" name="activite_quotidienne" value="sedentaire" required>
+              Sédentaire
+            </label>
+            <label>
+              <input type="radio" name="activite_quotidienne" value="modere">
+              Modéré
+            </label>
+            <label>
+              <input type="radio" name="activite_quotidienne" value="actif">
+              Actif
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- ÉTAPE 2 — Activité physique -->
+        <section class="form-step" id="h-step-2">
+          <h2>Étape 2 — Activité physique</h2>
+          <p class="step-description">
+            Les hommes ont souvent des objectifs liés à la performance, à la prise
+            de muscle ou à la sèche. J’ai besoin d’analyser ton type d’entraînement,
+            ton niveau, ta fréquence et ta charge de travail pour calibrer tes calories,
+            protéines, glucides et le timing de tes apports.
+          </p>
+
+          <fieldset class="form-group">
+            <legend>Pratiques-tu un sport ou une activité physique ? *</legend>
+            <label>
+              <input type="radio" name="pratique_sport" value="oui" required>
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="pratique_sport" value="non">
+              Non
+            </label>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="h-sports">Si oui, quel type de sport ? (musculation, cardio, crossfit, sports collectifs…)</label>
+            <textarea id="h-sports" name="sports" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="h-frequence_sport">Fréquence (séances / semaine)</label>
+            <input type="number" id="h-frequence_sport" name="frequence_sport" min="0" max="14">
+          </div>
+
+          <div class="form-group">
+            <label for="h-duree_seance">Durée moyenne d’une séance (en minutes)</label>
+            <input type="number" id="h-duree_seance" name="duree_seance" min="0" max="300">
+          </div>
+
+          <div class="form-group">
+            <label for="h-heures_entrainement">Heures habituelles d’entraînement</label>
+            <textarea id="h-heures_entrainement" name="heures_entrainement" rows="2"
+              placeholder="Ex : Lundi 18h, Mercredi 19h, Samedi matin…"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="h-jours_sans_sport">Jours de repos dans la semaine</label>
+            <textarea id="h-jours_sans_sport" name="jours_sans_sport" rows="2"
+              placeholder="Ex : Mardi, Jeudi, Dimanche…"></textarea>
+          </div>
+        </section>
+
+        <!-- ÉTAPE 3 — Rythme alimentaire -->
+        <section class="form-step" id="h-step-3">
+          <h2>Étape 3 — Rythme alimentaire</h2>
+          <p class="step-description">
+            Le rythme de tes repas influence ton énergie, ta performance à l’entraînement
+            et la gestion de ta faim. Je dois savoir quand tu manges pour placer les
+            bons apports aux bons moments.
+          </p>
+
+          <div class="form-group">
+            <label for="h-heure_petit_dejeuner">Petit-déjeuner (heure)</label>
+            <input type="text" id="h-heure_petit_dejeuner" name="heure_petit_dejeuner"
+              placeholder="Ex : 7h30, parfois sauté…">
+          </div>
+
+          <div class="form-group">
+            <label for="h-heure_collation_matin">Collation matin (heure)</label>
+            <input type="text" id="h-heure_collation_matin" name="heure_collation_matin">
+          </div>
+
+          <div class="form-group">
+            <label for="h-heure_dejeuner">Déjeuner (heure)</label>
+            <input type="text" id="h-heure_dejeuner" name="heure_dejeuner">
+          </div>
+
+          <div class="form-group">
+            <label for="h-heure_collation_apresmidi">Collation après-midi (heure)</label>
+            <input type="text" id="h-heure_collation_apresmidi" name="heure_collation_apresmidi">
+          </div>
+
+          <div class="form-group">
+            <label for="h-heure_diner">Dîner (heure)</label>
+            <input type="text" id="h-heure_diner" name="heure_diner">
+          </div>
+
+          <div class="form-group">
+            <label for="h-heure_collation_soir">Collation du soir (heure)</label>
+            <input type="text" id="h-heure_collation_soir" name="heure_collation_soir">
+          </div>
+        </section>
+
+        <!-- ÉTAPE 4 — Habitudes & sensations -->
+        <section class="form-step" id="h-step-4">
+          <h2>Étape 4 — Habitudes &amp; sensations</h2>
+          <p class="step-description">
+            Cette section me permet de comprendre ton comportement alimentaire :
+            grignotages, grosses portions, repas sautés, compensations après le sport,
+            envies sucrées ou salées. Cela m’aide à construire un plan qui colle à ta réalité
+            et corrige progressivement ce qui te freine.
+          </p>
+
+          <fieldset class="form-group">
+            <legend>Grignotes-tu entre les repas ?</legend>
+            <label>
+              <input type="radio" name="grignotage" value="oui">
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="grignotage" value="non">
+              Non
+            </label>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>As-tu des fringales ?</legend>
+            <label>
+              <input type="radio" name="fringales" value="oui">
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="fringales" value="non">
+              Non
+            </label>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="h-details_fringales">Si oui, préciser (sucré / salé / moments)</label>
+            <textarea id="h-details_fringales" name="details_fringales" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="h-nb_repas_collations">Nombre de repas/collations par jour</label>
+            <input type="number" id="h-nb_repas_collations" name="nb_repas_collations" min="1" max="10">
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Ton rythme est :</legend>
+            <label>
+              <input type="radio" name="rythme_alimentaire" value="regulier">
+              Régulier
+            </label>
+            <label>
+              <input type="radio" name="rythme_alimentaire" value="variable">
+              Variable / horaires décalés
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- ÉTAPE 5 — Préférences & restrictions -->
+        <section class="form-step" id="h-step-5">
+          <h2>Étape 5 — Préférences &amp; restrictions</h2>
+          <p class="step-description">
+            Un plan masculin efficace doit être simple, rapide, satisfaisant
+            et adapté à tes goûts. Ici, je note ce que tu apprécies, ce que tu refuses
+            et ton niveau d’aisance en cuisine pour construire quelque chose de réaliste
+            et tenable sur le long terme.
+          </p>
+
+          <div class="form-group">
+            <label for="h-allergies_intolerances">Allergies ou intolérances ?</label>
+            <textarea id="h-allergies_intolerances" name="allergies_intolerances" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="h-regime_particulier">Régime particulier ? (sans gluten, végétarien…)</label>
+            <textarea id="h-regime_particulier" name="regime_particulier" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="h-aliments_a_eviter">Aliments que tu n’aimes pas / veux éviter ?</label>
+            <textarea id="h-aliments_a_eviter" name="aliments_a_eviter" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="h-aliments_a_garder">
+              Aliments que tu veux absolument garder ? (pain, pâtes, viande, fromage, chocolat…)
+            </label>
+            <textarea id="h-aliments_a_garder" name="aliments_a_garder" rows="2"></textarea>
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Niveau en cuisine</legend>
+            <label>
+              <input type="radio" name="temps_cuisine" value="je_ne_cuisine_pas">
+              Je ne cuisine pas
+            </label>
+            <label>
+              <input type="radio" name="temps_cuisine" value="je_cuisine_un_peu">
+              Je cuisine un peu
+            </label>
+            <label>
+              <input type="radio" name="temps_cuisine" value="je_cuisine_facilement">
+              Je cuisine facilement
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- ÉTAPE 6 — Sommeil & stress -->
+        <section class="form-step" id="h-step-6">
+          <h2>Étape 6 — Sommeil &amp; stress</h2>
+          <p class="step-description">
+            Sommeil et stress influencent fortement la prise de muscle, la récupération,
+            la gestion de la faim et la perte de gras. Cette section me permet d’adapter
+            ton plan pour optimiser tes résultats, sans t’épuiser.
+          </p>
+
+          <div class="form-group">
+            <label for="h-heure_coucher">Heure de coucher</label>
+            <input type="text" id="h-heure_coucher" name="heure_coucher"
+              placeholder="Ex : 23h, minuit…">
+          </div>
+
+          <div class="form-group">
+            <label for="h-heure_lever">Heure de lever</label>
+            <input type="text" id="h-heure_lever" name="heure_lever"
+              placeholder="Ex : 6h30, 7h…">
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Qualité du sommeil</legend>
+            <label>
+              <input type="radio" name="qualite_sommeil" value="bonne">
+              Bonne
+            </label>
+            <label>
+              <input type="radio" name="qualite_sommeil" value="moyenne">
+              Moyenne
+            </label>
+            <label>
+              <input type="radio" name="qualite_sommeil" value="mauvaise">
+              Mauvaise
+            </label>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Niveau de stress</legend>
+            <label>
+              <input type="radio" name="niveau_stress" value="bas">
+              Bas
+            </label>
+            <label>
+              <input type="radio" name="niveau_stress" value="moyen">
+              Moyen
+            </label>
+            <label>
+              <input type="radio" name="niveau_stress" value="eleve">
+              Élevé
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- ÉTAPE 7 — Suppléments -->
+        <section class="form-step" id="h-step-7">
+          <h2>Étape 7 — Suppléments</h2>
+          <p class="step-description">
+            Les compléments peuvent aider sur la performance, la récupération
+            ou la prise de muscle. Je dois savoir ce que tu prends déjà et ce que
+            tu es prêt à intégrer, si nécessaire. Rien n’est obligatoire.
+          </p>
+
+          <div class="form-group">
+            <label for="h-complements_actuels">Compléments actuels</label>
+            <textarea id="h-complements_actuels" name="complements_actuels" rows="2"
+              placeholder="Ex : whey, créatine, oméga-3…"></textarea>
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Es-tu ouvert à en prendre ?</legend>
+            <label>
+              <input type="radio" name="ouverte_complements" value="oui">
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="ouverte_complements" value="non">
+              Non
+            </label>
+          </fieldset>
+        </section>
+
+        <!-- ÉTAPE 8 — Organisation & cuisine -->
+        <section class="form-step" id="h-step-8">
+          <h2>Étape 8 — Organisation &amp; cuisine</h2>
+          <p class="step-description">
+            Selon ta logistique, je dois adapter ton plan : rapide si tu manques de temps,
+            optimisé si tu prépares tes repas, simple si tu ne cuisines pas. Le but :
+            zéro prise de tête, maximum d’efficacité.
+          </p>
+
+          <fieldset class="form-group">
+            <legend>As-tu une cuisine équipée ?</legend>
+            <label>
+              <input type="radio" name="cuisine_equipee" value="oui">
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="cuisine_equipee" value="non">
+              Non
+            </label>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Prépares-tu tes repas à l’avance ?</legend>
+            <label>
+              <input type="radio" name="prep_avancee" value="oui">
+              Oui
+            </label>
+            <label>
+              <input type="radio" name="prep_avancee" value="non">
+              Non
+            </label>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="h-budget_courses">Budget courses (optionnel)</label>
+            <input type="text" id="h-budget_courses" name="budget_courses"
+              placeholder="Ex : 300€/mois, 70€/semaine…">
+          </div>
+        </section>
+
+        <!-- ÉTAPE 9 — Objectif & deadline -->
+        <section class="form-step" id="h-step-9">
+          <h2>Étape 9 — Objectif &amp; deadline</h2>
+          <p class="step-description">
+            Pour personnaliser ton plan, j’ai besoin de connaître ton niveau d’ambition
+            et ta deadline : sèche avant l’été, prise de muscle, transformation complète…
+            Cela me permet de structurer un plan progressif et réaliste.
+          </p>
+
+          <div class="form-group">
+            <label for="h-objectif_principal">
+              Ton objectif principal (perte de gras, prise de muscle, sèche, énergie…)
+            </label>
+            <textarea id="h-objectif_principal" name="objectif_principal" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="h-deadline_evenement">
+              As-tu une date ou un événement comme objectif ?
+            </label>
+            <textarea id="h-deadline_evenement" name="deadline_evenement" rows="2"
+              placeholder="Ex : été, compétition, shooting, vacances, date précise…"></textarea>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button type="submit">Envoyer mon questionnaire</button>
+        </div>
+      </form>
+    </section>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const femmeSection = document.querySelector(".questionnaire-femme");
+      const hommeSection = document.querySelector(".questionnaire-homme");
+      const radios = document.querySelectorAll('input[name="type-questionnaire"]');
+
+      function updateDisplay() {
+        const value = document.querySelector('input[name="type-questionnaire"]:checked').value;
+        if (value === "femme") {
+          femmeSection.classList.add("active");
+          hommeSection.classList.remove("active");
+        } else {
+          hommeSection.classList.add("active");
+          femmeSection.classList.remove("active");
+        }
+      }
+
+      radios.forEach(r => r.addEventListener("change", updateDisplay));
+
+      updateDisplay(); // affichage initial
+    });
+  </script>
+</body>
+</html>
