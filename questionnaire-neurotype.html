@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Questionnaire Neurotype Coaching</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f7;
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+      color: #111827;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    h1, h2, h3 {
+      margin-top: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    .intro p {
+      margin: 0.4rem 0;
+    }
+
+    .scale {
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: #4b5563;
+      margin-bottom: 0.7rem;
+    }
+
+    .question {
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .question:last-child {
+      border-bottom: none;
+    }
+
+    .question-label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .likert {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+    }
+
+    .likert label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.15rem;
+      cursor: pointer;
+    }
+
+    .likert input {
+      cursor: pointer;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+
+    .choices label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+    }
+
+    .choices input {
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #111827;
+      color: #ffffff;
+      border: none;
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: #020617;
+    }
+
+    .result-card {
+      margin-top: 1.5rem;
+      display: none;
+    }
+
+    .result-card h2 {
+      margin-top: 0;
+    }
+
+    .result-list {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 0.75rem;
+      background: #f9fafb;
+      font-size: 0.9rem;
+    }
+
+    .result-item {
+      margin-bottom: 0.35rem;
+    }
+
+    .result-raw {
+      margin-top: 0.8rem;
+    }
+
+    .result-raw textarea {
+      width: 100%;
+      min-height: 150px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      padding: 0.6rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.85rem;
+      resize: vertical;
+    }
+
+    .btn-secondary {
+      margin-top: 0.5rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid #111827;
+      background: #ffffff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .btn-secondary:hover {
+      background: #f3f4f6;
+    }
+
+    .error {
+      color: #b91c1c;
+      font-size: 0.85rem;
+      margin-top: 0.2rem;
+    }
+
+    @media (min-width: 700px) {
+      .btn-primary {
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Questionnaire Neurotype Coaching</h1>
+
+    <div class="card intro">
+      <p>Bienvenue dans le questionnaire de Neurotype Coaching.</p>
+      <p>Ce questionnaire permet d’identifier votre profil neuropsychologique et votre réponse naturelle à l’entraînement, au stress, à la motivation et à la nouveauté.</p>
+      <p>Il n’y a pas de bonnes ou de mauvaises réponses : répondez de manière instinctive, comme vous êtes la majorité du temps.</p>
+      <p>Échelle de réponse :</p>
+      <p class="scale">
+        1 = Pas du tout &nbsp;&nbsp; 2 = Un peu &nbsp;&nbsp; 3 = Moyennement / Ça dépend &nbsp;&nbsp; 4 = Beaucoup &nbsp;&nbsp; 5 = Tout à fait
+      </p>
+    </div>
+
+    <form id="neurotype-form">
+
+      <!-- SECTION 1 -->
+      <div class="card">
+        <div class="section-title">SECTION 1 — TEMPÉRAMENT &amp; PERSONNALITÉ</div>
+        <div class="section-desc">
+          Cette section explore vos tendances naturelles : contrôle, prise de décision, compétitivité, organisation, besoin de variété ou de stabilité.
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q1">1. J’aime être en contrôle dans la plupart des situations.</span>
+          <div class="likert">
+            <label><input type="radio" name="q1" value="1" required>1</label>
+            <label><input type="radio" name="q1" value="2">2</label>
+            <label><input type="radio" name="q1" value="3">3</label>
+            <label><input type="radio" name="q1" value="4">4</label>
+            <label><input type="radio" name="q1" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q2">2. Je prends souvent des décisions rapidement, sans hésiter.</span>
+          <div class="likert">
+            <label><input type="radio" name="q2" value="1" required>1</label>
+            <label><input type="radio" name="q2" value="2">2</label>
+            <label><input type="radio" name="q2" value="3">3</label>
+            <label><input type="radio" name="q2" value="4">4</label>
+            <label><input type="radio" name="q2" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q3">3. J’ai du mal à déléguer.</span>
+          <div class="likert">
+            <label><input type="radio" name="q3" value="1" required>1</label>
+            <label><input type="radio" name="q3" value="2">2</label>
+            <label><input type="radio" name="q3" value="3">3</label>
+            <label><input type="radio" name="q3" value="4">4</label>
+            <label><input type="radio" name="q3" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q4">4. Je préfère planifier les choses longtemps à l’avance.</span>
+          <div class="likert">
+            <label><input type="radio" name="q4" value="1" required>1</label>
+            <label><input type="radio" name="q4" value="2">2</label>
+            <label><input type="radio" name="q4" value="3">3</label>
+            <label><input type="radio" name="q4" value="4">4</label>
+            <label><input type="radio" name="q4" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q5">5. Je cherche souvent à performer, me dépasser et être “le meilleur”.</span>
+          <div class="likert">
+            <label><input type="radio" name="q5" value="1" required>1</label>
+            <label><input type="radio" name="q5" value="2">2</label>
+            <label><input type="radio" name="q5" value="3">3</label>
+            <label><input type="radio" name="q5" value="4">4</label>
+            <label><input type="radio" name="q5" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q6">6. J’ai besoin d’être reconnu(e) pour mes efforts.</span>
+          <div class="likert">
+            <label><input type="radio" name="q6" value="1" required>1</label>
+            <label><input type="radio" name="q6" value="2">2</label>
+            <label><input type="radio" name="q6" value="3">3</label>
+            <label><input type="radio" name="q6" value="4">4</label>
+            <label><input type="radio" name="q6" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q7">7. Je suis perfectionniste.</span>
+          <div class="likert">
+            <label><input type="radio" name="q7" value="1" required>1</label>
+            <label><input type="radio" name="q7" value="2">2</label>
+            <label><input type="radio" name="q7" value="3">3</label>
+            <label><input type="radio" name="q7" value="4">4</label>
+            <label><input type="radio" name="q7" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q8">8. J’ai tendance à éviter les situations nouvelles ou imprévisibles.</span>
+          <div class="likert">
+            <label><input type="radio" name="q8" value="1" required>1</label>
+            <label><input type="radio" name="q8" value="2">2</label>
+            <label><input type="radio" name="q8" value="3">3</label>
+            <label><input type="radio" name="q8" value="4">4</label>
+            <label><input type="radio" name="q8" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q9">9. J’aime expérimenter, essayer de nouvelles méthodes ou nouveautés.</span>
+          <div class="likert">
+            <label><input type="radio" name="q9" value="1" required>1</label>
+            <label><input type="radio" name="q9" value="2">2</label>
+            <label><input type="radio" name="q9" value="3">3</label>
+            <label><input type="radio" name="q9" value="4">4</label>
+            <label><input type="radio" name="q9" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q10">10. Je suis plutôt compétitif(ve).</span>
+          <div class="likert">
+            <label><input type="radio" name="q10" value="1" required>1</label>
+            <label><input type="radio" name="q10" value="2">2</label>
+            <label><input type="radio" name="q10" value="3">3</label>
+            <label><input type="radio" name="q10" value="4">4</label>
+            <label><input type="radio" name="q10" value="5">5</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2 -->
+      <div class="card">
+        <div class="section-title">SECTION 2 — MOTIVATION &amp; RÉACTION À L’EFFORT</div>
+        <div class="section-desc">
+          On analyse ici ce qui influence votre motivation et votre réaction à l’effort.
+        </div>
+
+        <!-- 11 -->
+        <div class="question">
+          <span class="question-label" data-question="q11">11. Je suis très motivé(e) au début d’un projet, mais je me lasse rapidement.</span>
+          <div class="likert">
+            <label><input type="radio" name="q11" value="1" required>1</label>
+            <label><input type="radio" name="q11" value="2">2</label>
+            <label><input type="radio" name="q11" value="3">3</label>
+            <label><input type="radio" name="q11" value="4">4</label>
+            <label><input type="radio" name="q11" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="question">
+          <span class="question-label" data-question="q12">12. Je suis régulier(ère) même lorsque la motivation baisse.</span>
+          <div class="likert">
+            <label><input type="radio" name="q12" value="1" required>1</label>
+            <label><input type="radio" name="q12" value="2">2</label>
+            <label><input type="radio" name="q12" value="3">3</label>
+            <label><input type="radio" name="q12" value="4">4</label>
+            <label><input type="radio" name="q12" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 13 -->
+        <div class="question">
+          <span class="question-label" data-question="q13">13. Les entraînements intenses (sprints, charges lourdes) me stimulent.</span>
+          <div class="likert">
+            <label><input type="radio" name="q13" value="1" required>1</label>
+            <label><input type="radio" name="q13" value="2">2</label>
+            <label><input type="radio" name="q13" value="3">3</label>
+            <label><input type="radio" name="q13" value="4">4</label>
+            <label><input type="radio" name="q13" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 14 -->
+        <div class="question">
+          <span class="question-label" data-question="q14">14. Les entraînements trop intenses me stressent ou m’épuisent mentalement.</span>
+          <div class="likert">
+            <label><input type="radio" name="q14" value="1" required>1</label>
+            <label><input type="radio" name="q14" value="2">2</label>
+            <label><input type="radio" name="q14" value="3">3</label>
+            <label><input type="radio" name="q14" value="4">4</label>
+            <label><input type="radio" name="q14" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 15 -->
+        <div class="question">
+          <span class="question-label" data-question="q15">15. J’aime avoir des séances très variées.</span>
+          <div class="likert">
+            <label><input type="radio" name="q15" value="1" required>1</label>
+            <label><input type="radio" name="q15" value="2">2</label>
+            <label><input type="radio" name="q15" value="3">3</label>
+            <label><input type="radio" name="q15" value="4">4</label>
+            <label><input type="radio" name="q15" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 16 -->
+        <div class="question">
+          <span class="question-label" data-question="q16">16. Je préfère un programme structuré et répété chaque semaine.</span>
+          <div class="likert">
+            <label><input type="radio" name="q16" value="1" required>1</label>
+            <label><input type="radio" name="q16" value="2">2</label>
+            <label><input type="radio" name="q16" value="3">3</label>
+            <label><input type="radio" name="q16" value="4">4</label>
+            <label><input type="radio" name="q16" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 17 -->
+        <div class="question">
+          <span class="question-label" data-question="q17">17. J’aime les séances explosives (plyo, puissance).</span>
+          <div class="likert">
+            <label><input type="radio" name="q17" value="1" required>1</label>
+            <label><input type="radio" name="q17" value="2">2</label>
+            <label><input type="radio" name="q17" value="3">3</label>
+            <label><input type="radio" name="q17" value="4">4</label>
+            <label><input type="radio" name="q17" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 18 -->
+        <div class="question">
+          <span class="question-label" data-question="q18">18. Je préfère les séances contrôlées, lentes, techniques.</span>
+          <div class="likert">
+            <label><input type="radio" name="q18" value="1" required>1</label>
+            <label><input type="radio" name="q18" value="2">2</label>
+            <label><input type="radio" name="q18" value="3">3</label>
+            <label><input type="radio" name="q18" value="4">4</label>
+            <label><input type="radio" name="q18" value="5">5</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3 -->
+      <div class="card">
+        <div class="section-title">SECTION 3 — GESTION DU STRESS &amp; ÉMOTIONS</div>
+
+        <!-- 19–25 mêmes patterns -->
+
+        <!-- 19 -->
+        <div class="question">
+          <span class="question-label" data-question="q19">19. Je suis facilement stressé(e) ou anxieux(se).</span>
+          <div class="likert">
+            <label><input type="radio" name="q19" value="1" required>1</label>
+            <label><input type="radio" name="q19" value="2">2</label>
+            <label><input type="radio" name="q19" value="3">3</label>
+            <label><input type="radio" name="q19" value="4">4</label>
+            <label><input type="radio" name="q19" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 20 -->
+        <div class="question">
+          <span class="question-label" data-question="q20">20. Je récupère difficilement d’une période de stress.</span>
+          <div class="likert">
+            <label><input type="radio" name="q20" value="1" required>1</label>
+            <label><input type="radio" name="q20" value="2">2</label>
+            <label><input type="radio" name="q20" value="3">3</label>
+            <label><input type="radio" name="q20" value="4">4</label>
+            <label><input type="radio" name="q20" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 21 -->
+        <div class="question">
+          <span class="question-label" data-question="q21">21. J’ai tendance à réfléchir beaucoup avant d’agir.</span>
+          <div class="likert">
+            <label><input type="radio" name="q21" value="1" required>1</label>
+            <label><input type="radio" name="q21" value="2">2</label>
+            <label><input type="radio" name="q21" value="3">3</label>
+            <label><input type="radio" name="q21" value="4">4</label>
+            <label><input type="radio" name="q21" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 22 -->
+        <div class="question">
+          <span class="question-label" data-question="q22">22. Je supporte mal les imprévus pendant une séance.</span>
+          <div class="likert">
+            <label><input type="radio" name="q22" value="1" required>1</label>
+            <label><input type="radio" name="q22" value="2">2</label>
+            <label><input type="radio" name="q22" value="3">3</label>
+            <label><input type="radio" name="q22" value="4">4</label>
+            <label><input type="radio" name="q22" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 23 -->
+        <div class="question">
+          <span class="question-label" data-question="q23">23. Je suis sensible à l’ambiance de la salle, au coach ou au regard des autres.</span>
+          <div class="likert">
+            <label><input type="radio" name="q23" value="1" required>1</label>
+            <label><input type="radio" name="q23" value="2">2</label>
+            <label><input type="radio" name="q23" value="3">3</label>
+            <label><input type="radio" name="q23" value="4">4</label>
+            <label><input type="radio" name="q23" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 24 -->
+        <div class="question">
+          <span class="question-label" data-question="q24">24. Sous stress, je deviens impulsif(ve) et j’agis vite.</span>
+          <div class="likert">
+            <label><input type="radio" name="q24" value="1" required>1</label>
+            <label><input type="radio" name="q24" value="2">2</label>
+            <label><input type="radio" name="q24" value="3">3</label>
+            <label><input type="radio" name="q24" value="4">4</label>
+            <label><input type="radio" name="q24" value="5">5</label>
+          </div>
+        </div>
+
+        <!-- 25 -->
+        <div class="question">
+          <span class="question-label" data-question="q25">25. Sous stress, j’ai tendance à me refermer et perdre mes moyens.</span>
+          <div class="likert">
+            <label><input type="radio" name="q25" value="1" required>1</label>
+            <label><input type="radio" name="q25" value="2">2</label>
+            <label><input type="radio" name="q25" value="3">3</label>
+            <label><input type="radio" name="q25" value="4">4</label>
+            <label><input type="radio" name="q25" value="5">5</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4 -->
+      <div class="card">
+        <div class="section-title">SECTION 4 — STYLE D’ENTRAÎNEMENT PRÉFÉRÉ</div>
+
+        <!-- 26–32 -->
+
+        <div class="question">
+          <span class="question-label" data-question="q26">26. J’adore les charges lourdes, max reps ou max intensité.</span>
+          <div class="likert">
+            <label><input type="radio" name="q26" value="1" required>1</label>
+            <label><input type="radio" name="q26" value="2">2</label>
+            <label><input type="radio" name="q26" value="3">3</label>
+            <label><input type="radio" name="q26" value="4">4</label>
+            <label><input type="radio" name="q26" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q27">27. Je préfère un entraînement technique, où la forme est plus importante que la charge.</span>
+          <div class="likert">
+            <label><input type="radio" name="q27" value="1" required>1</label>
+            <label><input type="radio" name="q27" value="2">2</label>
+            <label><input type="radio" name="q27" value="3">3</label>
+            <label><input type="radio" name="q27" value="4">4</label>
+            <label><input type="radio" name="q27" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q28">28. J’aime faire beaucoup de répétitions ou de volume.</span>
+          <div class="likert">
+            <label><input type="radio" name="q28" value="1" required>1</label>
+            <label><input type="radio" name="q28" value="2">2</label>
+            <label><input type="radio" name="q28" value="3">3</label>
+            <label><input type="radio" name="q28" value="4">4</label>
+            <label><input type="radio" name="q28" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q29">29. J’aime quand la séance est “fun”, dynamique, variée.</span>
+          <div class="likert">
+            <label><input type="radio" name="q29" value="1" required>1</label>
+            <label><input type="radio" name="q29" value="2">2</label>
+            <label><input type="radio" name="q29" value="3">3</label>
+            <label><input type="radio" name="q29" value="4">4</label>
+            <label><input type="radio" name="q29" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q30">30. Je préfère des séances prévisibles, rassurantes, toujours un peu similaires.</span>
+          <div class="likert">
+            <label><input type="radio" name="q30" value="1" required>1</label>
+            <label><input type="radio" name="q30" value="2">2</label>
+            <label><input type="radio" name="q30" value="3">3</label>
+            <label><input type="radio" name="q30" value="4">4</label>
+            <label><input type="radio" name="q30" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q31">31. J’ai besoin d’être guidé(e) ou encouragé(e) pour bien m’entraîner.</span>
+          <div class="likert">
+            <label><input type="radio" name="q31" value="1" required>1</label>
+            <label><input type="radio" name="q31" value="2">2</label>
+            <label><input type="radio" name="q31" value="3">3</label>
+            <label><input type="radio" name="q31" value="4">4</label>
+            <label><input type="radio" name="q31" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q32">32. Je suis autonome, je sais exactement quoi faire même sans coach.</span>
+          <div class="likert">
+            <label><input type="radio" name="q32" value="1" required>1</label>
+            <label><input type="radio" name="q32" value="2">2</label>
+            <label><input type="radio" name="q32" value="3">3</label>
+            <label><input type="radio" name="q32" value="4">4</label>
+            <label><input type="radio" name="q32" value="5">5</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 5 -->
+      <div class="card">
+        <div class="section-title">SECTION 5 — RÉACTIONS PHYSIQUES &amp; SENSORIELLES</div>
+
+        <!-- 33–39 -->
+
+        <div class="question">
+          <span class="question-label" data-question="q33">33. Je dois longtemps m’échauffer avant de performer.</span>
+          <div class="likert">
+            <label><input type="radio" name="q33" value="1" required>1</label>
+            <label><input type="radio" name="q33" value="2">2</label>
+            <label><input type="radio" name="q33" value="3">3</label>
+            <label><input type="radio" name="q33" value="4">4</label>
+            <label><input type="radio" name="q33" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q34">34. Je suis sensible au bruit, lumière, ambiance.</span>
+          <div class="likert">
+            <label><input type="radio" name="q34" value="1" required>1</label>
+            <label><input type="radio" name="q34" value="2">2</label>
+            <label><input type="radio" name="q34" value="3">3</label>
+            <label><input type="radio" name="q34" value="4">4</label>
+            <label><input type="radio" name="q34" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q35">35. Je récupère vite entre les séries.</span>
+          <div class="likert">
+            <label><input type="radio" name="q35" value="1" required>1</label>
+            <label><input type="radio" name="q35" value="2">2</label>
+            <label><input type="radio" name="q35" value="3">3</label>
+            <label><input type="radio" name="q35" value="4">4</label>
+            <label><input type="radio" name="q35" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q36">36. Après une séance intense, j’ai du mal à dormir.</span>
+          <div class="likert">
+            <label><input type="radio" name="q36" value="1" required>1</label>
+            <label><input type="radio" name="q36" value="2">2</label>
+            <label><input type="radio" name="q36" value="3">3</label>
+            <label><input type="radio" name="q36" value="4">4</label>
+            <label><input type="radio" name="q36" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q37">37. Je ressens fortement la fatigue nerveuse (coup de barre mental).</span>
+          <div class="likert">
+            <label><input type="radio" name="q37" value="1" required>1</label>
+            <label><input type="radio" name="q37" value="2">2</label>
+            <label><input type="radio" name="q37" value="3">3</label>
+            <label><input type="radio" name="q37" value="4">4</label>
+            <label><input type="radio" name="q37" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q38">38. Je suis naturellement explosif(ve) (bons sprints, sauts).</span>
+          <div class="likert">
+            <label><input type="radio" name="q38" value="1" required>1</label>
+            <label><input type="radio" name="q38" value="2">2</label>
+            <label><input type="radio" name="q38" value="3">3</label>
+            <label><input type="radio" name="q38" value="4">4</label>
+            <label><input type="radio" name="q38" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q39">39. J’ai de meilleures performances en fin de séance qu’en début.</span>
+          <div class="likert">
+            <label><input type="radio" name="q39" value="1" required>1</label>
+            <label><input type="radio" name="q39" value="2">2</label>
+            <label><input type="radio" name="q39" value="3">3</label>
+            <label><input type="radio" name="q39" value="4">4</label>
+            <label><input type="radio" name="q39" value="5">5</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 6 -->
+      <div class="card">
+        <div class="section-title">SECTION 6 — COMPORTEMENT SOCIAL &amp; RELATION À L’ENTRAÎNEMENT</div>
+
+        <!-- 40–45 -->
+
+        <div class="question">
+          <span class="question-label" data-question="q40">40. Je préfère m’entraîner seul(e).</span>
+          <div class="likert">
+            <label><input type="radio" name="q40" value="1" required>1</label>
+            <label><input type="radio" name="q40" value="2">2</label>
+            <label><input type="radio" name="q40" value="3">3</label>
+            <label><input type="radio" name="q40" value="4">4</label>
+            <label><input type="radio" name="q40" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q41">41. Je préfère m’entraîner en groupe ou en binôme.</span>
+          <div class="likert">
+            <label><input type="radio" name="q41" value="1" required>1</label>
+            <label><input type="radio" name="q41" value="2">2</label>
+            <label><input type="radio" name="q41" value="3">3</label>
+            <label><input type="radio" name="q41" value="4">4</label>
+            <label><input type="radio" name="q41" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q42">42. J’aime que le coach me parle régulièrement pendant la séance.</span>
+          <div class="likert">
+            <label><input type="radio" name="q42" value="1" required>1</label>
+            <label><input type="radio" name="q42" value="2">2</label>
+            <label><input type="radio" name="q42" value="3">3</label>
+            <label><input type="radio" name="q42" value="4">4</label>
+            <label><input type="radio" name="q42" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q43">43. Je n’aime pas trop l’attention sur moi.</span>
+          <div class="likert">
+            <label><input type="radio" name="q43" value="1" required>1</label>
+            <label><input type="radio" name="q43" value="2">2</label>
+            <label><input type="radio" name="q43" value="3">3</label>
+            <label><input type="radio" name="q43" value="4">4</label>
+            <label><input type="radio" name="q43" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q44">44. Je me donne plus en présence des autres.</span>
+          <div class="likert">
+            <label><input type="radio" name="q44" value="1" required>1</label>
+            <label><input type="radio" name="q44" value="2">2</label>
+            <label><input type="radio" name="q44" value="3">3</label>
+            <label><input type="radio" name="q44" value="4">4</label>
+            <label><input type="radio" name="q44" value="5">5</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q45">45. Je suis sensible aux encouragements extérieurs.</span>
+          <div class="likert">
+            <label><input type="radio" name="q45" value="1" required>1</label>
+            <label><input type="radio" name="q45" value="2">2</label>
+            <label><input type="radio" name="q45" value="3">3</label>
+            <label><input type="radio" name="q45" value="4">4</label>
+            <label><input type="radio" name="q45" value="5">5</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 7 -->
+      <div class="card">
+        <div class="section-title">SECTION 7 — HISTORIQUE &amp; RESSENTIS</div>
+
+        <div class="question">
+          <span class="question-label" data-question="q46">46. Quel type de séance vous fatigue le plus mentalement ?</span>
+          <div class="choices">
+            <label><input type="radio" name="q46" value="Charges lourdes" required>Charges lourdes</label>
+            <label><input type="radio" name="q46" value="Cardio intensif">Cardio intensif</label>
+            <label><input type="radio" name="q46" value="Séances longues">Séances longues</label>
+            <label><input type="radio" name="q46" value="Séances techniques">Séances techniques</label>
+            <label><input type="radio" name="q46" value="Séances explosives">Séances explosives</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q47">47. Quel type de séance vous donne le plus d’énergie ?</span>
+          <div class="choices">
+            <label><input type="radio" name="q47" value="Charges lourdes" required>Charges lourdes</label>
+            <label><input type="radio" name="q47" value="Explosivité">Explosivité</label>
+            <label><input type="radio" name="q47" value="Endurance">Endurance</label>
+            <label><input type="radio" name="q47" value="Technique / contrôle">Technique / contrôle</label>
+            <label><input type="radio" name="q47" value="Variété / circuits">Variété / circuits</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q48">48. Vous progressez mieux avec :</span>
+          <div class="choices">
+            <label><input type="radio" name="q48" value="Beaucoup de variété" required>Beaucoup de variété</label>
+            <label><input type="radio" name="q48" value="Un plan fixe répété">Un plan fixe répété</label>
+            <label><input type="radio" name="q48" value="Structure stable + quelques variations">Une structure stable + quelques variations</label>
+            <label><input type="radio" name="q48" value="Liberté totale selon mon ressenti">Liberté totale selon mon ressenti</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q49">49. Lorsqu’un coach vous corrige :</span>
+          <div class="choices">
+            <label><input type="radio" name="q49" value="J’adore, ça me pousse" required>J’adore, ça me pousse</label>
+            <label><input type="radio" name="q49" value="Ça me stresse mais j’écoute">Ça me stresse mais j’écoute</label>
+            <label><input type="radio" name="q49" value="Je me sens jugé(e)">Je me sens jugé(e)</label>
+            <label><input type="radio" name="q49" value="J’ai besoin de comprendre chaque détail">J’ai besoin de comprendre chaque détail</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <span class="question-label" data-question="q50">50. Vous êtes plutôt :</span>
+          <div class="choices">
+            <label><input type="radio" name="q50" value="Impulsif(ve)" required>Impulsif(ve)</label>
+            <label><input type="radio" name="q50" value="Réfléchi(e)">Réfléchi(e)</label>
+            <label><input type="radio" name="q50" value="Sensible">Sensible</label>
+            <label><input type="radio" name="q50" value="Stable">Stable</label>
+            <label><input type="radio" name="q50" value="Changeant(e)">Changeant(e)</label>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary">Voir mon récapitulatif</button>
+    </form>
+
+    <div id="results" class="card result-card">
+      <h2>Récapitulatif de vos réponses</h2>
+      <p>Voici vos réponses détaillées. Vous pouvez les copier et les envoyer à votre coach.</p>
+      <div class="result-list" id="result-list"></div>
+
+      <div class="result-raw">
+        <h3>Texte à copier / coller</h3>
+        <textarea id="result-text" readonly></textarea>
+        <button type="button" class="btn-secondary" id="copy-btn">Copier les résultats</button>
+        <p id="copy-msg" class="error" style="display:none;">Résultats copiés dans le presse-papiers ✅</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('neurotype-form');
+    const resultCard = document.getElementById('results');
+    const resultList = document.getElementById('result-list');
+    const resultText = document.getElementById('result-text');
+    const copyBtn = document.getElementById('copy-btn');
+    const copyMsg = document.getElementById('copy-msg');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const totalQuestions = 50;
+      const answers = [];
+      let missing = null;
+
+      for (let i = 1; i <= totalQuestions; i++) {
+        const name = 'q' + i;
+        const questionLabel = document.querySelector('[data-question="' + name + '"]');
+        const questionText = questionLabel ? questionLabel.textContent.trim() : ('Question ' + i);
+        const field = form.elements[name];
+
+        let value = '';
+
+        if (!field) continue;
+
+        if (field.length && field[0].type === 'radio') {
+          let found = false;
+          for (let input of field) {
+            if (input.checked) {
+              value = input.value;
+              found = true;
+              break;
+            }
+          }
+          if (!found) {
+            missing = i;
+            break;
+          }
+        } else if (field.type === 'radio') {
+          if (field.checked) {
+            value = field.value;
+          } else {
+            missing = i;
+            break;
+          }
+        } else {
+          value = field.value || '';
+        }
+
+        answers.push({ num: i, question: questionText, value });
+      }
+
+      if (missing !== null) {
+        alert('Merci de répondre à toutes les questions avant de valider (il manque la question ' + missing + ').');
+        return;
+      }
+
+      // Affichage lisible
+      resultList.innerHTML = '';
+      answers.forEach(a => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.textContent = a.question + ' → ' + a.value;
+        resultList.appendChild(div);
+      });
+
+      // Texte brut à copier (pour t’envoyer les réponses par message/mail)
+      let txt = 'Questionnaire Neurotype - Réponses\n\n';
+      answers.forEach(a => {
+        txt += a.num + '. ' + a.question + '\nRéponse : ' + a.value + '\n\n';
+      });
+      resultText.value = txt;
+
+      resultCard.style.display = 'block';
+      resultCard.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(resultText.value);
+        copyMsg.style.display = 'block';
+        setTimeout(() => { copyMsg.style.display = 'none'; }, 2000);
+      } catch (err) {
+        alert('Copie impossible automatiquement. Sélectionnez le texte et copiez-le manuellement.');
+      }
+    });
+  </script>
+</body>
+</html>
