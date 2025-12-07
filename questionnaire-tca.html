@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Questionnaire TCA – Auto-évaluation des comportements alimentaires</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #222;
+      line-height: 1.5;
+    }
+
+    .page {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+      margin-bottom: 0.4rem;
+      color: #111827;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin: 1.8rem 0 0.3rem;
+      color: #111827;
+    }
+
+    p {
+      margin: 0.15rem 0 0.6rem;
+    }
+
+    .intro {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      padding: 14px 14px 16px;
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
+
+    .intro strong {
+      font-weight: 600;
+    }
+
+    form {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      padding: 18px 14px 20px;
+    }
+
+    .section-block {
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .section-block:last-of-type {
+      border-bottom: none;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+    }
+
+    .section-description {
+      font-size: 0.9rem;
+      color: #4b5563;
+      margin-bottom: 0.7rem;
+    }
+
+    .question {
+      margin: 12px 0;
+    }
+
+    .question-text {
+      font-size: 0.94rem;
+      margin-bottom: 4px;
+    }
+
+    .scale {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      font-size: 0.88rem;
+    }
+
+    .scale label {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .scale input {
+      margin: 0;
+    }
+
+    .legend-scale {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .form-actions {
+      margin-top: 18px;
+      text-align: right;
+    }
+
+    button[type="submit"] {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #111827;
+      color: #ffffff;
+    }
+
+    button[type="submit"]:hover {
+      opacity: 0.9;
+    }
+
+    .result-box {
+      margin-top: 18px;
+      padding: 14px 14px 12px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      font-size: 0.92rem;
+      display: none;
+    }
+
+    .result-box h3 {
+      margin: 0 0 6px;
+      font-size: 1.02rem;
+    }
+
+    .result-score {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .result-category {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .sub-scores {
+      margin-top: 8px;
+      font-size: 0.9rem;
+    }
+
+    .sub-scores p {
+      margin: 2px 0;
+    }
+
+    .disclaimer {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        padding: 30px 0 50px;
+      }
+      form {
+        padding: 20px 20px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Questionnaire TCA 🧠</h1>
+    <div class="intro">
+      <p><strong>Questionnaire d’auto-évaluation des comportements alimentaires</strong></p>
+      <p>
+        Ce questionnaire a pour but de t’aider à mieux comprendre ta relation à la nourriture,
+        à ton corps et à tes émotions. Il ne remplace en aucun cas un avis médical ou
+        psychologique, mais il permet de mettre en lumière certains schémas :
+        alimentation émotionnelle, perte de contrôle, compensation, restriction, insatisfaction corporelle…
+      </p>
+      <p>
+        Réponds avec honnêteté, sans jugement : il n’y a ni bonne ni mauvaise réponse.
+        Ce n’est pas un test de performance, mais un outil de conscience pour avancer
+        ensemble vers une relation plus sereine avec ton alimentation.
+      </p>
+    </div>
+
+    <form id="tca-form">
+      <!-- Section 1 -->
+      <section class="section-block" id="section-1">
+        <h2>1. Comportement alimentaire général</h2>
+        <p class="section-description">
+          Cette partie explore ta façon de manger au quotidien : vitesse, quantité,
+          difficulté à t’arrêter, comportements cachés. Elle met en lumière des
+          habitudes comme l’hyperphagie, la perte de contrôle ou simplement un
+          rythme alimentaire désorganisé.
+        </p>
+
+        <div class="question">
+          <p class="question-text">1. As-tu tendance à manger plus vite que les autres ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q1" value="0"> Jamais</label>
+            <label><input type="radio" name="q1" value="1"> Rarement</label>
+            <label><input type="radio" name="q1" value="2"> Parfois</label>
+            <label><input type="radio" name="q1" value="3"> Souvent</label>
+            <label><input type="radio" name="q1" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">2. T’arrive-t-il de manger sans faim réelle ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q2" value="0"> Jamais</label>
+            <label><input type="radio" name="q2" value="1"> Rarement</label>
+            <label><input type="radio" name="q2" value="2"> Parfois</label>
+            <label><input type="radio" name="q2" value="3"> Souvent</label>
+            <label><input type="radio" name="q2" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">3. As-tu parfois du mal à t’arrêter de manger une fois que tu as commencé ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q3" value="0"> Jamais</label>
+            <label><input type="radio" name="q3" value="1"> Rarement</label>
+            <label><input type="radio" name="q3" value="2"> Parfois</label>
+            <label><input type="radio" name="q3" value="3"> Souvent</label>
+            <label><input type="radio" name="q3" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">4. As-tu déjà caché des aliments ou mangé en cachette ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q4" value="0"> Jamais</label>
+            <label><input type="radio" name="q4" value="1"> Rarement</label>
+            <label><input type="radio" name="q4" value="2"> Parfois</label>
+            <label><input type="radio" name="q4" value="3"> Souvent</label>
+            <label><input type="radio" name="q4" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">5. As-tu déjà mangé jusqu’à te sentir inconfortable physiquement (trop plein) ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q5" value="0"> Jamais</label>
+            <label><input type="radio" name="q5" value="1"> Rarement</label>
+            <label><input type="radio" name="q5" value="2"> Parfois</label>
+            <label><input type="radio" name="q5" value="3"> Souvent</label>
+            <label><input type="radio" name="q5" value="4"> Très souvent</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="section-block" id="section-2">
+        <h2>2. Lien émotionnel à la nourriture</h2>
+        <p class="section-description">
+          Cette section explore dans quelle mesure tu utilises la nourriture pour
+          gérer tes émotions (stress, tristesse, colère) et comment tu te sens
+          après avoir mangé : culpabilité, compensation, peur de perdre le contrôle.
+        </p>
+
+        <div class="question">
+          <p class="question-text">6. Utilises-tu la nourriture pour te calmer quand tu es stressée, triste ou énervée ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q6" value="0"> Jamais</label>
+            <label><input type="radio" name="q6" value="1"> Rarement</label>
+            <label><input type="radio" name="q6" value="2"> Parfois</label>
+            <label><input type="radio" name="q6" value="3"> Souvent</label>
+            <label><input type="radio" name="q6" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">7. Ressens-tu de la culpabilité après avoir mangé certains aliments ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q7" value="0"> Jamais</label>
+            <label><input type="radio" name="q7" value="1"> Rarement</label>
+            <label><input type="radio" name="q7" value="2"> Parfois</label>
+            <label><input type="radio" name="q7" value="3"> Souvent</label>
+            <label><input type="radio" name="q7" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">8. As-tu l’impression que certains aliments sont “interdits” ou “dangereux” pour toi ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q8" value="0"> Jamais</label>
+            <label><input type="radio" name="q8" value="1"> Rarement</label>
+            <label><input type="radio" name="q8" value="2"> Parfois</label>
+            <label><input type="radio" name="q8" value="3"> Souvent</label>
+            <label><input type="radio" name="q8" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">9. As-tu déjà “compensé” un excès alimentaire par du sport, du jeûne ou des restrictions le lendemain ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q9" value="0"> Jamais</label>
+            <label><input type="radio" name="q9" value="1"> Rarement</label>
+            <label><input type="radio" name="q9" value="2"> Parfois</label>
+            <label><input type="radio" name="q9" value="3"> Souvent</label>
+            <label><input type="radio" name="q9" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">10. As-tu peur de perdre le contrôle si tu manges certains aliments ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q10" value="0"> Jamais</label>
+            <label><input type="radio" name="q10" value="1"> Rarement</label>
+            <label><input type="radio" name="q10" value="2"> Parfois</label>
+            <label><input type="radio" name="q10" value="3"> Souvent</label>
+            <label><input type="radio" name="q10" value="4"> Très souvent</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="section-block" id="section-3">
+        <h2>3. Image du corps et contrôle</h2>
+        <p class="section-description">
+          Ici, on observe l’impact de ton image corporelle sur ton comportement
+          alimentaire : fréquence de la pesée, peur de grossir, régimes répétés,
+          sentiment de devoir “mériter” ce que tu manges.
+        </p>
+
+        <div class="question">
+          <p class="question-text">11. Te pèses-tu souvent ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q11" value="0"> Jamais ou presque</label>
+            <label><input type="radio" name="q11" value="1"> 1 fois par semaine</label>
+            <label><input type="radio" name="q11" value="2"> 2–3 fois par semaine</label>
+            <label><input type="radio" name="q11" value="3"> Presque tous les jours</label>
+            <label><input type="radio" name="q11" value="4"> Plusieurs fois par jour</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">12. As-tu peur de grossir même si ton poids reste stable ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q12" value="0"> Jamais</label>
+            <label><input type="radio" name="q12" value="1"> Rarement</label>
+            <label><input type="radio" name="q12" value="2"> Parfois</label>
+            <label><input type="radio" name="q12" value="3"> Souvent</label>
+            <label><input type="radio" name="q12" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">13. Es-tu souvent insatisfaite de ton corps, même après des efforts visibles ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q13" value="0"> Jamais</label>
+            <label><input type="radio" name="q13" value="1"> Rarement</label>
+            <label><input type="radio" name="q13" value="2"> Parfois</label>
+            <label><input type="radio" name="q13" value="3"> Souvent</label>
+            <label><input type="radio" name="q13" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">14. As-tu l’impression de devoir “mériter” ou “compenser” ce que tu manges ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q14" value="0"> Jamais</label>
+            <label><input type="radio" name="q14" value="1"> Rarement</label>
+            <label><input type="radio" name="q14" value="2"> Parfois</label>
+            <label><input type="radio" name="q14" value="3"> Souvent</label>
+            <label><input type="radio" name="q14" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">15. As-tu déjà suivi plusieurs régimes ou plans alimentaires restrictifs dans ta vie ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q15" value="0"> Non</label>
+            <label><input type="radio" name="q15" value="1"> 1 régime</label>
+            <label><input type="radio" name="q15" value="2"> 2–3 régimes</label>
+            <label><input type="radio" name="q15" value="3"> 4–5 régimes</label>
+            <label><input type="radio" name="q15" value="4"> Plus de 5 régimes</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="section-block" id="section-4">
+        <h2>4. Relation à la faim et à la satiété</h2>
+        <p class="section-description">
+          Cette partie explore ta connexion à tes signaux internes : faim réelle,
+          satiété, présence au moment des repas, automatisme. Elle aide à comprendre
+          si la nourriture est vécue comme un pilotage automatique ou un acte conscient.
+        </p>
+
+        <div class="question">
+          <p class="question-text">16. Arrives-tu à reconnaître la faim physique, la vraie ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q16" value="0"> Toujours</label>
+            <label><input type="radio" name="q16" value="1"> Souvent</label>
+            <label><input type="radio" name="q16" value="2"> Parfois</label>
+            <label><input type="radio" name="q16" value="3"> Rarement</label>
+            <label><input type="radio" name="q16" value="4"> Presque jamais</label>
+          </div>
+          <p class="legend-scale">(Plus le score est élevé, plus la faim est difficile à identifier.)</p>
+        </div>
+
+        <div class="question">
+          <p class="question-text">17. Ressens-tu facilement la satiété ? Si oui, à quel moment du repas ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q17" value="0"> Oui, assez tôt</label>
+            <label><input type="radio" name="q17" value="1"> Oui, au milieu du repas</label>
+            <label><input type="radio" name="q17" value="2"> Plutôt vers la fin</label>
+            <label><input type="radio" name="q17" value="3"> Seulement quand je suis très pleine</label>
+            <label><input type="radio" name="q17" value="4"> Je ne la ressens presque jamais</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">18. As-tu parfois l’impression de “dissocier” ton corps de ce que tu manges (manger sans vraiment être présente) ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q18" value="0"> Jamais</label>
+            <label><input type="radio" name="q18" value="1"> Rarement</label>
+            <label><input type="radio" name="q18" value="2"> Parfois</label>
+            <label><input type="radio" name="q18" value="3"> Souvent</label>
+            <label><input type="radio" name="q18" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">19. Manges-tu parfois “automatiquement” (sans t’en rendre compte) ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q19" value="0"> Jamais</label>
+            <label><input type="radio" name="q19" value="1"> Rarement</label>
+            <label><input type="radio" name="q19" value="2"> Parfois</label>
+            <label><input type="radio" name="q19" value="3"> Souvent</label>
+            <label><input type="radio" name="q19" value="4"> Très souvent</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p class="question-text">20. As-tu l’impression que la nourriture contrôle ta journée, ou au contraire que tu la contrôles trop ?</p>
+          <div class="scale">
+            <label><input type="radio" name="q20" value="0"> Non, c’est plutôt équilibré</label>
+            <label><input type="radio" name="q20" value="1"> Légèrement</label>
+            <label><input type="radio" name="q20" value="2"> Assez souvent</label>
+            <label><input type="radio" name="q20" value="3"> Très souvent</label>
+            <label><input type="radio" name="q20" value="4"> Presque tout le temps</label>
+          </div>
+        </div>
+      </section>
+
+      <div class="form-actions">
+        <button type="submit">Analyser mes réponses</button>
+      </div>
+    </form>
+
+    <div id="result" class="result-box">
+      <h3>Résultats de ton auto-évaluation</h3>
+      <p class="result-score"></p>
+      <p class="result-category"></p>
+      <p class="result-text"></p>
+
+      <div class="sub-scores">
+        <p><strong>Détail par domaine :</strong></p>
+        <p class="sub1"></p>
+        <p class="sub2"></p>
+        <p class="sub3"></p>
+        <p class="sub4"></p>
+      </div>
+
+      <p class="disclaimer">
+        ⚠️ Ce questionnaire n’est pas un outil de diagnostic.  
+        Si tes réponses ou le résultat te questionnent, en parler à un(e) professionnel(le)
+        de santé (médecin, psychologue, spécialiste des TCA) est toujours une bonne idée.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("tca-form");
+      const resultBox = document.getElementById("result");
+      const scoreEl = resultBox.querySelector(".result-score");
+      const categoryEl = resultBox.querySelector(".result-category");
+      const textEl = resultBox.querySelector(".result-text");
+      const sub1El = resultBox.querySelector(".sub1");
+      const sub2El = resultBox.querySelector(".sub2");
+      const sub3El = resultBox.querySelector(".sub3");
+      const sub4El = resultBox.querySelector(".sub4");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Vérifier que toutes les questions sont répondues
+        for (let i = 1; i <= 20; i++) {
+          const name = "q" + i;
+          const checked = form.querySelector('input[name="' + name + '"]:checked');
+          if (!checked) {
+            alert("Merci de répondre à toutes les questions avant de valider (question " + i + ").");
+            const firstQuestion = form.querySelector('input[name="' + name + '"]');
+            if (firstQuestion && firstQuestion.scrollIntoView) {
+              firstQuestion.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+            return;
+          }
+        }
+
+        let total = 0;
+        const values = {};
+
+        for (let i = 1; i <= 20; i++) {
+          const name = "q" + i;
+          const checked = form.querySelector('input[name="' + name + '"]:checked');
+          const value = parseInt(checked.value, 10);
+          values[name] = value;
+          total += value;
+        }
+
+        // Sous-scores par domaine (5 questions chacun)
+        const s1 = values.q1 + values.q2 + values.q3 + values.q4 + values.q5;
+        const s2 = values.q6 + values.q7 + values.q8 + values.q9 + values.q10;
+        const s3 = values.q11 + values.q12 + values.q13 + values.q14 + values.q15;
+        const s4 = values.q16 + values.q17 + values.q18 + values.q19 + values.q20;
+
+        // Interprétation globale (0–80)
+        let category = "";
+        let text = "";
+
+        if (total <= 15) {
+          category = "Relation plutôt sereine, quelques points à surveiller.";
+          text =
+            "Tes réponses suggèrent une relation globalement stable avec l’alimentation, " +
+            "même si certains comportements méritent peut-être un peu d’attention. " +
+            "On peut travailler ensemble sur quelques ajustements pour consolider cet équilibre.";
+        } else if (total <= 35) {
+          category = "Signaux de fragilité dans la relation à la nourriture.";
+          text =
+            "Tu sembles déjà vivre certaines tensions autour de la nourriture, des émotions " +
+            "ou de l’image du corps. Rien n’est figé, mais il peut être très utile d’apporter " +
+            "un cadre plus apaisant et d’explorer ce qui se cache derrière ces comportements.";
+        } else if (total <= 55) {
+          category = "Relation à l’alimentation chargée émotionnellement.";
+          text =
+            "Tes réponses montrent une relation à la nourriture probablement fatigante sur le plan mental : " +
+            "culpabilité, perte de contrôle, compensation ou préoccupations corporelles fréquentes. " +
+            "Un accompagnement structuré (nutritionnel et/ou psychologique) pourrait vraiment t’aider à alléger tout ça.";
+        } else {
+          category = "Charge importante autour de l’alimentation et du corps.";
+          text =
+            "Tu sembles vivre une relation très complexe et coûteuse avec la nourriture et ton corps. " +
+            "Ce n’est pas un échec, ni une honte : c’est le signe que tu portes beaucoup toute seule. " +
+            "En parler avec un(e) professionnel(le) spécialisé(e) dans les TCA serait une démarche très précieuse " +
+            "pour toi, en complément d’un accompagnement nutritionnel bienveillant.";
+        }
+
+        scoreEl.textContent = "Score total : " + total + " / 80";
+        categoryEl.textContent = category;
+        textEl.textContent = text;
+
+        // Fonctions pour interpréter les sous-scores (0–20 par domaine)
+        function subText(label, score) {
+          let nuance = "";
+          if (score <= 5) {
+            nuance = "zone plutôt stable";
+          } else if (score <= 10) {
+            nuance = "quelques tensions ou automatismes";
+          } else if (score <= 15) {
+            nuance = "difficultés fréquentes à ce niveau";
+          } else {
+            nuance = "zone très sensible actuellement";
+          }
+          return label + " : " + score + " / 20 (" + nuance + ").";
+        }
+
+        sub1El.textContent = subText("Comportement alimentaire général", s1);
+        sub2El.textContent = subText("Lien émotionnel à la nourriture", s2);
+        sub3El.textContent = subText("Image du corps et contrôle", s3);
+        sub4El.textContent = subText("Faim, satiété et présence au repas", s4);
+
+        resultBox.style.display = "block";
+        resultBox.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  </script>
+</body>
+</html>
