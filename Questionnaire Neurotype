@@ -769,57 +769,60 @@
       <!-- SECTION 7 -->
       <div class="card">
         <div class="section-title">SECTION 7 — HISTORIQUE &amp; RESSENTIS</div>
+        <div class="section-desc">
+          Dans cette section, vous pouvez sélectionner <strong>plusieurs réponses</strong> par question si nécessaire.
+        </div>
 
         <div class="question">
-          <span class="question-label" data-question="q46">46. Quel type de séance vous fatigue le plus mentalement ?</span>
+          <span class="question-label" data-question="q46">46. Quel type de séance vous fatigue le plus mentalement ? (plusieurs réponses possibles)</span>
           <div class="choices">
-            <label><input type="radio" name="q46" value="Charges lourdes" required>Charges lourdes</label>
-            <label><input type="radio" name="q46" value="Cardio intensif">Cardio intensif</label>
-            <label><input type="radio" name="q46" value="Séances longues">Séances longues</label>
-            <label><input type="radio" name="q46" value="Séances techniques">Séances techniques</label>
-            <label><input type="radio" name="q46" value="Séances explosives">Séances explosives</label>
+            <label><input type="checkbox" name="q46" value="Charges lourdes">Charges lourdes</label>
+            <label><input type="checkbox" name="q46" value="Cardio intensif">Cardio intensif</label>
+            <label><input type="checkbox" name="q46" value="Séances longues">Séances longues</label>
+            <label><input type="checkbox" name="q46" value="Séances techniques">Séances techniques</label>
+            <label><input type="checkbox" name="q46" value="Séances explosives">Séances explosives</label>
           </div>
         </div>
 
         <div class="question">
-          <span class="question-label" data-question="q47">47. Quel type de séance vous donne le plus d’énergie ?</span>
+          <span class="question-label" data-question="q47">47. Quel type de séance vous donne le plus d’énergie ? (plusieurs réponses possibles)</span>
           <div class="choices">
-            <label><input type="radio" name="q47" value="Charges lourdes" required>Charges lourdes</label>
-            <label><input type="radio" name="q47" value="Explosivité">Explosivité</label>
-            <label><input type="radio" name="q47" value="Endurance">Endurance</label>
-            <label><input type="radio" name="q47" value="Technique / contrôle">Technique / contrôle</label>
-            <label><input type="radio" name="q47" value="Variété / circuits">Variété / circuits</label>
+            <label><input type="checkbox" name="q47" value="Charges lourdes">Charges lourdes</label>
+            <label><input type="checkbox" name="q47" value="Explosivité">Explosivité</label>
+            <label><input type="checkbox" name="q47" value="Endurance">Endurance</label>
+            <label><input type="checkbox" name="q47" value="Technique / contrôle">Technique / contrôle</label>
+            <label><input type="checkbox" name="q47" value="Variété / circuits">Variété / circuits</label>
           </div>
         </div>
 
         <div class="question">
-          <span class="question-label" data-question="q48">48. Vous progressez mieux avec :</span>
+          <span class="question-label" data-question="q48">48. Vous progressez mieux avec : (plusieurs réponses possibles)</span>
           <div class="choices">
-            <label><input type="radio" name="q48" value="Beaucoup de variété" required>Beaucoup de variété</label>
-            <label><input type="radio" name="q48" value="Un plan fixe répété">Un plan fixe répété</label>
-            <label><input type="radio" name="q48" value="Structure stable + quelques variations">Une structure stable + quelques variations</label>
-            <label><input type="radio" name="q48" value="Liberté totale selon mon ressenti">Liberté totale selon mon ressenti</label>
+            <label><input type="checkbox" name="q48" value="Beaucoup de variété">Beaucoup de variété</label>
+            <label><input type="checkbox" name="q48" value="Un plan fixe répété">Un plan fixe répété</label>
+            <label><input type="checkbox" name="q48" value="Structure stable + quelques variations">Une structure stable + quelques variations</label>
+            <label><input type="checkbox" name="q48" value="Liberté totale selon mon ressenti">Liberté totale selon mon ressenti</label>
           </div>
         </div>
 
         <div class="question">
-          <span class="question-label" data-question="q49">49. Lorsqu’un coach vous corrige :</span>
+          <span class="question-label" data-question="q49">49. Lorsqu’un coach vous corrige : (plusieurs réponses possibles)</span>
           <div class="choices">
-            <label><input type="radio" name="q49" value="J’adore, ça me pousse" required>J’adore, ça me pousse</label>
-            <label><input type="radio" name="q49" value="Ça me stresse mais j’écoute">Ça me stresse mais j’écoute</label>
-            <label><input type="radio" name="q49" value="Je me sens jugé(e)">Je me sens jugé(e)</label>
-            <label><input type="radio" name="q49" value="J’ai besoin de comprendre chaque détail">J’ai besoin de comprendre chaque détail</label>
+            <label><input type="checkbox" name="q49" value="J’adore, ça me pousse">J’adore, ça me pousse</label>
+            <label><input type="checkbox" name="q49" value="Ça me stresse mais j’écoute">Ça me stresse mais j’écoute</label>
+            <label><input type="checkbox" name="q49" value="Je me sens jugé(e)">Je me sens jugé(e)</label>
+            <label><input type="checkbox" name="q49" value="J’ai besoin de comprendre chaque détail">J’ai besoin de comprendre chaque détail</label>
           </div>
         </div>
 
         <div class="question">
-          <span class="question-label" data-question="q50">50. Vous êtes plutôt :</span>
+          <span class="question-label" data-question="q50">50. Vous êtes plutôt : (plusieurs réponses possibles)</span>
           <div class="choices">
-            <label><input type="radio" name="q50" value="Impulsif(ve)" required>Impulsif(ve)</label>
-            <label><input type="radio" name="q50" value="Réfléchi(e)">Réfléchi(e)</label>
-            <label><input type="radio" name="q50" value="Sensible">Sensible</label>
-            <label><input type="radio" name="q50" value="Stable">Stable</label>
-            <label><input type="radio" name="q50" value="Changeant(e)">Changeant(e)</label>
+            <label><input type="checkbox" name="q50" value="Impulsif(ve)">Impulsif(ve)</label>
+            <label><input type="checkbox" name="q50" value="Réfléchi(e)">Réfléchi(e)</label>
+            <label><input type="checkbox" name="q50" value="Sensible">Sensible</label>
+            <label><input type="checkbox" name="q50" value="Stable">Stable</label>
+            <label><input type="checkbox" name="q50" value="Changeant(e)">Changeant(e)</label>
           </div>
         </div>
       </div>
