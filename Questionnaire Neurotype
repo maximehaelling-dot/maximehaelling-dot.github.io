@@ -765,7 +765,6 @@
           </div>
         </div>
       </div>
-
       <!-- SECTION 7 -->
       <div class="card">
         <div class="section-title">SECTION 7 — HISTORIQUE &amp; RESSENTIS</div>
@@ -826,23 +825,295 @@
           </div>
         </div>
       </div>
+  <script>
+    const form = document.getElementById('neurotype-form');
+    const resultCard = document.getElementById('results');
+    const resultList = document.getElementById('result-list');
+    const resultText = document.getElementById('result-text');
+    const copyBtn = document.getElementById('copy-btn');
+    const copyMsg = document.getElementById('copy-msg');
 
-      <button type="submit" class="btn-primary">Voir mon récapitulatif</button>
-    </form>
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    <div id="results" class="card result-card">
-      <h2>Récapitulatif de vos réponses</h2>
-      <p>Voici vos réponses détaillées. Vous pouvez les copier et les envoyer à votre coach.</p>
-      <div class="result-list" id="result-list"></div>
+      const totalQuestions = 50;
+      const answers = [];
+      let missing = null;
 
-      <div class="result-raw">
-        <h3>Texte à copier / coller</h3>
-        <textarea id="result-text" readonly></textarea>
-        <button type="button" class="btn-secondary" id="copy-btn">Copier les résultats</button>
-        <p id="copy-msg" class="error" style="display:none;">Résultats copiés dans le presse-papiers ✅</p>
-      </div>
-    </div>
-  </div>
+      for (let i = 1; i <= totalQuestions; i++) {
+        const name = 'q' + i;
+        const questionLabel = document.querySelector('[data-question="' + name + '"]');
+        const questionText = questionLabel ? questionLabel.textContent.trim() : ('Question ' + i);
+        const field = form.elements[name];
+
+        let value = '';
+
+        if (!field) continue;
+
+        // Groupes (radios ou checkboxes)
+        if (field.length && (field[0].type === 'radio' || field[0].type === 'checkbox')) {
+          let selections = [];
+
+          for (let input of field) {
+            if (input.checked) {
+              selections.push(input.value);
+            }
+          }
+
+          if (selections.length === 0) {
+            // aucune case cochée pour cette question
+            missing = i;
+            break;
+          }
+
+          // Si checkbox : on concatène les réponses, sinon on prend la première (radio)
+          value = (field[0].type === 'checkbox')
+            ? selections.join(', ')
+            : selections[0];
+
+        // Cas rare : un seul input (non groupé)
+        } else if (field.type === 'radio' || field.type === 'checkbox') {
+          if (!field.checked) {
+            missing = i;
+            break;
+          }
+          value = field.value;
+        } else {
+          // texte, textarea, etc.
+          value = field.value || '';
+        }
+
+        answers.push({ num: i, question: questionText, value });
+      }
+
+      if (missing !== null) {
+        alert('Merci de répondre à toutes les questions avant de valider (il manque la question ' + missing + ').');
+        return;
+      }
+
+      // Affichage lisible
+      resultList.innerHTML = '';
+      answers.forEach(a => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.textContent = a.question + ' → ' + a.value;
+        resultList.appendChild(div);
+      });
+
+      // Texte brut à copier (pour t’envoyer les réponses par message/mail)
+      let txt = 'Questionnaire Neurotype - Réponses\n\n';
+      answers.forEach(a => {
+        txt += a.num + '. ' + a.question + '\nRéponse : ' + a.value + '\n\n';
+      });
+      resultText.value = txt;
+
+      resultCard.style.display = 'block';
+      resultCard.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(resultText.value);
+        copyMsg.style.display = 'block';
+        setTimeout(() => { copyMsg.style.display = 'none'; }, 2000);
+      } catch (err) {
+        alert('Copie impossible automatiquement. Sélectionnez le texte et copiez-le manuellement.');
+      }
+    });
+  </script>
+          <script>
+    const form = document.getElementById('neurotype-form');
+    const resultCard = document.getElementById('results');
+    const resultList = document.getElementById('result-list');
+    const resultText = document.getElementById('result-text');
+    const copyBtn = document.getElementById('copy-btn');
+    const copyMsg = document.getElementById('copy-msg');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const totalQuestions = 50;
+      const answers = [];
+      let missing = null;
+
+      for (let i = 1; i <= totalQuestions; i++) {
+        const name = 'q' + i;
+        const questionLabel = document.querySelector('[data-question="' + name + '"]');
+        const questionText = questionLabel ? questionLabel.textContent.trim() : ('Question ' + i);
+        const field = form.elements[name];
+
+        let value = '';
+
+        if (!field) continue;
+
+        // Groupes (radios ou checkboxes)
+        if (field.length && (field[0].type === 'radio' || field[0].type === 'checkbox')) {
+          let selections = [];
+
+          for (let input of field) {
+            if (input.checked) {
+              selections.push(input.value);
+            }
+          }
+
+          if (selections.length === 0) {
+            // aucune case cochée pour cette question
+            missing = i;
+            break;
+          }
+
+          // Si checkbox : on concatène les réponses, sinon on prend la première (radio)
+          value = (field[0].type === 'checkbox')
+            ? selections.join(', ')
+            : selections[0];
+
+        // Cas rare : un seul input (non groupé)
+        } else if (field.type === 'radio' || field.type === 'checkbox') {
+          if (!field.checked) {
+            missing = i;
+            break;
+          }
+          value = field.value;
+        } else {
+          // texte, textarea, etc.
+          value = field.value || '';
+        }
+
+        answers.push({ num: i, question: questionText, value });
+      }
+
+      if (missing !== null) {
+        alert('Merci de répondre à toutes les questions avant de valider (il manque la question ' + missing + ').');
+        return;
+      }
+
+      // Affichage lisible
+      resultList.innerHTML = '';
+      answers.forEach(a => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.textContent = a.question + ' → ' + a.value;
+        resultList.appendChild(div);
+      });
+
+      // Texte brut à copier (pour t’envoyer les réponses par message/mail)
+      let txt = 'Questionnaire Neurotype - Réponses\n\n';
+      answers.forEach(a => {
+        txt += a.num + '. ' + a.question + '\nRéponse : ' + a.value + '\n\n';
+      });
+      resultText.value = txt;
+
+      resultCard.style.display = 'block';
+      resultCard.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(resultText.value);
+        copyMsg.style.display = 'block';
+        setTimeout(() => { copyMsg.style.display = 'none'; }, 2000);
+      } catch (err) {
+        alert('Copie impossible automatiquement. Sélectionnez le texte et copiez-le manuellement.');
+      }
+    });
+  </script>
+
+<script>
+    const form = document.getElementById('neurotype-form');
+    const resultCard = document.getElementById('results');
+    const resultList = document.getElementById('result-list');
+    const resultText = document.getElementById('result-text');
+    const copyBtn = document.getElementById('copy-btn');
+    const copyMsg = document.getElementById('copy-msg');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const totalQuestions = 50;
+      const answers = [];
+      let missing = null;
+
+      for (let i = 1; i <= totalQuestions; i++) {
+        const name = 'q' + i;
+        const questionLabel = document.querySelector('[data-question="' + name + '"]');
+        const questionText = questionLabel ? questionLabel.textContent.trim() : ('Question ' + i);
+        const field = form.elements[name];
+
+        let value = '';
+
+        if (!field) continue;
+
+        // Groupes (radios ou checkboxes)
+        if (field.length && (field[0].type === 'radio' || field[0].type === 'checkbox')) {
+          let selections = [];
+
+          for (let input of field) {
+            if (input.checked) {
+              selections.push(input.value);
+            }
+          }
+
+          if (selections.length === 0) {
+            // aucune case cochée pour cette question
+            missing = i;
+            break;
+          }
+
+          // Si checkbox : on concatène les réponses, sinon on prend la première (radio)
+          value = (field[0].type === 'checkbox')
+            ? selections.join(', ')
+            : selections[0];
+
+        // Cas rare : un seul input (non groupé)
+        } else if (field.type === 'radio' || field.type === 'checkbox') {
+          if (!field.checked) {
+            missing = i;
+            break;
+          }
+          value = field.value;
+        } else {
+          // texte, textarea, etc.
+          value = field.value || '';
+        }
+
+        answers.push({ num: i, question: questionText, value });
+      }
+
+      if (missing !== null) {
+        alert('Merci de répondre à toutes les questions avant de valider (il manque la question ' + missing + ').');
+        return;
+      }
+
+      // Affichage lisible
+      resultList.innerHTML = '';
+      answers.forEach(a => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.textContent = a.question + ' → ' + a.value;
+        resultList.appendChild(div);
+      });
+
+      // Texte brut à copier (pour t’envoyer les réponses par message/mail)
+      let txt = 'Questionnaire Neurotype - Réponses\n\n';
+      answers.forEach(a => {
+        txt += a.num + '. ' + a.question + '\nRéponse : ' + a.value + '\n\n';
+      });
+      resultText.value = txt;
+
+      resultCard.style.display = 'block';
+      resultCard.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(resultText.value);
+        copyMsg.style.display = 'block';
+        setTimeout(() => { copyMsg.style.display = 'none'; }, 2000);
+      } catch (err) {
+        alert('Copie impossible automatiquement. Sélectionnez le texte et copiez-le manuellement.');
+      }
+    });
+  </script>
 
   <script>
     const form = document.getElementById('neurotype-form');
