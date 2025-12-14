@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bien utiliser ton programme — SOURCE</title>
+
+<style>
+:root{
+  --bg0:#070A12; --bg1:#0B1020;
+  --line: rgba(255,255,255,.12);
+  --txt:#EAF0FF; --muted: rgba(234,240,255,.72);
+  --gold:#D7B56D; --blue:#6EA8FF;
+  --shadow: 0 18px 60px rgba(0,0,0,.55);
+  --ok:#00ff90; --warn:#ffb020; --bad:#ff6b6b;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; color:var(--txt);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(900px 500px at 20% 10%, rgba(110,168,255,.20), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(215,181,109,.18), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+  min-height:100vh;
+  padding: 22px 14px 40px;
+}
+.wrap{max-width:980px;margin:0 auto}
+.top{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:42px;height:42px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.18);
+  background:
+    radial-gradient(14px 14px at 30% 30%, rgba(215,181,109,.9), transparent 60%),
+    radial-gradient(18px 18px at 70% 70%, rgba(110,168,255,.9), transparent 60%),
+    linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+  display:grid;place-items:center;font-weight:900; letter-spacing:.06em;
+}
+.title h1{margin:0;font-size:18px}
+.title p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.pill{
+  border:1px solid rgba(110,168,255,.35);
+  background: rgba(110,168,255,.10);
+  color:#DCEBFF;
+  padding:8px 12px;border-radius:999px;
+  font-size:12px;font-weight:950;
+  white-space:nowrap;
+}
+
+.card{
+  margin-top:14px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+.inner{padding:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.tag{
+  font-size:12px; color:rgba(234,240,255,.75);
+  padding:6px 10px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+}
+h2{margin:12px 0 8px; font-size:18px}
+p{margin:0;color:var(--muted);line-height:1.6}
+ul{margin:8px 0 0; padding-left:18px; color:var(--muted); line-height:1.6}
+hr{border:none;height:1px;background:rgba(255,255,255,.10);margin:14px 0}
+
+.block{
+  padding:14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+}
+.block strong{color:rgba(234,240,255,.95)}
+.grid{
+  display:grid; gap:12px;
+  grid-template-columns: 1fr;
+}
+@media(min-width:900px){
+  .grid{grid-template-columns: 1fr 1fr;}
+}
+
+.btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  text-decoration:none; padding: 12px 14px;
+  border-radius: 14px; font-weight: 950;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:var(--txt);
+}
+.btn:hover{background: rgba(255,255,255,.09)}
+.btn-blue{border-color: rgba(110,168,255,.35); background: rgba(110,168,255,.12)}
+.small{font-size:12px;color:rgba(234,240,255,.55);line-height:1.6}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">
+      <div class="logo">S</div>
+      <div class="title">
+        <h1>Bien utiliser ton programme</h1>
+        <p>Clair • simple • efficace</p>
+      </div>
+    </div>
+    <div class="pill">Guide client</div>
+  </div>
+
+  <div class="card">
+    <div class="inner">
+
+      <div class="row">
+        <span class="tag">Régularité</span>
+        <span class="tag">Technique</span>
+        <span class="tag">Progression</span>
+      </div>
+
+      <h2>1) Ton objectif n’est pas “parfait”</h2>
+      <p>
+        Ton objectif est de tenir le plan dans la durée. Une semaine “moyenne” répétée 10 fois
+        vaut mieux qu’une semaine parfaite puis 3 semaines à zéro.
+      </p>
+
+      <hr>
+
+      <h2>2) Comment choisir la difficulté</h2>
+      <div class="grid">
+        <div class="block">
+          <strong>Règle simple :</strong>
+          <p>Tu dois pouvoir garder <b>1 à 2 répétitions en réserve</b> sur la plupart des séries.</p>
+          <ul>
+            <li>Si tu termines explosé → trop dur</li>
+            <li>Si tu termines trop facile → pas assez stimulant</li>
+          </ul>
+        </div>
+        <div class="block">
+          <strong>En pratique :</strong>
+          <ul>
+            <li>Si tu rates les reps → baisse un peu la charge</li>
+            <li>Si tu fais tout trop facile → ajoute 1–2 reps</li>
+            <li>Si tu es fatigué(e) → garde la séance mais allège</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>3) Le vrai secret : progresser petit à petit</h2>
+      <p>Chaque semaine, tu cherches <b>1 mini progression</b> :</p>
+      <ul>
+        <li>+1 répétition sur une série</li>
+        <li>ou +1 kg / +2 kg</li>
+        <li>ou une exécution plus propre</li>
+        <li>ou moins de pauses / meilleure respiration</li>
+      </ul>
+
+      <hr>
+
+      <h2>4) Si tu rates une séance</h2>
+      <div class="block">
+        <ul>
+          <li>Tu ne “rattrapes pas” en doublant tout.</li>
+          <li>Tu reviens simplement sur la prochaine séance prévue.</li>
+          <li>La priorité : revenir dans le rythme.</li>
+        </ul>
+        <p class="small">Règle d’or : <b>on ne se punit pas</b>. On reprend.</p>
+      </div>
+
+      <hr>
+
+      <h2>5) Si tu es fatigué(e) / stressé(e)</h2>
+      <p>Tu as 3 options (dans cet ordre) :</p>
+      <ul>
+        <li><b>Option 1 :</b> tu fais la séance normalement, mais plus léger</li>
+        <li><b>Option 2 :</b> tu réduis le volume (moins de séries)</li>
+        <li><b>Option 3 :</b> tu fais une séance “mobilité + marche”</li>
+      </ul>
+
+      <hr>
+
+      <h2>6) Douleur : comment réagir</h2>
+      <div class="block">
+        <ul>
+          <li>Douleur “musculaire” (effort) = OK</li>
+          <li>Douleur “articulaire / piquante” = STOP et adaptation</li>
+          <li>Tu me fais un <b>check-in séance</b> si ça persiste</li>
+        </ul>
+      </div>
+
+      <hr>
+
+      <h2>7) Les 3 habitudes qui changent tout</h2>
+      <div class="grid">
+        <div class="block">
+          <strong>Hydratation</strong>
+          <ul>
+            <li>Objectif : eau régulière</li>
+            <li>Urines claires = bon signe</li>
+          </ul>
+        </div>
+        <div class="block">
+          <strong>Sommeil</strong>
+          <ul>
+            <li>Heure de coucher plus stable</li>
+            <li>Le sommeil = récupération + résultats</li>
+          </ul>
+        </div>
+      </div>
+      <div class="block" style="margin-top:12px;">
+        <strong>Régularité</strong>
+        <ul>
+          <li>Le “minimum” fait bien = mieux que le “maximum” 2 jours</li>
+          <li>On avance semaine après semaine</li>
+        </ul>
+      </div>
+
+      <div class="btns">
+        <a class="btn btn-blue" href="espace-client.html">← Retour Espace Client</a>
+        <a class="btn" href="cadre-source.html">Règles & Cadre</a>
+        <a class="btn" href="check-in.html">Check-in hebdo</a>
+        <a class="btn" href="check-in-seance.html">Check-in séance</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
