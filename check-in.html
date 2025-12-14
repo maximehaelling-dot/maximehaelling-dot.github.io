@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Check-in — SOURCE</title>
+
+<style>
+:root{
+  --bg0:#070A12; --bg1:#0B1020;
+  --line: rgba(255,255,255,.12);
+  --txt:#EAF0FF; --muted: rgba(234,240,255,.72);
+  --gold:#D7B56D; --blue:#6EA8FF;
+  --shadow: 0 18px 60px rgba(0,0,0,.55);
+  --ok:#00ff90; --warn:#ffb020; --bad:#ff6b6b;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; color:var(--txt);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(900px 500px at 20% 10%, rgba(110,168,255,.20), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(215,181,109,.18), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+  min-height:100vh;
+  padding: 22px 14px 40px;
+}
+.wrap{max-width:980px;margin:0 auto}
+.top{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:42px;height:42px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.18);
+  background:
+    radial-gradient(14px 14px at 30% 30%, rgba(215,181,109,.9), transparent 60%),
+    radial-gradient(18px 18px at 70% 70%, rgba(110,168,255,.9), transparent 60%),
+    linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+  display:grid;place-items:center;font-weight:900;letter-spacing:.06em;
+}
+.title h1{margin:0;font-size:18px}
+.title p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.pill{
+  border:1px solid rgba(110,168,255,.35);
+  background: rgba(110,168,255,.10);
+  color:#DCEBFF;
+  padding:8px 12px;border-radius:999px;
+  font-size:12px;font-weight:900;
+  white-space:nowrap;
+}
+
+.card{
+  margin-top:14px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+.inner{padding:16px}
+h2{margin:0 0 10px;font-size:18px}
+p{margin:0;color:var(--muted);line-height:1.6}
+hr{border:none;height:1px;background:rgba(255,255,255,.10);margin:14px 0}
+
+.grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:12px;
+}
+@media(min-width:860px){
+  .grid{grid-template-columns: 1fr 1fr;}
+}
+
+label{
+  display:block;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.02em;
+  color:rgba(234,240,255,.85);
+  margin:0 0 6px;
+}
+input, textarea, select{
+  width:100%;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:var(--txt);
+  outline:none;
+}
+textarea{min-height:110px;resize:vertical}
+
+.row2{display:flex;gap:10px;flex-wrap:wrap}
+.chip{
+  padding:8px 10px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+  color:var(--muted);
+  font-size:12px;font-weight:900;
+}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;
+  padding:12px 14px;
+  border-radius:14px;
+  font-weight:950;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:var(--txt);
+  cursor:pointer;
+}
+.btn:hover{background: rgba(255,255,255,.09)}
+.btn-blue{border-color: rgba(110,168,255,.35); background: rgba(110,168,255,.12)}
+.btn-gold{border-color: rgba(215,181,109,.35); background: rgba(215,181,109,.12)}
+.note{font-size:12px;color:rgba(234,240,255,.55);line-height:1.6;margin-top:10px}
+.msg{margin-top:10px;font-weight:900}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">
+      <div class="logo">S</div>
+      <div class="title">
+        <h1>Check-in — SOURCE</h1>
+        <p>Suivi hebdo • rapide • clair</p>
+      </div>
+    </div>
+    <div class="pill">À remplir 1×/semaine</div>
+  </div>
+
+  <div class="card">
+    <div class="inner">
+      <div class="row2">
+        <span class="chip">Temps : 3–5 min</span>
+        <span class="chip">Objectif : ajuster ton plan</span>
+        <span class="chip">Sincérité = progression</span>
+      </div>
+
+      <hr />
+
+      <h2>Infos</h2>
+      <div class="grid">
+        <div>
+          <label for="prenom">Prénom</label>
+          <input id="prenom" name="prenom" type="text" placeholder="Ex : Sarah" />
+        </div>
+        <div>
+          <label for="semaine">Semaine / dates</label>
+          <input id="semaine" name="semaine" type="text" placeholder="Ex : Semaine du 18 au 24" />
+        </div>
+
+        <div>
+          <label for="poids">Poids (optionnel)</label>
+          <input id="poids" name="poids" type="text" placeholder="Ex : 74,2 kg (si tu le suis)" />
+        </div>
+        <div>
+          <label for="tourTaille">Tour de taille (optionnel)</label>
+          <input id="tourTaille" name="tourTaille" type="text" placeholder="Ex : 86 cm (si tu le suis)" />
+        </div>
+      </div>
+
+      <hr />
+
+      <h2>État général (0 à 10)</h2>
+      <div class="grid">
+        <div>
+          <label for="energie">Énergie</label>
+          <select id="energie" name="energie">
+            <option value="">Choisir…</option>
+            <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </div>
+        <div>
+          <label for="sommeil">Sommeil</label>
+          <select id="sommeil" name="sommeil">
+            <option value="">Choisir…</option>
+            <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </div>
+        <div>
+          <label for="stress">Stress</label>
+          <select id="stress" name="stress">
+            <option value="">Choisir…</option>
+            <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </div>
+        <div>
+          <label for="digestion">Digestion</label>
+          <select id="digestion" name="digestion">
+            <option value="">Choisir…</option>
+            <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </div>
+      </div>
+
+      <hr />
+
+      <h2>Exécution</h2>
+      <div class="grid">
+        <div>
+          <label for="entrainementsPrevus">Entraînements prévus</label>
+          <input id="entrainementsPrevus" name="entrainementsPrevus" type="text" placeholder="Ex : 3" />
+        </div>
+        <div>
+          <label for="entrainementsFaits">Entraînements faits</label>
+          <input id="entrainementsFaits" name="entrainementsFaits" type="text" placeholder="Ex : 2" />
+        </div>
+
+        <div>
+          <label for="nutrition">Nutrition (0–10)</label>
+          <select id="nutrition" name="nutrition">
+            <option value="">Choisir…</option>
+            <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </div>
+        <div>
+          <label for="hydratation">Hydratation (0–10)</label>
+          <select id="hydratation" name="hydratation">
+            <option value="">Choisir…</option>
+            <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </div>
+      </div>
+
+      <hr />
+
+      <h2>Retour (texte)</h2>
+      <div class="grid">
+        <div>
+          <label for="victoires">Victoires de la semaine</label>
+          <textarea id="victoires" name="victoires" placeholder="Ex : meilleure routine / moins de grignotage / plus d’eau…"></textarea>
+        </div>
+        <div>
+          <label for="difficultes">Difficultés / blocages</label>
+          <textarea id="difficultes" name="difficultes" placeholder="Ex : week-end / stress / sommeil / envies…"></textarea>
+        </div>
+        <div>
+          <label for="douleurs">Douleurs / gênes (si oui : où ?)</label>
+          <textarea id="douleurs" name="douleurs" placeholder="Ex : genou droit sur squat / épaule gauche…"></textarea>
+        </div>
+        <div>
+          <label for="objectifSemaine">Objectif semaine prochaine</label>
+          <textarea id="objectifSemaine" name="objectifSemaine" placeholder="Ex : 3 séances + 2L d’eau/j + coucher 30 min plus tôt"></textarea>
+        </div>
+      </div>
+
+      <hr />
+
+      <h2>Optionnel</h2>
+      <div class="grid">
+        <div>
+          <label for="photos">Photos / lien (Drive) — optionnel</label>
+          <input id="photos" name="photos" type="text" placeholder="Colle un lien si tu veux (Drive/Photos)"/>
+        </div>
+        <div>
+          <label for="messageCoach">Message au coach</label>
+          <input id="messageCoach" name="messageCoach" type="text" placeholder="Une phrase si besoin (facultatif)"/>
+        </div>
+      </div>
+
+      <div class="btns">
+        <a class="btn btn-blue" href="espace-client.html">← Retour Espace Client</a>
+        <button class="btn btn-gold" id="btnSend">Envoyer mon check-in</button>
+      </div>
+
+      <div class="note">
+        En cliquant sur “Envoyer”, ton téléphone ouvre ton application mail avec ton check-in déjà rempli.
+        Tu n’as plus qu’à appuyer sur “Envoyer”.
+      </div>
+      <div class="msg" id="msg"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const COACH_EMAIL = maximehaelling@gmail.com;
+
+  function val(id){ return (document.getElementById(id)?.value || "").trim(); }
+
+  function buildBody(){
+    const lines = [];
+    lines.push("CHECK-IN — SOURCE");
+    lines.push("------------------------------");
+    lines.push(`Prénom : ${val("prenom")}`);
+    lines.push(`Semaine / dates : ${val("semaine")}`);
+    lines.push(`Poids (optionnel) : ${val("poids")}`);
+    lines.push(`Tour de taille (optionnel) : ${val("tourTaille")}`);
+    lines.push("");
+    lines.push("ÉTAT (0–10)");
+    lines.push(`Énergie : ${val("energie")}`);
+    lines.push(`Sommeil : ${val("sommeil")}`);
+    lines.push(`Stress : ${val("stress")}`);
+    lines.push(`Digestion : ${val("digestion")}`);
+    lines.push("");
+    lines.push("EXÉCUTION");
+    lines.push(`Entraînements prévus : ${val("entrainementsPrevus")}`);
+    lines.push(`Entraînements faits : ${val("entrainementsFaits")}`);
+    lines.push(`Nutrition : ${val("nutrition")}`);
+    lines.push(`Hydratation : ${val("hydratation")}`);
+    lines.push("");
+    lines.push("RETOUR");
+    lines.push(`Victoires : ${val("victoires")}`);
+    lines.push("");
+    lines.push(`Difficultés : ${val("difficultes")}`);
+    lines.push("");
+    lines.push(`Douleurs / gênes : ${val("douleurs")}`);
+    lines.push("");
+    lines.push(`Objectif semaine prochaine : ${val("objectifSemaine")}`);
+    lines.push("");
+    lines.push("OPTIONNEL");
+    lines.push(`Photos / lien : ${val("photos")}`);
+    lines.push(`Message au coach : ${val("messageCoach")}`);
+    lines.push("");
+    lines.push("Merci !");
+    return lines.join("\n");
+  }
+
+  document.getElementById("btnSend").addEventListener("click", () => {
+    const msg = document.getElementById("msg");
+    const prenom = val("prenom");
+    const semaine = val("semaine");
+
+    if(!prenom || !semaine){
+      msg.style.color = "#ff6b6b";
+      msg.textContent = "⚠️ Mets au minimum ton prénom + la semaine/dates.";
+      return;
+    }
+
+    const subject = encodeURIComponent(`Check-in SOURCE — ${prenom} — ${semaine}`);
+    const body = encodeURIComponent(buildBody());
+    window.location.href = `mailto:${COACH_EMAIL}?subject=${subject}&body=${body}`;
+  });
+</script>
+</body>
+</html>
