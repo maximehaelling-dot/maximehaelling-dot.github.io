@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Espace Client — SOURCE</title>
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --line: rgba(255,255,255,.12);
+      --txt:#EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --gold:#D7B56D;
+      --blue:#6EA8FF;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--txt);
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(110,168,255,.20), transparent 60%),
+        radial-gradient(900px 500px at 80% 20%, rgba(215,181,109,.18), transparent 60%),
+        radial-gradient(700px 500px at 50% 90%, rgba(110,168,255,.10), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100vh;
+      padding: 28px 16px 40px;
+    }
+
+    .wrap{
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 18px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+
+    .logo{
+      width:44px;height:44px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      background:
+        radial-gradient(14px 14px at 30% 30%, rgba(215,181,109,.9), transparent 60%),
+        radial-gradient(18px 18px at 70% 70%, rgba(110,168,255,.9), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      display:grid;place-items:center;
+      font-weight:900;
+      letter-spacing:.06em;
+    }
+
+    .title{
+      line-height:1.1;
+    }
+    .title h1{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: .02em;
+    }
+    .title p{
+      margin:6px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .pill{
+      border:1px solid rgba(215,181,109,.35);
+      background: rgba(215,181,109,.10);
+      color: #FFE9B8;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+
+    .hero{
+      margin-top: 18px;
+      padding: 22px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+    }
+
+    .hero h2{
+      margin:0;
+      font-size: 22px;
+    }
+    .hero p{
+      margin:10px 0 0;
+      color: var(--muted);
+      line-height:1.55;
+      max-width: 70ch;
+    }
+
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .card{
+      grid-column: span 12;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    @media(min-width: 820px){
+      .card.col6{ grid-column: span 6; }
+      .card.col4{ grid-column: span 4; }
+      .card.col8{ grid-column: span 8; }
+    }
+
+    .card-inner{
+      padding: 18px 18px;
+    }
+
+    .kicker{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
+    }
+
+    .tag{
+      font-size:12px;
+      color: var(--muted);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+    }
+
+    .card h3{
+      margin:0;
+      font-size: 16px;
+      letter-spacing:.01em;
+    }
+
+    .card p{
+      margin:10px 0 0;
+      color: var(--muted);
+      line-height:1.55;
+      font-size: 14px;
+    }
+
+    .actions{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-decoration:none;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--txt);
+      font-weight: 800;
+      letter-spacing:.01em;
+      transition: transform .15s ease, background .15s ease, border .15s ease;
+      min-width: 180px;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.22);
+    }
+
+    .btn-primary{
+      border: 1px solid rgba(110,168,255,.35);
+      background: linear-gradient(180deg, rgba(110,168,255,.20), rgba(110,168,255,.10));
+    }
+    .btn-gold{
+      border: 1px solid rgba(215,181,109,.35);
+      background: linear-gradient(180deg, rgba(215,181,109,.18), rgba(215,181,109,.08));
+    }
+
+    .mini{
+      margin-top: 18px;
+      color: rgba(234,240,255,.60);
+      font-size: 12px;
+      line-height:1.5;
+      padding: 0 6px;
+    }
+
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.10);
+      margin: 14px 0 0;
+    }
+
+    .footer{
+      margin-top: 18px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      color: rgba(234,240,255,.55);
+      font-size: 12px;
+      padding: 0 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="top">
+      <div class="brand">
+        <div class="logo">S</div>
+        <div class="title">
+          <h1>Espace Client — SOURCE</h1>
+          <p>Programmes • Questionnaires • Suivi • Tout au même endroit</p>
+        </div>
+      </div>
+      <div class="pill">Accès privé (lien partagé)</div>
+    </div>
+
+    <div class="hero">
+      <h2>Bienvenue 👋</h2>
+      <p>
+        Ici, tu retrouves tout ce dont tu as besoin : ton programme, les questionnaires et le suivi.
+        Clique sur une section ci-dessous.
+      </p>
+      <div class="divider"></div>
+      <p class="mini">
+        Astuce : garde ce lien en favori sur ton téléphone.
+      </p>
+    </div>
+
+    <div class="grid">
+
+      <!-- QUESTIONNAIRES -->
+      <div class="card col6">
+        <div class="card-inner">
+          <div class="kicker">
+            <span class="tag">Questionnaires</span>
+            <span class="tag">À remplir</span>
+          </div>
+          <h3>Questionnaire de départ</h3>
+          <p>
+            Pour personnaliser ton accompagnement : habitudes, objectif, contraintes, douleurs, niveau.
+          </p>
+          <div class="actions">
+            <!-- ✅ ton questionnaire actuel -->
+            <a class="btn btn-primary" href="questionnaire-tca.html">Ouvrir le questionnaire</a>
+
+            <!-- (option) futur questionnaire suivi -->
+            <a class="btn" href="questionnaire-suivi.html">Questionnaire de suivi</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROGRAMMES -->
+      <div class="card col6">
+        <div class="card-inner">
+          <div class="kicker">
+            <span class="tag">Programmes</span>
+            <span class="tag">Semaine par semaine</span>
+          </div>
+          <h3>Ton programme</h3>
+          <p>
+            Accès aux séances, consignes, progression et variantes.
+          </p>
+          <div class="actions">
+            <a class="btn btn-gold" href="programme-1.html">Accéder au programme</a>
+            <a class="btn" href="bibliotheque-exos.html">Bibliothèque d’exos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUIVI -->
+      <div class="card col8">
+        <div class="card-inner">
+          <div class="kicker">
+            <span class="tag">Suivi</span>
+            <span class="tag">1 minute</span>
+          </div>
+          <h3>Check-in rapide</h3>
+          <p>
+            Chaque semaine : énergie, sommeil, faim, stress, progrès, poids/mesures (si tu suis).
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="check-in.html">Faire mon check-in</a>
+            <a class="btn" href="feedback.html">Donner mon feedback</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- AIDE -->
+      <div class="card col4">
+        <div class="card-inner">
+          <div class="kicker">
+            <span class="tag">Aide</span>
+            <span class="tag">Guides</span>
+          </div>
+          <h3>Règles & conseils</h3>
+          <p>
+            Comment bien suivre le plan, gérer les écarts, et rester régulier sans pression.
+          </p>
+          <div class="actions">
+            <a class="btn" href="guide.html">Ouvrir le guide</a>
+            <a class="btn" href="contact.html">Me contacter</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div>© SOURCE — Espace client</div>
+      <div>Version premium • rapide • lisible</div>
+    </div>
+
+  </div>
+</body>
+</html>
