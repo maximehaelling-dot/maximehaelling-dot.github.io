@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bibliothèque d’exercices — SOURCE</title>
+
+<style>
+:root{
+  --bg0:#070A12;
+  --bg1:#0B1020;
+  --line:rgba(255,255,255,.12);
+  --txt:#EAF0FF;
+  --muted:rgba(234,240,255,.7);
+  --blue:#6EA8FF;
+  --gold:#D7B56D;
+  --shadow:0 18px 60px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--txt);
+  background:
+    radial-gradient(900px 500px at 20% 10%, rgba(110,168,255,.18), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(215,181,109,.18), transparent 60%),
+    linear-gradient(180deg,var(--bg0),var(--bg1));
+  padding:22px 14px 40px;
+}
+.wrap{max-width:1020px;margin:0 auto}
+.header{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:16px;border-radius:18px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  box-shadow:var(--shadow);
+}
+.header h1{margin:0;font-size:20px}
+.header p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.badge{
+  padding:8px 12px;border-radius:999px;
+  border:1px solid rgba(215,181,109,.35);
+  background:rgba(215,181,109,.12);
+  font-size:12px;font-weight:800;color:#FFE9B8;
+  white-space:nowrap;
+}
+.card{
+  margin-top:14px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.05);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.inner{padding:16px}
+h2{margin:0 0 8px;font-size:18px}
+p{margin:0;color:var(--muted);line-height:1.6}
+a.btn{
+  display:inline-block;margin-top:12px;
+  padding:12px 16px;border-radius:14px;
+  border:1px solid rgba(110,168,255,.35);
+  background:rgba(110,168,255,.12);
+  color:var(--txt);
+  font-weight:900;text-decoration:none;
+}
+a.btn:hover{background:rgba(110,168,255,.18)}
+.searchWrap{
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  margin-top:12px;
+}
+.search{
+  flex:1;min-width:220px;
+  padding:12px 14px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:var(--txt);
+  outline:none;
+}
+.chip{
+  padding:8px 10px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.05);
+  color:var(--muted);
+  font-size:12px;font-weight:800;
+  cursor:pointer;
+  user-select:none;
+}
+.chip:hover{background:rgba(255,255,255,.08)}
+details{
+  border-top:1px solid rgba(255,255,255,.10);
+  padding:14px 16px;
+}
+summary{
+  cursor:pointer;
+  list-style:none;
+  font-weight:950;
+  letter-spacing:.01em;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+summary::-webkit-details-marker{display:none}
+.small{
+  font-size:12px;
+  color:rgba(234,240,255,.55);
+  font-weight:800;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.05);
+  padding:6px 10px;border-radius:999px;
+  white-space:nowrap;
+}
+.grid{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:12px;
+}
+@media(min-width:860px){
+  .grid{grid-template-columns: 1fr 1fr;}
+}
+.exercise{
+  padding:14px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+}
+.exercise h3{margin:0 0 6px;font-size:16px}
+.meta{margin:0 0 8px;color:rgba(234,240,255,.55);font-size:12px;font-weight:800}
+.exercise ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.6}
+.footer{
+  margin-top:16px;
+  font-size:12px;color:rgba(234,240,255,.55)
+}
+hr.sep{
+  border:none;height:1px;background:rgba(255,255,255,.10);
+  margin:14px 0 0;
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div>
+      <h1>Bibliothèque d’exercices</h1>
+      <p>Simple • claire • utilisable par tous tes coachés (maison ou salle)</p>
+    </div>
+    <div class="badge">SOURCE • complet</div>
+  </div>
+
+  <div class="card">
+    <div class="inner">
+      <h2>Recherche rapide</h2>
+      <p>Tape un mot : <b>squat</b>, <b>dos</b>, <b>gainage</b>, <b>fessiers</b>, <b>épaules</b>, <b>cardio</b>…</p>
+
+      <div class="searchWrap">
+        <input id="search" class="search" type="text" placeholder="Ex : squat, hip thrust, pompes, row, dead bug…" />
+        <span class="chip" data-chip="jambes">Jambes</span>
+        <span class="chip" data-chip="fessiers">Fessiers</span>
+        <span class="chip" data-chip="dos">Dos</span>
+        <span class="chip" data-chip="épaules">Épaules</span>
+        <span class="chip" data-chip="abdos">Abdos</span>
+        <span class="chip" data-chip="cardio">Cardio</span>
+        <span class="chip" data-chip="">Tout</span>
+      </div>
+
+      <a class="btn" href="espace-client.html">← Retour Espace Client</a>
+      <hr class="sep">
+      <p class="footer">
+        Astuce coach : tu peux ajouter une ligne “Vidéo” dans chaque exercice (ex: lien YouTube/Drive) quand tu veux.
+      </p>
+    </div>
+
+    <!-- 1) Échauffement / Mobilité -->
+    <details open>
+      <summary>🔥 Échauffement & mobilité <span class="small">8 exercices</span></summary>
+      <div class="grid">
+
+        <div class="exercise" data-tags="echauffement cardio">
+          <h3>Jumping jacks</h3>
+          <p class="meta">Objectif : monter le rythme</p>
+          <ul>
+            <li>30–60 sec, respiration régulière.</li>
+            <li>Épaules relâchées, rebond léger.</li>
+            <li>Variante soft : pas chassés latéraux.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="echauffement hanches">
+          <h3>Ouverture de hanches (90/90)</h3>
+          <p class="meta">Objectif : mobilité hanches</p>
+          <ul>
+            <li>Assis, jambes en “90/90”, bascule de côté lentement.</li>
+            <li>Garde le buste long (pas avachi).</li>
+            <li>8–10 bascules contrôlées.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="echauffement chevilles">
+          <h3>Mobilité cheville (genou au mur)</h3>
+          <p class="meta">Objectif : squat + fentes plus propres</p>
+          <ul>
+            <li>Pied au sol, avance le genou vers le mur sans décoller le talon.</li>
+            <li>8–12 répétitions par côté.</li>
+            <li>Reste stable (genou suit la ligne du pied).</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="echauffement dos épaules">
+          <h3>Cat–Cow (dos)</h3>
+          <p class="meta">Objectif : mobilité colonne</p>
+          <ul>
+            <li>À quatre pattes, arrondis puis creuse doucement.</li>
+            <li>Respire : souffle en arrondissant.</li>
+            <li>8–12 cycles lents.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="echauffement épaules">
+          <h3>Shoulder circles</h3>
+          <p class="meta">Objectif : échauffer épaules</p>
+          <ul>
+            <li>10 cercles vers l’arrière + 10 vers l’avant.</li>
+            <li>Amplitude progressive, sans douleur.</li>
+            <li>Cou détendu, respiration calme.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="echauffement fessiers">
+          <h3>Glute bridge (activation)</h3>
+          <p class="meta">Objectif : réveiller les fessiers</p>
+          <ul>
+            <li>Pieds au sol, pousse le bassin vers le haut.</li>
+            <li>Serre les fessiers 1 sec en haut.</li>
+            <li>2 × 12–15 répétitions.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="echauffement gainage abdos">
+          <h3>Dead bug (activation)</h3>
+          <p class="meta">Objectif : verrouiller le centre</p>
+          <ul>
+            <li>Bas du dos collé au sol, contrôle total.</li>
+            <li>Allonge bras/jambe opposés, sans cambrer.</li>
+            <li>2 × 8–10 par côté.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="echauffement hanches jambes">
+          <h3>Fentes dynamiques</h3>
+          <p class="meta">Objectif : préparer les jambes</p>
+          <ul>
+            <li>Fente avant lente, remonte, alterne.</li>
+            <li>Genou avant stable (pas qui rentre).</li>
+            <li>8–10 répétitions par jambe.</li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- 2) Jambes -->
+    <details>
+      <summary>🦵 Jambes <span class="small">10 exercices</span></summary>
+      <div class="grid">
+
+        <div class="exercise" data-tags="jambes squat quadriceps">
+          <h3>Squat</h3>
+          <p class="meta">Objectif : cuisses + contrôle</p>
+          <ul>
+            <li>Pieds largeur d’épaules, descends en contrôlant.</li>
+            <li>Genoux suivent la ligne des pieds.</li>
+            <li>Souffle en remontant, buste solide.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="jambes squat">
+          <h3>Goblet squat (haltère/kettlebell)</h3>
+          <p class="meta">Objectif : squat plus stable</p>
+          <ul>
+            <li>Charge devant la poitrine, coudes sous la charge.</li>
+            <li>Descends lentement, remonte puissant.</li>
+            <li>Idéal maison/salle.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="jambes quadriceps">
+          <h3>Squat au mur (wall sit)</h3>
+          <p class="meta">Objectif : endurance cuisses</p>
+          <ul>
+            <li>Dos au mur, cuisses parallèles au sol.</li>
+            <li>30–60 sec, respiration contrôlée.</li>
+            <li>Progression : +10 sec/semaine.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="jambes fentes">
+          <h3>Fentes avant</h3>
+          <p class="meta">Objectif : cuisses + stabilité</p>
+          <ul>
+            <li>Grand pas, buste droit.</li>
+            <li>Genou arrière vers le sol, contrôle.</li>
+            <li>Pousse dans le talon avant pour remonter.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="jambes fentes fessiers">
+          <h3>Fentes arrière</h3>
+          <p class="meta">Objectif : plus “safe” pour genoux</p>
+          <ul>
+            <li>Recule le pied, descends verticalement.</li>
+            <li>Genou avant stable, buste gainé.</li>
+            <li>Souvent meilleure sensation fessier.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="jambes step-up">
+          <h3>Step-up (montée sur banc/chaise solide)</h3>
+          <p class="meta">Objectif : cuisses + cardio</p>
+          <ul>
+            <li>Pied entier sur le support, pousse fort.</li>
+            <li>Contrôle la descente.</li>
+            <li>Variante : charge dans les mains.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="jambes adducteurs">
+          <h3>Squat sumo</h3>
+          <p class="meta">Objectif : adducteurs + fessiers</p>
+          <ul>
+            <li>Pieds plus larges, pointes légèrement ouvertes.</li>
+            <li>Descends droit, genoux vers l’extérieur.</li>
+            <li>Garde le buste fier.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="jambes ischios">
+          <h3>Leg curl serviette (ischios au sol)</h3>
+          <p class="meta">Objectif : ischios sans machine</p>
+          <ul>
+            <li>Talons sur serviette (sol lisse), pont fessier.</li>
+            <li>Tire les talons vers toi puis ré-étends.</li>
+            <li>Contrôle total, 8–12 reps.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="jambes mollets">
+          <h3>Mollets debout</h3>
+          <p class="meta">Objectif : mollets + chevilles</p>
+          <ul>
+            <li>Monte sur la pointe, redescends lentement.</li>
+            <li>15–25 répétitions.</li>
+            <li>Variante : une jambe.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="jambes mobilité">
+          <h3>Cossack squat (progressif)</h3>
+          <p class="meta">Objectif : mobilité + adducteurs</p>
+          <ul>
+            <li>Transfert latéral, une jambe fléchie, l’autre tendue.</li>
+            <li>Amplitude progressive.</li>
+            <li>Très bon en fin d’échauffement.</li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- 3) Fessiers / chaîne postérieure -->
+    <details>
+      <summary>🍑 Fessiers & chaîne postérieure <span class="small">8 exercices</span></summary>
+      <div class="grid">
+
+        <div class="exercise" data-tags="fessiers">
+          <h3>Hip thrust (banc/canapé)</h3>
+          <p class="meta">Objectif : fessiers puissants</p>
+          <ul>
+            <li>Dos haut sur support, menton rentré.</li>
+            <li>Pousse le bassin, serre 1 sec en haut.</li>
+            <li>Ne cambre pas en haut.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="fessiers">
+          <h3>Pont fessier au sol</h3>
+          <p class="meta">Objectif : activation + renfo</p>
+          <ul>
+            <li>Pieds à plat, monte le bassin.</li>
+            <li>Pause 1 sec en haut, descente contrôlée.</li>
+            <li>Variante : une jambe.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="fessiers abduction">
+          <h3>Abduction élastique (marches latérales)</h3>
+          <p class="meta">Objectif : moyen fessier</p>
+          <ul>
+            <li>Élastique au-dessus des genoux ou chevilles.</li>
+            <li>Petits pas latéraux, genoux “ouverts”.</li>
+            <li>2 × 10–15 pas par côté.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="ischios fessiers hinge">
+          <h3>Soulevé de terre jambes tendues (haltères)</h3>
+          <p class="meta">Objectif : ischios + fessiers</p>
+          <ul>
+            <li>Charnière hanches : fesses en arrière.</li>
+            <li>Dos neutre, charges proches des jambes.</li>
+            <li>Remonte en serrant fessiers.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="fessiers hinge">
+          <h3>Good morning (bâton / élastique)</h3>
+          <p class="meta">Objectif : charnière sans charge lourde</p>
+          <ul>
+            <li>Buste penche, dos droit, hanches reculent.</li>
+            <li>Amplitude contrôlée.</li>
+            <li>Top pour apprendre le “hinge”.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="fessiers unilatéral">
+          <h3>Bulgarian split squat</h3>
+          <p class="meta">Objectif : fessiers + cuisses (dur)</p>
+          <ul>
+            <li>Pied arrière sur support, descends vertical.</li>
+            <li>Genou avant stable, buste gainé.</li>
+            <li>Variante : plus de charge, moins de reps.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="fessiers">
+          <h3>Kickback (élastique)</h3>
+          <p class="meta">Objectif : fessier isolé</p>
+          <ul>
+            <li>Tronc stable, jambe pousse en arrière.</li>
+            <li>Pas d’élan, contraction en fin de mouvement.</li>
+            <li>12–20 reps par côté.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="ischios fessiers">
+          <h3>Nordic curl (assisté)</h3>
+          <p class="meta">Objectif : ischios très fort (avancé)</p>
+          <ul>
+            <li>Genoux au sol, pieds bloqués.</li>
+            <li>Descends lentement, aide-toi des mains si besoin.</li>
+            <li>Peu de reps, qualité maximale.</li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- 4) Dos / tirage -->
+    <details>
+      <summary>🧲 Dos & tirage <span class="small">8 exercices</span></summary>
+      <div class="grid">
+
+        <div class="exercise" data-tags="dos row">
+          <h3>Row haltères (buste penché)</h3>
+          <p class="meta">Objectif : dos épais</p>
+          <ul>
+            <li>Dos droit, gainage serré.</li>
+            <li>Tire les coudes vers l’arrière.</li>
+            <li>Contrôle la descente (pas de lâcher).</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="dos row">
+          <h3>Row unilatéral (sur banc/chaise)</h3>
+          <p class="meta">Objectif : corriger les déséquilibres</p>
+          <ul>
+            <li>Main d’appui, buste stable.</li>
+            <li>Tire vers la hanche.</li>
+            <li>Pause 1 sec en haut si tu veux plus de contrôle.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="dos elastique">
+          <h3>Tirage élastique (assis/debout)</h3>
+          <p class="meta">Objectif : dos à la maison</p>
+          <ul>
+            <li>Épaules basses, poitrine sortie.</li>
+            <li>Tire, serre les omoplates.</li>
+            <li>Contrôle, pas d’élan.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="dos tractions">
+          <h3>Tractions (assistées ou libres)</h3>
+          <p class="meta">Objectif : dos + bras</p>
+          <ul>
+            <li>Poitrine vers la barre, épaules basses.</li>
+            <li>Variante : élastique d’assistance.</li>
+            <li>Qualité > quantité.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="dos tractions">
+          <h3>Inverted row (tirage sous barre/table)</h3>
+          <p class="meta">Objectif : tirage sans traction</p>
+          <ul>
+            <li>Corps gainé, tire la poitrine vers la barre.</li>
+            <li>Plus facile : genoux pliés.</li>
+            <li>Plus dur : jambes tendues.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="dos posture">
+          <h3>Face pull (élastique)</h3>
+          <p class="meta">Objectif : posture + épaules</p>
+          <ul>
+            <li>Tire l’élastique vers le visage (coudes ouverts).</li>
+            <li>Serre les omoplates, épaules basses.</li>
+            <li>12–20 reps propre.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="dos lombaires">
+          <h3>Superman (sol)</h3>
+          <p class="meta">Objectif : gainage dos</p>
+          <ul>
+            <li>Allongé ventre, lève bras/jambes doucement.</li>
+            <li>Garde le cou neutre.</li>
+            <li>10–15 reps ou 20–30 sec.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="dos posture">
+          <h3>Y-T-W (omoplates)</h3>
+          <p class="meta">Objectif : stabilité scapulaire</p>
+          <ul>
+            <li>Allongé ventre ou penché, fais les lettres Y, T, W.</li>
+            <li>Petit mouvement, très contrôlé.</li>
+            <li>2 × 6–10 de chaque lettre.</li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- 5) Pecs / push -->
+    <details>
+      <summary>💥 Pecs & poussée <span class="small">7 exercices</span></summary>
+      <div class="grid">
+
+        <div class="exercise" data-tags="pecs pompes">
+          <h3>Pompes (classiques)</h3>
+          <p class="meta">Objectif : pecs + triceps</p>
+          <ul>
+            <li>Corps aligné, abdos serrés.</li>
+            <li>Coudes à 30–45° du corps.</li>
+            <li>Variante : sur genoux ou inclinées.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="pecs pompes">
+          <h3>Pompes inclinées (plus facile)</h3>
+          <p class="meta">Objectif : progresser sans blocage</p>
+          <ul>
+            <li>Mains sur banc/chaise solide.</li>
+            <li>Plus le support est haut, plus c’est facile.</li>
+            <li>Excellent pour volume.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="pecs pompes">
+          <h3>Pompes déclinées (plus dur)</h3>
+          <p class="meta">Objectif : haut des pecs + épaules</p>
+          <ul>
+            <li>Pieds sur support.</li>
+            <li>Gainage strict, contrôle.</li>
+            <li>Peu de reps, qualité maxi.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="pecs haltères">
+          <h3>Développé couché haltères (sol ou banc)</h3>
+          <p class="meta">Objectif : pecs + force</p>
+          <ul>
+            <li>Poignets neutres, épaules basses.</li>
+            <li>Descends contrôlé, remonte puissant.</li>
+            <li>Ne “claque” pas les haltères en haut.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="pecs">
+          <h3>Écartés haltères (fly)</h3>
+          <p class="meta">Objectif : pecs (isolation)</p>
+          <ul>
+            <li>Légère flexion des coudes.</li>
+            <li>Amplitude progressive, pas de douleur épaule.</li>
+            <li>Très bon en fin de séance.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="pecs triceps">
+          <h3>Dips (assistés)</h3>
+          <p class="meta">Objectif : pecs + triceps (dur)</p>
+          <ul>
+            <li>Épaules basses, buste légèrement vers l’avant.</li>
+            <li>Amplitude contrôlée.</li>
+            <li>Variante : pieds au sol pour aider.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="pecs">
+          <h3>Pompes serrées (diamant)</h3>
+          <p class="meta">Objectif : triceps + pecs</p>
+          <ul>
+            <li>Mains rapprochées, gainage strict.</li>
+            <li>Moins de reps, plus dur.</li>
+            <li>Variante : mains un peu moins serrées.</li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- 6) Épaules -->
+    <details>
+      <summary>🧱 Épaules <span class="small">7 exercices</span></summary>
+      <div class="grid">
+
+        <div class="exercise" data-tags="épaules">
+          <h3>Développé épaules (haltères)</h3>
+          <p class="meta">Objectif : force épaules</p>
+          <ul>
+            <li>Gainage serré, côtes “rentrées”.</li>
+            <li>Monte sans cambrer.</li>
+            <li>Contrôle la descente.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="épaules">
+          <h3>Élévations latérales</h3>
+          <p class="meta">Objectif : largeur</p>
+          <ul>
+            <li>Légère flexion des coudes.</li>
+            <li>Monte jusqu’à l’horizontale, contrôle.</li>
+            <li>12–20 reps, propre.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="épaules">
+          <h3>Élévations frontales</h3>
+          <p class="meta">Objectif : deltoïde avant</p>
+          <ul>
+            <li>Monte jusqu’aux yeux, pas plus.</li>
+            <li>Pas d’élan.</li>
+            <li>Variante : disque, haltère, élastique.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="épaules dos">
+          <h3>Oiseau (reverse fly)</h3>
+          <p class="meta">Objectif : arrière d’épaule</p>
+          <ul>
+            <li>Buste penché, dos droit.</li>
+            <li>Ouvre les bras, serre les omoplates.</li>
+            <li>12–20 reps.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="épaules gainage">
+          <h3>Pike push-up</h3>
+          <p class="meta">Objectif : épaules au poids du corps</p>
+          <ul>
+            <li>Hanches hautes, tête descend entre les mains.</li>
+            <li>Contrôle, amplitude progressive.</li>
+            <li>Variante : mains sur support (plus facile).</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="épaules posture">
+          <h3>Rotation externe (élastique)</h3>
+          <p class="meta">Objectif : coiffe des rotateurs</p>
+          <ul>
+            <li>Coude collé au corps, rotation vers l’extérieur.</li>
+            <li>Mouvement petit, contrôle total.</li>
+            <li>15–25 reps léger.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="épaules posture">
+          <h3>Wall slides (dos au mur)</h3>
+          <p class="meta">Objectif : mobilité épaules</p>
+          <ul>
+            <li>Avant-bras contre le mur, monte sans cambrer.</li>
+            <li>Ribs “rentrées”, cou long.</li>
+            <li>8–12 reps lentes.</li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- 7) Bras -->
+    <details>
+      <summary>💪 Bras <span class="small">6 exercices</span></summary>
+      <div class="grid">
+
+        <div class="exercise" data-tags="bras biceps">
+          <h3>Curl biceps (haltères)</h3>
+          <p class="meta">Objectif : biceps</p>
+          <ul>
+            <li>Coudes proches du corps.</li>
+            <li>Monte contrôlé, descends lentement.</li>
+            <li>Pas d’élan du dos.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="bras biceps">
+          <h3>Curl marteau</h3>
+          <p class="meta">Objectif : biceps + avant-bras</p>
+          <ul>
+            <li>Poignets neutres.</li>
+            <li>Très bon en fin de séance.</li>
+            <li>10–15 reps propre.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="bras triceps">
+          <h3>Extension triceps au-dessus de la tête</h3>
+          <p class="meta">Objectif : triceps</p>
+          <ul>
+            <li>Coudes serrés, mouvement contrôlé.</li>
+            <li>Variante : une main / deux mains.</li>
+            <li>10–15 reps.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="bras triceps">
+          <h3>Kickback triceps</h3>
+          <p class="meta">Objectif : triceps (isolation)</p>
+          <ul>
+            <li>Buste stable, bras colle au corps.</li>
+            <li>Extension arrière, contraction 1 sec.</li>
+            <li>12–20 reps.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="bras triceps">
+          <h3>Pompes serrées</h3>
+          <p class="meta">Objectif : triceps + gainage</p>
+          <ul>
+            <li>Mains plus proches, coudes près du corps.</li>
+            <li>Variante : inclinées si besoin.</li>
+            <li>Qualité stricte.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="bras">
+          <h3>Farmer walk (marche chargée)</h3>
+          <p class="meta">Objectif : grip + gainage</p>
+          <ul>
+            <li>Marche 30–60 sec avec charges.</li>
+            <li>Épaules basses, buste grand.</li>
+            <li>Excellent pour tout le corps.</li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- 8) Abdos / gainage -->
+    <details>
+      <summary>🧠 Abdos & gainage <span class="small">9 exercices</span></summary>
+      <div class="grid">
+
+        <div class="exercise" data-tags="abdos gainage">
+          <h3>Planche</h3>
+          <p class="meta">Objectif : gainage global</p>
+          <ul>
+            <li>Corps aligné, fessiers serrés.</li>
+            <li>Ne cambre pas.</li>
+            <li>20–60 sec selon niveau.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="abdos gainage">
+          <h3>Planche latérale</h3>
+          <p class="meta">Objectif : obliques + stabilité</p>
+          <ul>
+            <li>Épaule au-dessus du coude.</li>
+            <li>Hanches hautes, corps aligné.</li>
+            <li>20–45 sec par côté.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="abdos">
+          <h3>Dead bug</h3>
+          <p class="meta">Objectif : abdos profonds</p>
+          <ul>
+            <li>Bas du dos collé au sol.</li>
+            <li>Allonge opposé, contrôle.</li>
+            <li>8–12 reps par côté.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="abdos">
+          <h3>Hollow hold</h3>
+          <p class="meta">Objectif : gainage “gym”</p>
+          <ul>
+            <li>Bas du dos au sol.</li>
+            <li>Rentre les côtes, souffle.</li>
+            <li>15–40 sec.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="abdos">
+          <h3>Crunch contrôlé</h3>
+          <p class="meta">Objectif : grand droit</p>
+          <ul>
+            <li>Monte les épaules, pas la nuque.</li>
+            <li>Souffle en montant.</li>
+            <li>12–20 reps.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="abdos">
+          <h3>Relevés de genoux (au sol)</h3>
+          <p class="meta">Objectif : bas du ventre</p>
+          <ul>
+            <li>Rétroversion bassin, contrôle.</li>
+            <li>Ne balance pas.</li>
+            <li>10–15 reps.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="abdos">
+          <h3>Mountain climbers</h3>
+          <p class="meta">Objectif : abdos + cardio</p>
+          <ul>
+            <li>Gainage strict, genoux alternés.</li>
+            <li>20–40 sec.</li>
+            <li>Variante : plus lent, plus strict.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="abdos gainage">
+          <h3>Bird dog</h3>
+          <p class="meta">Objectif : stabilité lombaire</p>
+          <ul>
+            <li>Allonge bras/jambe opposés.</li>
+            <li>Hanches stables.</li>
+            <li>8–12 reps par côté.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="abdos">
+          <h3>Russian twist (léger)</h3>
+          <p class="meta">Objectif : obliques</p>
+          <ul>
+            <li>Dos long, tourne le buste, contrôle.</li>
+            <li>Ne tire pas sur la nuque.</li>
+            <li>12–20 par côté.</li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- 9) Cardio / Conditioning -->
+    <details>
+      <summary>⚡ Cardio & conditioning <span class="small">8 exercices</span></summary>
+      <div class="grid">
+
+        <div class="exercise" data-tags="cardio">
+          <h3>Marche rapide (zone 2)</h3>
+          <p class="meta">Objectif : brûler + santé</p>
+          <ul>
+            <li>20–45 min, tu peux parler mais pas chanter.</li>
+            <li>Régulier, idéal pour perdre du gras.</li>
+            <li>Top les jours “off”.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="cardio">
+          <h3>Burpees (progressif)</h3>
+          <p class="meta">Objectif : cardio intense</p>
+          <ul>
+            <li>Variante simple : sans saut.</li>
+            <li>10–20 sec ON / 40 sec OFF au début.</li>
+            <li>Qualité + respiration.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="cardio">
+          <h3>High knees (montées de genoux)</h3>
+          <p class="meta">Objectif : rythme + jambes</p>
+          <ul>
+            <li>20–40 sec, gainage serré.</li>
+            <li>Variante soft : marche genoux hauts.</li>
+            <li>Excellent en finisher.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="cardio">
+          <h3>Jump rope (corde à sauter)</h3>
+          <p class="meta">Objectif : cardio + mollets</p>
+          <ul>
+            <li>Petits rebonds, épaules relâchées.</li>
+            <li>30–90 sec.</li>
+            <li>Progression : +10 sec/semaine.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="cardio">
+          <h3>Shadow boxing</h3>
+          <p class="meta">Objectif : cardio fun</p>
+          <ul>
+            <li>2–6 min en rounds (ex : 30/30).</li>
+            <li>Garde le tronc gainé.</li>
+            <li>Travail coordination.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="cardio">
+          <h3>Rameur / vélo / tapis (si salle)</h3>
+          <p class="meta">Objectif : cardio propre</p>
+          <ul>
+            <li>Zone 2 : 20–30 min (régulier).</li>
+            <li>OU intervalles : 10 × (30 sec fort / 60 sec doux).</li>
+            <li>Choisis un mode selon ton niveau.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="cardio">
+          <h3>Finisher 6 min (30/30)</h3>
+          <p class="meta">Objectif : brûler + mental</p>
+          <ul>
+            <li>30 sec ON / 30 sec OFF × 6.</li>
+            <li>Ex : mountain climbers, corde, step-ups, burpees.</li>
+            <li>Garde une exécution propre.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="cardio">
+          <h3>EMOM 8 min (débutant)</h3>
+          <p class="meta">Objectif : régularité</p>
+          <ul>
+            <li>Chaque minute : 30 sec effort + 30 sec repos.</li>
+            <li>Ex : squats air / pompes inclinées / step-ups.</li>
+            <li>Très efficace et simple.</li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- 10) Retour au calme -->
+    <details>
+      <summary>🧘 Retour au calme & étirements <span class="small">6 exercices</span></summary>
+      <div class="grid">
+
+        <div class="exercise" data-tags="mobilité étirements">
+          <h3>Respiration 4–6</h3>
+          <p class="meta">Objectif : calmer le système</p>
+          <ul>
+            <li>Inspire 4 sec, souffle 6 sec.</li>
+            <li>2–4 minutes.</li>
+            <li>Épaules relâchées.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="étirements hanches">
+          <h3>Étirement fléchisseur de hanche</h3>
+          <p class="meta">Objectif : posture + hanches</p>
+          <ul>
+            <li>Fente genou au sol, bassin vers l’avant.</li>
+            <li>30–45 sec par côté.</li>
+            <li>Respire calmement.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="étirements ischios">
+          <h3>Étirement ischios</h3>
+          <p class="meta">Objectif : chaîne postérieure</p>
+          <ul>
+            <li>Dos long, flexion douce.</li>
+            <li>30–45 sec.</li>
+            <li>Sans douleur.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="étirements dos">
+          <h3>Child pose</h3>
+          <p class="meta">Objectif : relâcher le dos</p>
+          <ul>
+            <li>Assieds-toi sur les talons, bras devant.</li>
+            <li>Respiration lente.</li>
+            <li>45–60 sec.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="étirements épaules">
+          <h3>Étirement pectoraux (porte)</h3>
+          <p class="meta">Objectif : ouvrir l’avant</p>
+          <ul>
+            <li>Avant-bras sur un montant de porte, tourne doucement.</li>
+            <li>30 sec par côté.</li>
+            <li>Très utile si tu travailles assis.</li>
+          </ul>
+        </div>
+
+        <div class="exercise" data-tags="mobilité chevilles">
+          <h3>Étirement mollets</h3>
+          <p class="meta">Objectif : chevilles + mollets</p>
+          <ul>
+            <li>Pousse le talon au sol, genou tendu puis fléchi.</li>
+            <li>30 sec chaque variante.</li>
+            <li>Idéal après cardio/squat.</li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+
+  </div>
+
+  <div class="footer">
+    ✅ Bibliothèque complète prête.  
+    Pour ajouter un exercice : copie un bloc <b>exercise</b> et colle-le dans la bonne section.
+  </div>
+
+</div>
+
+<script>
+  const search = document.getElementById("search");
+  const exercises = Array.from(document.querySelectorAll(".exercise"));
+  const chips = Array.from(document.querySelectorAll(".chip"));
+
+  function applyFilter(term){
+    const t = (term || "").trim().toLowerCase();
+    exercises.forEach(ex => {
+      const text = (ex.innerText || "").toLowerCase();
+      const tags = (ex.getAttribute("data-tags") || "").toLowerCase();
+      const show = !t || text.includes(t) || tags.includes(t);
+      ex.style.display = show ? "" : "none";
+    });
+  }
+
+  search.addEventListener("input", () => applyFilter(search.value));
+
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      const term = chip.getAttribute("data-chip") || "";
+      search.value = term;
+      applyFilter(term);
+      // Ouvre automatiquement les sections si besoin
+      document.querySelectorAll("details").forEach(d => d.open = true);
+    });
+  });
+</script>
+
+</body>
+</html>
