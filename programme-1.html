@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programme — SOURCE</title>
+  <style>
+    :root{
+      --bg0:#070A12; --bg1:#0B1020;
+      --card: rgba(255,255,255,.06);
+      --line: rgba(255,255,255,.12);
+      --txt:#EAF0FF; --muted: rgba(234,240,255,.72);
+      --gold:#D7B56D; --blue:#6EA8FF;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--txt);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(110,168,255,.20), transparent 60%),
+        radial-gradient(900px 500px at 80% 20%, rgba(215,181,109,.18), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100vh;
+      padding: 22px 14px 40px;
+    }
+    .wrap{max-width: 980px; margin:0 auto;}
+    .top{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding: 16px 16px;
+      border:1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .brand{display:flex; gap:12px; align-items:center;}
+    .logo{
+      width:42px;height:42px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background:
+        radial-gradient(14px 14px at 30% 30%, rgba(215,181,109,.9), transparent 60%),
+        radial-gradient(18px 18px at 70% 70%, rgba(110,168,255,.9), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      display:grid;place-items:center;font-weight:900; letter-spacing:.06em;
+    }
+    .title h1{margin:0;font-size:18px}
+    .title p{margin:6px 0 0;color:var(--muted);font-size:13px}
+    .pill{
+      border:1px solid rgba(110,168,255,.35);
+      background: rgba(110,168,255,.10);
+      color:#DCEBFF;
+      padding:8px 12px; border-radius:999px;
+      font-size:12px; white-space:nowrap;
+    }
+    .card{
+      margin-top: 14px;
+      border:1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .inner{padding: 16px;}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .tag{
+      font-size:12px; color:var(--muted);
+      padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+    }
+    h2{margin:0 0 8px; font-size:18px}
+    p{margin:0; color:var(--muted); line-height:1.6}
+    .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      text-decoration:none; padding: 12px 14px;
+      border-radius: 14px; font-weight: 900;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--txt);
+    }
+    .btn:hover{background: rgba(255,255,255,.09)}
+    .btn-gold{border-color: rgba(215,181,109,.35); background: rgba(215,181,109,.12)}
+    .btn-blue{border-color: rgba(110,168,255,.35); background: rgba(110,168,255,.12)}
+    details{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding: 10px 16px;
+    }
+    summary{
+      cursor:pointer; font-weight:900;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .session{
+      margin-top:10px;
+      padding:12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+    .session h4{margin:0 0 8px}
+    ul{margin:0; padding-left: 18px; color: var(--muted); line-height:1.6}
+    .footer{margin-top:16px; color: rgba(234,240,255,.55); font-size:12px; padding: 0 6px}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="top">
+      <div class="brand">
+        <div class="logo">S</div>
+        <div class="title">
+          <h1>Programme — SOURCE</h1>
+          <p>Semaine par semaine • simple • précis</p>
+        </div>
+      </div>
+      <div class="pill">Programme 1</div>
+    </div>
+
+    <div class="card">
+      <div class="inner">
+        <div class="row">
+          <span class="tag">Objectif : Force + Tonus</span>
+          <span class="tag">Fréquence : 3 séances / semaine</span>
+          <span class="tag">Durée : 45–60 min</span>
+        </div>
+
+        <h2 style="margin-top:12px;">Consignes importantes</h2>
+        <p>
+          • Tu gardes 1–2 répétitions “en réserve” (ne pas finir détruit).<br>
+          • Si douleur “anormale” : tu stoppes l’exercice et tu changes la variante.<br>
+          • Tu notes tes charges / répétitions : objectif progression chaque semaine.
+        </p>
+
+        <div class="btns">
+          <a class="btn btn-blue" href="espace-client.html">← Retour Espace Client</a>
+          <a class="btn btn-gold" href="bibliotheque-exos.html">Bibliothèque d’exos</a>
+        </div>
+      </div>
+
+      <!-- SEMAINE 1 -->
+      <details open>
+        <summary>📅 Semaine 1</summary>
+        <div class="session">
+          <h4>Séance A — Full Body</h4>
+          <ul>
+            <li>Échauffement 8 min (mobilité + activation)</li>
+            <li>Squat / Variante : 4 x 10</li>
+            <li>Tirage (Row) : 4 x 10</li>
+            <li>Pompes / Développé : 4 x 8–12</li>
+            <li>Gainage : 4 x 30–40 sec</li>
+            <li>Retour au calme 3–5 min</li>
+          </ul>
+        </div>
+
+        <div class="session">
+          <h4>Séance B — Bas du corps + Core</h4>
+          <ul>
+            <li>Fentes : 4 x 10 / jambe</li>
+            <li>Hip Thrust / Pont fessier : 4 x 12</li>
+            <li>Mollets : 3 x 15–20</li>
+            <li>Abdos (dead bug / hollow) : 4 x 8–12</li>
+          </ul>
+        </div>
+
+        <div class="session">
+          <h4>Séance C — Haut du corps</h4>
+          <ul>
+            <li>Tractions / Tirage élastique : 4 x 6–10</li>
+            <li>Pompes inclinées : 4 x 10–15</li>
+            <li>Épaules (développé / élévations) : 3 x 10–12</li>
+            <li>Finisher : 6 min (30 sec ON / 30 sec OFF)</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- SEMAINE 2 -->
+      <details>
+        <summary>📅 Semaine 2</summary>
+        <div class="session">
+          <h4>Progression</h4>
+          <ul>
+            <li>+1 série sur 1 exercice OU +2 répétitions par série</li>
+            <li>Gainage : +5 sec</li>
+            <li>Finisher : +1 minute</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- SEMAINE 3 -->
+      <details>
+        <summary>📅 Semaine 3</summary>
+        <div class="session">
+          <h4>Progression</h4>
+          <ul>
+            <li>Augmente légèrement la difficulté (variante plus dure OU +charge)</li>
+            <li>Garde une exécution propre</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- SEMAINE 4 -->
+      <details>
+        <summary>📅 Semaine 4</summary>
+        <div class="session">
+          <h4>Semaine “propre” (consolidation)</h4>
+          <ul>
+            <li>Même exercices, mais tu cherches la meilleure qualité possible</li>
+            <li>Tu termines frais, pas explosé</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="footer">
+      Conseil : si tu veux, je te crée ensuite la page “Bibliothèque d’exos” (avec vidéos/liens) et la page “Check-in”.
+    </div>
+
+  </div>
+</body>
+</html>
