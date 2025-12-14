@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Check-in séance — SOURCE</title>
+
+<style>
+:root{
+  --bg0:#070A12; --bg1:#0B1020;
+  --line:rgba(255,255,255,.12);
+  --txt:#EAF0FF; --muted:rgba(234,240,255,.72);
+  --blue:#6EA8FF; --gold:#D7B56D;
+  --shadow:0 18px 60px rgba(0,0,0,.55);
+  --ok:#00ff90; --warn:#ffb020; --bad:#ff6b6b;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--txt);
+  background:
+    radial-gradient(900px 500px at 20% 10%, rgba(110,168,255,.18), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(215,181,109,.18), transparent 60%),
+    linear-gradient(180deg,var(--bg0),var(--bg1));
+  min-height:100vh;
+  padding:22px 14px 40px;
+}
+.wrap{max-width:720px;margin:0 auto}
+
+.top{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:16px;border-radius:18px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  box-shadow:var(--shadow);
+}
+.title h1{margin:0;font-size:18px}
+.title p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.badge{
+  padding:8px 12px;border-radius:999px;
+  border:1px solid rgba(215,181,109,.35);
+  background:rgba(215,181,109,.12);
+  font-size:12px;font-weight:900;
+}
+
+.card{
+  margin-top:14px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.05);
+  box-shadow:var(--shadow);
+}
+.inner{padding:16px}
+h2{margin:0 0 10px;font-size:16px}
+label{
+  font-size:12px;font-weight:900;
+  display:block;margin-bottom:6px;
+}
+input, select, textarea{
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:var(--txt);
+}
+textarea{min-height:90px}
+
+.grid{display:grid;gap:12px}
+@media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.btn{
+  padding:12px 16px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:var(--txt);
+  font-weight:900;
+  cursor:pointer;
+}
+.btn-gold{border-color:rgba(215,181,109,.35);background:rgba(215,181,109,.12)}
+.btn-blue{border-color:rgba(110,168,255,.35);background:rgba(110,168,255,.12)}
+
+.note{font-size:12px;color:rgba(234,240,255,.55);margin-top:8px}
+.msg{margin-top:10px;font-weight:900}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="title">
+      <h1>Check-in après séance</h1>
+      <p>Rapide • 1–2 min • feedback à chaud</p>
+    </div>
+    <div class="badge">SOURCE</div>
+  </div>
+
+  <div class="card">
+    <div class="inner">
+
+      <h2>Infos rapides</h2>
+      <div class="grid">
+        <div>
+          <label>Prénom</label>
+          <input id="prenom" placeholder="Ex : Sarah" />
+        </div>
+        <div>
+          <label>Séance</label>
+          <input id="seance" placeholder="Ex : Séance A / Full Body" />
+        </div>
+      </div>
+
+      <h2>Ressenti (0 à 10)</h2>
+      <div class="grid">
+        <div>
+          <label>Énergie pendant la séance</label>
+          <select id="energie">
+            <option></option><option>0</option><option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </div>
+        <div>
+          <label>Difficulté perçue</label>
+          <select id="difficulte">
+            <option></option><option>0</option><option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </div>
+      </div>
+
+      <h2>Corps</h2>
+      <div class="grid">
+        <div>
+          <label>Douleurs / gênes ?</label>
+          <select id="douleur">
+            <option></option>
+            <option>Non</option>
+            <option>Oui (légère)</option>
+            <option>Oui (à surveiller)</option>
+          </select>
+        </div>
+        <div>
+          <label>Zone concernée (si oui)</label>
+          <input id="zone" placeholder="Ex : genou droit / épaules" />
+        </div>
+      </div>
+
+      <h2>Feedback libre (optionnel)</h2>
+      <textarea id="commentaire" placeholder="Ex : bonne séance / fatigué / charge un peu lourde / super sensations…"></textarea>
+
+      <div class="btns">
+        <a href="espace-client.html" class="btn btn-blue">← Retour</a>
+        <button class="btn btn-gold" id="send">Envoyer</button>
+      </div>
+
+      <div class="note">
+        En cliquant sur “Envoyer”, ton mail s’ouvre automatiquement avec le message déjà prêt.
+      </div>
+      <div class="msg" id="msg"></div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+const COACH_EMAIL = maximehaelling@gmail.com ;
+const v = id => document.getElementById(id).value || "";
+
+document.getElementById("send").onclick = () => {
+  const prenom = v("prenom");
+  const seance = v("seance");
+  if(!prenom || !seance){
+    document.getElementById("msg").style.color="#ff6b6b";
+    document.getElementById("msg").textContent="⚠️ Prénom + séance obligatoires";
+    return;
+  }
+
+  const body =
+`CHECK-IN APRÈS SÉANCE
+
+Prénom : ${prenom}
+Séance : ${seance}
+
+Énergie : ${v("energie")}/10
+Difficulté : ${v("difficulte")}/10
+
+Douleur : ${v("douleur")}
+Zone : ${v("zone")}
+
+Commentaire :
+${v("commentaire")}
+`;
+
+  const subject = encodeURIComponent(`Check-in séance — ${prenom}`);
+  window.location.href = `mailto:${COACH_EMAIL}?subject=${subject}&body=${encodeURIComponent(body)}`;
+};
+</script>
+
+</body>
+</html>
