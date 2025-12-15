@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Power Form’ Premium | Séance Jambes Légères</title>
+  <meta name="description" content="Power Form’ Coaching Premium — Séance Jambes Légères : drainage, déstockage, contrôle, check-in." />
+  <style>
+    :root{
+      color-scheme: dark;
+      --bg:#07070a;
+      --panel: rgba(255,255,255,.05);
+      --panel2: rgba(0,0,0,.25);
+      --border: rgba(255,255,255,.10);
+      --border2: rgba(255,255,255,.08);
+      --text:#f4f4f5;
+      --muted:#a1a1aa;
+      --shadow: 0 0 0 1px rgba(255,255,255,.08), 0 20px 60px rgba(0,0,0,.55);
+      --r: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+    }
+    .bg-premium{
+      min-height:100vh;
+      background:
+        radial-gradient(1000px 500px at 10% 10%, rgba(59,130,246,.18), transparent 60%),
+        radial-gradient(900px 450px at 90% 20%, rgba(236,72,153,.16), transparent 55%),
+        radial-gradient(700px 400px at 30% 90%, rgba(168,85,247,.12), transparent 55%),
+        linear-gradient(to bottom, rgba(255,255,255,.02), transparent);
+    }
+    .wrap{max-width:1100px;margin:0 auto;padding:32px 16px 56px}
+    .h1{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:0}
+    .sub{color:var(--muted);margin-top:6px}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      border-radius: 14px; padding:10px 14px;
+      border:1px solid var(--border); background: rgba(255,255,255,.05);
+      color: var(--text); cursor:pointer; user-select:none;
+      transition: all .15s ease;
+    }
+    .btn:hover{background: rgba(255,255,255,.10)}
+    .btn.primary{background: rgba(255,255,255,.10)}
+    .btn.primary:hover{background: rgba(255,255,255,.15)}
+    .btn[disabled]{opacity:.45;cursor:not-allowed}
+    .kbd{
+      font-size:12px;color:#e4e4e7; padding:4px 8px; border-radius:10px;
+      border:1px solid var(--border); background: rgba(255,255,255,.05);
+    }
+    .badge{
+      display:inline-flex;align-items:center;
+      border:1px solid var(--border); background: rgba(255,255,255,.05);
+      border-radius:999px; padding:6px 10px; font-size:12px; color:#e4e4e7;
+      gap:8px;
+    }
+    .grid{display:grid;grid-template-columns: 1.65fr 1fr; gap:18px; margin-top:18px}
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+    .card{
+      border:1px solid var(--border);
+      border-radius: var(--r);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .head{
+      padding:16px 18px;
+      border-bottom:1px solid var(--border2);
+      display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+    }
+    .card .title{font-weight:700; letter-spacing:-.01em}
+    .card .body{padding:16px 18px}
+    .muted{color:var(--muted)}
+    ul,ol{margin:10px 0 0 18px;color:var(--muted)}
+    li{margin:6px 0}
+    .quote{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding:14px;
+      background: rgba(0,0,0,.22);
+      font-style: italic;
+      color:#e4e4e7;
+    }
+    .cols2{display:grid;grid-template-columns: 1fr 1fr; gap:12px; margin-top:12px}
+    @media (max-width: 820px){ .cols2{grid-template-columns:1fr} }
+    .box{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding:12px;
+      background: rgba(0,0,0,.22);
+    }
+    .box h4{margin:0 0 8px;font-size:14px}
+    .box ul,.box ol{margin-top:8px}
+    .acc{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.05);
+      overflow:hidden;
+    }
+    .acc button{
+      width:100%; text-align:left;
+      border:0; background: transparent;
+      padding:12px 14px; color: var(--text);
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      cursor:pointer;
+    }
+    .acc button:hover{background: rgba(255,255,255,.08)}
+    .acc .content{display:none;padding:0 14px 14px}
+    .acc.open .content{display:block}
+    .hr{height:1px;background:var(--border2);margin:14px 0}
+    .timer{
+      display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding:12px;
+      background: rgba(0,0,0,.22);
+    }
+    .time{
+      font-size:26px;font-weight:800;letter-spacing:.02em;
+      font-variant-numeric: tabular-nums;
+      min-width: 84px;
+    }
+    input,textarea{
+      width:100%;
+      border-radius: 14px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.28);
+      color: var(--text);
+      padding:10px 12px;
+      outline:none;
+    }
+    input:focus,textarea:focus{background: rgba(0,0,0,.36)}
+    .small{font-size:12px}
+    .steps{
+      display:flex;flex-wrap:wrap;gap:8px;margin-top:12px
+    }
+    .stepBtn{padding:8px 10px;border-radius:12px}
+    .pillrow{display:flex;flex-wrap:wrap;gap:8px}
+    .footer{color:var(--muted);font-size:12px;text-align:center;padding:26px 0 0}
+    .hide{display:none !important}
+    .toast{
+      position: fixed; left: 50%; transform: translateX(-50%);
+      bottom: 16px; background: rgba(0,0,0,.72);
+      border: 1px solid var(--border);
+      border-radius: 999px; padding: 10px 14px;
+      color: #e4e4e7; font-size: 13px;
+      box-shadow: var(--shadow);
+      display:none;
+    }
+    .toast.show{display:block}
+  </style>
+</head>
+
+<body>
+<div class="bg-premium">
+  <div class="wrap">
+
+    <!-- ACCESS GATE -->
+    <div id="gate" class="card" style="max-width:680px;margin:0 auto;">
+      <div class="head">
+        <div>
+          <div class="title">Accès Premium Power Form’</div>
+          <div class="muted small" style="margin-top:6px;">
+            Espace réservé au coaching privé (membres premium).
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <p class="muted" style="margin-top:0">
+          Entre le code d’accès pour ouvrir la séance. (Usage privé coaching.)
+        </p>
+        <div class="row" style="justify-content:flex-start;margin-top:10px">
+          <div style="flex:1;min-width:220px">
+            <input id="codeInput" placeholder="Code d’accès" />
+          </div>
+          <button class="btn primary" id="unlockBtn">Déverrouiller</button>
+        </div>
+        <div class="muted small" style="margin-top:12px;">
+          Code par défaut : <span class="kbd">POWERFORM-PREMIUM</span> (modifiable dans le JS).
+        </div>
+      </div>
+    </div>
+
+    <!-- APP -->
+    <div id="app" class="hide">
+      <header>
+        <div class="row">
+          <div>
+            <h1 class="h1">Séance Jambes Légères</h1>
+            <div class="sub">Coaching Premium Power Form’ • Drainage • Déstockage • Contrôle</div>
+          </div>
+          <div class="row" style="justify-content:flex-end">
+            <button class="btn" id="modeCoaching">Mode coaching</button>
+            <button class="btn" id="modeLecture">Mode lecture</button>
+          </div>
+        </div>
+
+        <div class="pillrow" id="contextBadges" style="margin-top:12px"></div>
+      </header>
+
+      <div class="grid">
+        <!-- MAIN -->
+        <main class="space">
+
+          <section class="card">
+            <div class="head">
+              <div class="title">Structure globale</div>
+            </div>
+            <div class="body">
+              <ul id="structureList"></ul>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:18px">
+            <div class="head">
+              <div class="title">Avant la séance</div>
+            </div>
+            <div class="body">
+              <div class="quote" id="beforeScript"></div>
+              <div class="hr"></div>
+              <div style="font-weight:700">Checklist</div>
+              <div class="muted small">Tu coches mentalement avant de démarrer.</div>
+              <ul id="beforeChecklist"></ul>
+            </div>
+          </section>
+
+          <!-- COACHING STEPPER -->
+          <section class="card" id="coachingPanel" style="margin-top:18px">
+            <div class="head">
+              <div>
+                <div class="title">Mode coaching • déroulé pas-à-pas</div>
+                <div class="muted small" style="margin-top:6px">Timers intégrés • Explications complètes</div>
+              </div>
+              <span class="badge">🔔 Timers</span>
+            </div>
+            <div class="body">
+              <div class="row">
+                <div class="muted small">
+                  Étape <span class="kbd" id="stepNum">1</span> / <span class="kbd" id="stepTotal">1</span>
+                </div>
+                <div class="row" style="justify-content:flex-end">
+                  <button class="btn" id="prevStep">← Précédent</button>
+                  <button class="btn primary" id="nextStep">Suivant →</button>
+                </div>
+              </div>
+
+              <div class="hr"></div>
+
+              <div class="pillrow" id="stepMeta"></div>
+              <div style="margin-top:10px;font-weight:800" id="stepTitle"></div>
+
+              <div style="margin-top:12px" id="timerHost"></div>
+
+              <div style="margin-top:12px" id="exerciseDetails"></div>
+
+              <div class="steps" id="stepDots"></div>
+            </div>
+          </section>
+
+          <!-- LECTURE MODE -->
+          <section id="lecturePanel" class="hide" style="margin-top:18px"></section>
+
+          <!-- CHECK-IN -->
+          <section class="card" style="margin-top:18px">
+            <div class="head">
+              <div class="title">Check-in fin de séance</div>
+              <button class="btn" id="resetCheckin">Réinitialiser</button>
+            </div>
+            <div class="body" id="checkinBody"></div>
+          </section>
+
+        </main>
+
+        <!-- ASIDE -->
+        <aside class="space">
+
+          <section class="card">
+            <div class="head">
+              <div class="title">Pendant la séance (rappels coach)</div>
+            </div>
+            <div class="body">
+              <ul id="duringCues"></ul>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:18px">
+            <div class="head">
+              <div class="title">Conseils post-séance</div>
+            </div>
+            <div class="body" id="afterAdvice"></div>
+          </section>
+
+          <section class="card" style="margin-top:18px">
+            <div class="head">
+              <div class="title">Ce que la séance fait concrètement</div>
+            </div>
+            <div class="body">
+              <ul id="whatItDoes"></ul>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:18px">
+            <div class="head">
+              <div class="title">Notes rapides coach</div>
+            </div>
+            <div class="body">
+              <p class="muted small" style="margin-top:0">
+                Repères : shift à droite ? appui gauche ? claquement fléchisseur droit ?
+                Si un signe apparaît : réduis l’amplitude et renforce le contrôle.
+              </p>
+            </div>
+          </section>
+
+        </aside>
+      </div>
+
+      <div class="footer">
+        Power Form’ • Coaching Premium — usage privé. (Version web monofichier, idéale GitHub Pages.)
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+</div>
+
+<script>
+/* ===========================
+   CONFIG PREMIUM ACCESS
+   =========================== */
+const PREMIUM_CODE = "POWERFORM-PREMIUM"; // <- change ici si tu veux
+const UNLOCK_KEY = "pf_premium_unlocked_v1";
+
+/* ===========================
+   DATA (intégralité + explications)
+   =========================== */
+const session = {
+  name: "Séance Jambes Légères",
+  subtitle: "Coaching Premium Power Form’ • Drainage • Déstockage • Contrôle",
+  context: [
+    "Rétention d’eau jambes (statique + hormonal + drainage lent)",
+    "Prise de gras récente (stress + fatigue + circulation)",
+    "Déséquilibre jambe G / jambe D",
+    "Objectif : déstockage + activation + sécurité articulaire",
+    "⚠️ Zéro impact, zéro compression excessive, mais beaucoup de flux"
+  ],
+  structure: [
+    "15 min début de séance : protocole correctif & drainage",
+    "35 min séance principale (maxi 50 min total)",
+    "Avant / Pendant / Après : consignes coaching",
+    "Check-in de fin de séance guidé"
+  ],
+  beforeScript:
+    "Aujourd’hui, on travaille pour faire circuler, drainer et relancer. Pas pour te cramer, pas pour te gonfler. L’objectif, c’est que tu ressortes avec les jambes plus légères, le ventre plus plat, et une vraie sensation de contrôle.",
+  beforeChecklist: [
+    "Boire 300–500 ml d’eau avant de commencer",
+    "Aller aux toilettes si besoin",
+    "Respirer calmement (pas d’excitation inutile)"
+  ],
+  duringCues: [
+    "Tu dois transpirer légèrement, pas t’écraser.",
+    "On cherche le flux + la qualité du mouvement, pas la perf brute.",
+    "Si une zone pince / claque : on réduit l’amplitude et on contrôle."
+  ],
+  afterAdvice: [
+    {
+      title: "Après la séance (le jour même)",
+      items: [
+        "Boire 1 L d’eau minimum dans l’après-midi",
+        "Marcher 10–20 min si possible",
+        "Éviter les aliments ultra salés le soir"
+      ]
+    },
+    {
+      title: "Le soir",
+      items: [
+        "Jambes légèrement surélevées 5–10 min",
+        "Respiration calme avant dormir"
+      ]
+    }
+  ],
+  whatItDoes: [
+    "↓ Rétention d’eau",
+    "↑ Circulation veineuse & lymphatique",
+    "↑ Dépense calorique sans stress",
+    "↑ Tonus jambes & ventre",
+    "↓ Inflammation / sensation de lourdeur"
+  ],
+  blocks: [
+    {
+      id: "warmup-1",
+      title: "Début de séance • Bloc 1 — Drainage + relâchement",
+      durationHint: "5 min",
+      description: "Ouvre le retour veineux, relâche les tissus, prépare la circulation.",
+      format: "sequence",
+      exercises: [
+        {
+          id: "breath-legs-up",
+          title: "Respiration drainante jambes (jambes surélevées)",
+          dosage: "5 respirations lentes",
+          intent: "Activer le retour veineux, réduire la sensation de jambes lourdes.",
+          coachingCues: [
+            "Allonge l’expiration, laisse les jambes se vider.",
+            "Épaules lourdes, nuque relâchée."
+          ],
+          setup: [
+            "Allongée sur le dos.",
+            "Jambes surélevées sur un banc ou contre un mur.",
+            "Bassin neutre, bas du dos confortable."
+          ],
+          execution: [
+            "Inspire par le nez 3–4 sec (ventre qui se soulève).",
+            "Expire par la bouche 6–8 sec (comme si tu soufflais dans une paille).",
+            "Répète 5 cycles sans forcer."
+          ],
+          breathing: ["Inspiration nez courte / expiration bouche longue et lente."],
+          mistakes: ["Cambrer fort le bas du dos.", "Épaules crispées.", "Respirer haut dans la poitrine."],
+          timerSeconds: 120
+        },
+        {
+          id: "self-massage",
+          title: "Auto-massage rapide jambes (option si rouleau)",
+          dosage: "30–40 sec / zone",
+          intent: "Décongestionner (mollets → ischios → face interne cuisse).",
+          coachingCues: [
+            "Pression modérée : on draine, on ne détruit pas.",
+            "Ralentis sur les zones tendues."
+          ],
+          setup: [
+            "Rouleau sous la zone ciblée (ou massage mains).",
+            "Appuis stables, respiration calme."
+          ],
+          execution: [
+            "Mollets : roule doucement du tendon d’Achille vers sous le genou.",
+            "Ischios : roule de sous-fessier vers derrière genou.",
+            "Face interne cuisse : roule lentement (prudence, sensibilité)."
+          ],
+          breathing: ["Expire sur les points sensibles."],
+          mistakes: ["Aller trop vite.", "Douleur trop forte (≥7/10).", "Bloquer la respiration."],
+          options: ["Sans rouleau : massage main + pressions glissées."],
+          timerSeconds: 180
+        }
+      ]
+    },
+
+    {
+      id: "warmup-2",
+      title: "Début de séance • Bloc 2 — Correctif ciblé (Blandine)",
+      durationHint: "7–8 min",
+      description: "Corrige hanche gauche + fessier gauche + ancrage pied gauche.",
+      format: "sequence",
+      exercises: [
+        {
+          id: "9090-ir-left",
+          title: "90/90 rotation interne — hanche gauche",
+          dosage: "1 x 5 respirations + 5 pulses",
+          intent: "Rendre la hanche gauche plus disponible (moins de jambe qui part en avant).",
+          coachingCues: [
+            "Fluidité > force.",
+            "Ne force pas, laisse la hanche se poser."
+          ],
+          setup: [
+            "Assise au sol en position 90/90.",
+            "Jambe gauche devant, genou à ~90°.",
+            "Buste droit, mains au sol pour stabilité."
+          ],
+          execution: [
+            "Inspire et grandis-toi.",
+            "Expire et laisse doucement le genou avant s’approcher du sol (rotation interne contrôlée).",
+            "Fais 5 respirations.",
+            "Puis 5 petits pulses lents, amplitude courte."
+          ],
+          breathing: ["Expire quand tu descends/relâches."],
+          mistakes: ["Forcer et compenser avec le bas du dos.", "Tourner tout le bassin."],
+          timerSeconds: 150
+        },
+        {
+          id: "wall-press-left",
+          title: "Wall Press — activation fessier gauche",
+          dosage: "2 x 30 sec",
+          intent: "Réveiller le moyen fessier gauche pour réduire le shift et stabiliser le bassin.",
+          coachingCues: [
+            "Tu verrouilles ta hanche.",
+            "Bassin stable, pas de torsion."
+          ],
+          setup: [
+            "Debout, côté droit près d’un mur.",
+            "Genou gauche légèrement fléchi.",
+            "Pied gauche ancré (talon + gros orteil + petit orteil)."
+          ],
+          execution: [
+            "Pousse doucement le genou gauche vers le mur (isométrie).",
+            "Maintiens 30 sec en respirant.",
+            "Relâche 20–30 sec, recommence."
+          ],
+          breathing: ["Respire lentement, garde le ventre gainé."],
+          mistakes: ["Cambrer / tourner le bassin.", "Pousser trop fort et perdre l’alignement."],
+          timerSeconds: 120
+        },
+        {
+          id: "short-foot-balance-left",
+          title: "Short Foot + équilibre jambe gauche",
+          dosage: "2 x 30 sec",
+          intent: "Recréer l’ancrage pied gauche + stabilité unipodale (moins d’appui sur la pointe).",
+          coachingCues: [
+            "3 points d’appui : talon, gros orteil, petit orteil.",
+            "Arche active sans crisper les orteils."
+          ],
+          setup: [
+            "Pied gauche au sol (idéalement chaussures stables ou pied nu).",
+            "Genou souple, posture haute."
+          ],
+          execution: [
+            "Active l’arche : rapproche très légèrement l’avant du pied du talon (sans plier les orteils).",
+            "Tiens 30 sec.",
+            "Repose, refais 30 sec."
+          ],
+          breathing: ["Respiration calme, longue expiration."],
+          mistakes: ["Griffer le sol avec les orteils.", "Genou qui s’effondre vers l’intérieur."],
+          timerSeconds: 120
+        }
+      ]
+    },
+
+    {
+      id: "warmup-3",
+      title: "Début de séance • Bloc 3 — Mise en route circulatoire",
+      durationHint: "2–3 min",
+      description: "Mettre du flux sans impact ni compression excessive.",
+      format: "sequence",
+      exercises: [
+        {
+          id: "slow-squat-arms-up",
+          title: "Squat tempo lent + bras hauts",
+          dosage: "2 x 6 reps",
+          intent: "Relancer sang + lymphe, coordonner respiration et pattern.",
+          coachingCues: ["Descends lentement, remonte fluide.", "Respire, ne bloque pas."],
+          setup: ["Pieds largeur hanches/épaules.", "Bras au-dessus de la tête (ou devant si besoin)."],
+          execution: [
+            "Descends sur 3 sec (contrôle).",
+            "Marque 1 sec en bas (stable).",
+            "Remonte sur 2 sec (symétrique).",
+            "6 reps, pause 20 sec, 6 reps."
+          ],
+          breathing: ["Inspire en descente, expire en remontée."],
+          mistakes: ["Poids qui fuit sur l’avant-pied.", "Genoux qui rentrent.", "Cambrer en levant les bras."],
+          options: ["Bras devant si limitation épaules.", "Amplitude partielle si besoin."],
+          timerSeconds: 180
+        }
+      ]
+    },
+
+    {
+      id: "main-a",
+      title: "Séance principale • Bloc A — Cardio drainant bas du corps",
+      durationHint: "10 min",
+      description: "Cardio sans impact : transpirer léger, drainer, sans s’écraser.",
+      format: "circuit",
+      rounds: 3,
+      restSeconds: 30,
+      exercises: [
+        {
+          id: "step-back",
+          title: "Step-back alterné (sans impact)",
+          dosage: "40 sec",
+          intent: "Flux + contrôle bassin, zéro saut.",
+          coachingCues: ["Pied arrière léger, buste stable.", "Pousse dans le sol, pas dans la pointe."],
+          setup: ["Debout, pieds sous hanches.", "Mains sur hanches si besoin."],
+          execution: [
+            "Recule une jambe en touch léger au sol.",
+            "Reviens au centre, alterne.",
+            "Rythme continu, posture haute."
+          ],
+          breathing: ["Souffle régulier, expire sur l’effort."],
+          mistakes: ["Taper fort au sol.", "Bassin qui part à droite/gauche."],
+          timerSeconds: 40
+        },
+        {
+          id: "band-lateral-walk",
+          title: "Marche latérale élastique",
+          dosage: "40 sec",
+          intent: "Activer fessiers + drainage latéral, stabilité genoux.",
+          coachingCues: ["Genoux souples, bassin stable.", "Petits pas contrôlés."],
+          setup: ["Mini-band au-dessus des genoux (ou chevilles selon niveau).", "Demi-flexion légère."],
+          execution: [
+            "Fais 3–5 pas à droite.",
+            "Fais 3–5 pas à gauche.",
+            "Reste bas, contrôle."
+          ],
+          breathing: ["Respiration continue."],
+          mistakes: ["Pas trop grands (perte tension).", "Genoux qui rentrent."],
+          timerSeconds: 40
+        },
+        {
+          id: "low-step-up",
+          title: "Montée de banc basse alternée",
+          dosage: "40 sec",
+          intent: "Pompe musculaire mollets/cuisses + cardio doux.",
+          coachingCues: ["Pousse talon sur le banc.", "Contrôle la descente."],
+          setup: ["Banc bas/step.", "Posture verticale."],
+          execution: [
+            "Monte un pied, pousse pour te redresser.",
+            "Redescends lentement.",
+            "Alterne jambe."
+          ],
+          breathing: ["Expire en montée."],
+          mistakes: ["Sauter en montant.", "Descendre en tombant."],
+          timerSeconds: 40
+        }
+      ]
+    },
+
+    {
+      id: "main-b",
+      title: "Séance principale • Bloc B — Renfo jambes & fessiers “anti-flotte”",
+      durationHint: "15 min",
+      description: "Renforcement utile : pompe musculaire + tonification sans congestion excessive.",
+      format: "sequence",
+      exercises: [
+        {
+          id: "superset1",
+          title: "Superset 1 (x3 tours) — Hip Thrust + Split Squat (G devant)",
+          dosage: "3 tours",
+          intent: "Activer pompe musculaire + équilibrer G/D (priorité jambe gauche).",
+          coachingCues: ["Qualité de poussée, bassin stable.", "Symétrie, pas de fuite à droite."],
+          setup: ["Prévois tapis, éventuellement haltère léger."],
+          execution: [
+            "Hip Thrust au sol : 12 reps tempo 2–1–2.",
+            "Puis Split squat (jambe gauche devant) : 8 reps contrôlées.",
+            "Repos 45 sec, recommence."
+          ],
+          breathing: ["Expire en montée / effort."],
+          mistakes: ["Cambrer au hip thrust.", "Poids sur la pointe au split squat.", "Shift latéral en remontée."],
+          options: ["Charge légère si technique parfaite.", "Amplitude réduite si inconfort."],
+        },
+        {
+          id: "superset2",
+          title: "Superset 2 (x2 tours) — SDT semi-tendues + Abduction élastique",
+          dosage: "2 tours",
+          intent: "Décongestion + tonification (ischios/fessiers) sans surcharge.",
+          coachingCues: ["Hanches en arrière, dos long.", "Abduction lente, tension constante."],
+          setup: ["Haltères légers + mini-band."],
+          execution: [
+            "Soulevé de terre jambes semi-tendues (léger) : 12 reps.",
+            "Abduction élastique debout : 15 reps lentes.",
+            "Repos 45 sec, recommence."
+          ],
+          breathing: ["Inspire en descente, expire en remontée."],
+          mistakes: ["Arrondir le dos.", "Tirer avec le bas du dos.", "Faire l’abduction en balançant."],
+          options: ["SDT avec kettlebell unique.", "Abduction en appui mur si instable."],
+        },
+        {
+          id: "hip-thrust-detail",
+          title: "Détail — Hip Thrust au sol (repère coaching)",
+          dosage: "12 reps • tempo 2–1–2",
+          intent: "Recruter fessiers sans surcharger le bas du dos.",
+          coachingCues: ["Côtes basses, fesses qui montent.", "Pousse talons, pas pointe."],
+          setup: ["Dos au sol, genoux fléchis, pieds largeur bassin."],
+          execution: [
+            "Rétroverse légère (bassin neutre).",
+            "Monte les hanches (2 sec) jusqu’à aligner genoux-hanches-épaules.",
+            "Pause 1 sec en haut (serre fessiers).",
+            "Descends contrôlé (2 sec)."
+          ],
+          breathing: ["Expire en montée, inspire en descente."],
+          mistakes: ["Hyperextension en haut.", "Pieds trop loin (ischios dominent)."],
+        },
+        {
+          id: "split-squat-detail",
+          title: "Détail — Split Squat (jambe gauche devant)",
+          dosage: "8 reps contrôlées",
+          intent: "Rééquilibrer poussée jambe gauche + stabilité bassin.",
+          coachingCues: ["Talon/milieu du pied gauche.", "Remonte droit, pas de shift."],
+          setup: ["Pas assez court pour rester stable.", "Buste haut."],
+          execution: [
+            "Descends lentement (3 sec).",
+            "Genou avant suit l’axe du pied.",
+            "Remonte en poussant dans le sol avec la jambe gauche."
+          ],
+          breathing: ["Inspire en descente, expire en montée."],
+          mistakes: ["Poids sur pointe.", "Genou qui s’effondre vers l’intérieur.", "Bassin qui tourne."],
+        }
+      ]
+    },
+
+    {
+      id: "main-c",
+      title: "Séance principale • Bloc C — Abdos ventre plat & drainage",
+      durationHint: "10 min",
+      description: "Gainage profond + posture + circulation. Pas de crunch inutile.",
+      format: "circuit",
+      rounds: 2,
+      restSeconds: 20,
+      exercises: [
+        {
+          id: "dead-bug",
+          title: "Dead Bug",
+          dosage: "40 sec",
+          intent: "Transverse + stabilité lombaire (ventre plat).",
+          coachingCues: ["Dos plaqué, mouvement lent.", "Expirations longues."],
+          setup: ["Allongée dos, hanches/genoux à 90°, bras vers plafond."],
+          execution: [
+            "Étends jambe droite + bras gauche lentement (sans cambrer).",
+            "Reviens, alterne.",
+            "Reste dans une amplitude propre."
+          ],
+          breathing: ["Expire pendant l’extension."],
+          mistakes: ["Cambrer.", "Aller trop vite.", "Tirer sur la nuque."],
+          options: ["Garde les genoux plus fléchis si trop dur."],
+          timerSeconds: 40
+        },
+        {
+          id: "side-plank-left",
+          title: "Planche latérale gauche",
+          dosage: "30 sec",
+          intent: "Anti-shift : stabilise bassin (obliques + moyen fessier via chaîne latérale).",
+          coachingCues: ["Hanches hautes.", "Corps en ligne."],
+          setup: ["Avant-bras au sol, coude sous épaule."],
+          execution: ["Monte le bassin, tiens 30 sec sans s’effondrer."],
+          breathing: ["Respire calme, pas d’apnée."],
+          mistakes: ["Bassin qui tombe.", "Épaule qui s’écrase."],
+          options: ["Genoux au sol (régression)."],
+          timerSeconds: 30
+        },
+        {
+          id: "pallof",
+          title: "Gainage debout anti-rotation (Pallof press élastique)",
+          dosage: "10 reps / côté",
+          intent: "Stabilité tronc-bassin : stop rotation parasite, ventre plus gainé.",
+          coachingCues: ["Côtes basses, bassin face.", "Presse lentement, contrôle le retour."],
+          setup: ["Élastique fixé latéralement, pieds stables largeur hanches."],
+          execution: [
+            "Élastique au sternum.",
+            "Pousse bras devant toi (sans tourner).",
+            "Reviens lentement. 10 reps puis change côté."
+          ],
+          breathing: ["Expire à l’extension."],
+          mistakes: ["Tourner le buste.", "S’écraser dans le bas du dos."],
+        },
+        {
+          id: "slow-sumo-pulse",
+          title: "Squat sumo pulsé lent",
+          dosage: "40 sec",
+          intent: "Pompe musculaire + drainage + posture.",
+          coachingCues: ["Amplitude courte, contrôle.", "Poids milieu du pied."],
+          setup: ["Pieds plus larges, pointes légèrement ouvertes."],
+          execution: [
+            "Descends en demi-squat.",
+            "Fais de petites pulsations lentes sans rebond.",
+            "Reste stable et respire."
+          ],
+          breathing: ["Souffle régulier."],
+          mistakes: ["Rebondir.", "Poids trop sur l’avant."],
+          timerSeconds: 40
+        }
+      ]
+    },
+
+    {
+      id: "cooldown",
+      title: "Fin de séance • Retour au calme & drainage",
+      durationHint: "5 min",
+      description: "Redescendre, dégonfler, relâcher le fléchisseur droit.",
+      format: "sequence",
+      exercises: [
+        {
+          id: "legs-up-2min",
+          title: "Jambes surélevées + respiration",
+          dosage: "2 min",
+          intent: "Optimiser drainage post-séance.",
+          coachingCues: ["Expiration longue.", "Relâche les épaules."],
+          setup: ["Allongée, jambes surélevées."],
+          execution: ["Respire lentement pendant 2 min."],
+          breathing: ["6–8 sec expiration."],
+          mistakes: ["Se crisper.", "Respirer haut."],
+          timerSeconds: 120
+        },
+        {
+          id: "hip-flexor-right",
+          title: "Étirement fléchisseur droit (fente basse) + respiration",
+          dosage: "1 min",
+          intent: "Décharger le fléchisseur droit (tendance hypertonique).",
+          coachingCues: ["Bassin neutre, pas de cambrure.", "Souffle et laisse s’ouvrir."],
+          setup: ["Genou droit au sol, pied gauche devant."],
+          execution: [
+            "Avance légèrement le bassin (petite amplitude).",
+            "Bras droit en l’air si ok.",
+            "Respire 1 min."
+          ],
+          breathing: ["Expire long, relâche."],
+          mistakes: ["Cambrer fort.", "Aller trop loin."],
+          timerSeconds: 60
+        },
+        {
+          id: "calves-hamstrings",
+          title: "Étirement mollets / ischios doux",
+          dosage: "2 min",
+          intent: "Relâcher chaîne postérieure pour améliorer circulation et posture.",
+          coachingCues: ["Douceur, pas d’agression.", "Respire dans l’étirement."],
+          setup: ["Option debout mur (mollets) puis assis (ischios)."],
+          execution: ["1 min mollets + 1 min ischios (au choix)."],
+          breathing: ["Expire sur la tension."],
+          mistakes: ["Rebondir.", "Forcer douleur."],
+          timerSeconds: 120
+        }
+      ]
+    }
+  ],
+  checkInQuestions: [
+    { id: "legsFeel", label: "Tes jambes, tu les sens comment maintenant ?", type: "choice", options: ["Plus légères","Pareilles","Plus lourdes"] },
+    { id: "leftSupport", label: "Ton appui à gauche, tu le sens plus présent ?", type: "choice", options: ["Oui","Un peu","Non"] },
+    { id: "belly", label: "Ton ventre : gonflé ou plus plat qu’en arrivant ?", type: "choice", options: ["Plus plat","Pareil","Plus gonflé"] },
+    { id: "energy", label: "Ton niveau d’énergie sur 10 ?", type: "scale" },
+    { id: "notes", label: "Notes coach (shift ? claquement ? sensations ?) :", type: "text" }
+  ]
+};
+
+/* ===========================
+   UTIL
+   =========================== */
+const $ = (sel) => document.querySelector(sel);
+const el = (tag, attrs={}, children=[]) => {
+  const n = document.createElement(tag);
+  Object.entries(attrs).forEach(([k,v])=>{
+    if(k==="class") n.className=v;
+    else if(k==="html") n.innerHTML=v;
+    else if(k.startsWith("on") && typeof v==="function") n.addEventListener(k.substring(2), v);
+    else n.setAttribute(k, v);
+  });
+  children.forEach(c=> n.appendChild(typeof c==="string" ? document.createTextNode(c) : c));
+  return n;
+};
+const toast = (msg) => {
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"), 1800);
+};
+
+function formatTime(s){
+  const mm = String(Math.floor(s/60)).padStart(2,"0");
+  const ss = String(s%60).padStart(2,"0");
+  return `${mm}:${ss}`;
+}
+
+/* ===========================
+   ACCESS GATE
+   =========================== */
+function initGate(){
+  const unlocked = localStorage.getItem(UNLOCK_KEY)==="1";
+  if(unlocked){
+    $("#gate").classList.add("hide");
+    $("#app").classList.remove("hide");
+    initApp();
+    return;
+  }
+
+  $("#unlockBtn").addEventListener("click", ()=>{
+    const code = $("#codeInput").value.trim();
+    if(code === PREMIUM_CODE){
+      localStorage.setItem(UNLOCK_KEY,"1");
+      $("#gate").classList.add("hide");
+      $("#app").classList.remove("hide");
+      toast("Accès Premium activé.");
+      initApp();
+    } else {
+      alert("Code invalide.");
+    }
+  });
+
+  $("#codeInput").addEventListener("keydown",(e)=>{
+    if(e.key==="Enter") $("#unlockBtn").click();
+  });
+}
+
+/* ===========================
+   RENDER STATIC PANELS
+   =========================== */
+function fillBasics(){
+  // context badges
+  const host = $("#contextBadges");
+  host.innerHTML = "";
+  session.context.forEach(x=>{
+    host.appendChild(el("span",{class:"badge"},[x]));
+  });
+
+  // structure
+  const st = $("#structureList");
+  st.innerHTML="";
+  session.structure.forEach(x=> st.appendChild(el("li",{},[x])));
+
+  // before script & checklist
+  $("#beforeScript").textContent = session.beforeScript;
+  const bc = $("#beforeChecklist");
+  bc.innerHTML="";
+  session.beforeChecklist.forEach(x=> bc.appendChild(el("li",{},[x])));
+
+  // during cues
+  const dc = $("#duringCues");
+  dc.innerHTML="";
+  session.duringCues.forEach(x=> dc.appendChild(el("li",{},[x])));
+
+  // after advice
+  const aa = $("#afterAdvice");
+  aa.innerHTML="";
+  session.afterAdvice.forEach(sec=>{
+    const box = el("div",{class:"box"});
+    box.appendChild(el("h4",{},[sec.title]));
+    const ul = el("ul");
+    sec.items.forEach(i=> ul.appendChild(el("li",{},[i])));
+    box.appendChild(ul);
+    aa.appendChild(box);
+    aa.appendChild(el("div",{class:"hr"}));
+  });
+  if(aa.lastChild) aa.removeChild(aa.lastChild);
+
+  // what it does
+  const wid = $("#whatItDoes");
+  wid.innerHTML="";
+  session.whatItDoes.forEach(x=> wid.appendChild(el("li",{},[x])));
+}
+
+/* ===========================
+   LECTURE MODE
+   =========================== */
+function renderLecture(){
+  const host = $("#lecturePanel");
+  host.innerHTML="";
+
+  session.blocks.forEach(b=>{
+    const card = el("section",{class:"card", style:"margin-top:18px"});
+    const head = el("div",{class:"head"});
+    head.appendChild(el("div",{class:"title"},[b.title]));
+    const right = el("div",{class:"pillrow"});
+    right.appendChild(el("span",{class:"badge"},[b.durationHint]));
+    right.appendChild(el("span",{class:"badge"},[b.format]));
+    if(b.rounds) right.appendChild(el("span",{class:"badge"},[`${b.rounds} tours`]));
+    if(b.restSeconds) right.appendChild(el("span",{class:"badge"},[`Repos ${b.restSeconds}s`]));
+    head.appendChild(right);
+    card.appendChild(head);
+
+    const body = el("div",{class:"body"});
+    body.appendChild(el("p",{class:"muted", style:"margin-top:0"},[b.description]));
+
+    const list = el("div",{class:"space"});
+    b.exercises.forEach(ex=>{
+      const acc = el("div",{class:"acc"});
+      const btn = el("button",{});
+      const left = el("div",{},[ex.title]);
+      const badge = el("span",{class:"badge"},[ex.dosage]);
+      btn.appendChild(el("div",{style:"display:flex;align-items:center;gap:10px;flex-wrap:wrap"},[left, badge]));
+      btn.appendChild(el("span",{class:"muted"},["+"]));
+      btn.addEventListener("click", ()=>{
+        acc.classList.toggle("open");
+        btn.lastChild.textContent = acc.classList.contains("open") ? "—" : "+";
+      });
+      acc.appendChild(btn);
+
+      const content = el("div",{class:"content"});
+      if(ex.timerSeconds){
+        content.appendChild(makeTimer(ex.timerSeconds, ex.dosage));
+        content.appendChild(el("div",{class:"hr"}));
+      }
+      content.appendChild(makeExerciseDetails(ex));
+      acc.appendChild(content);
+
+      list.appendChild(acc);
+      list.appendChild(el("div",{style:"height:10px"}));
+    });
+
+    body.appendChild(list);
+    card.appendChild(body);
+    host.appendChild(card);
+  });
+}
+
+/* ===========================
+   TIMER COMPONENT (Vanilla)
+   =========================== */
+function beep(){
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.frequency.value = 880;
+    o.start();
+    g.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + 0.18);
+    o.stop(ctx.currentTime + 0.2);
+  }catch(e){}
+}
+
+function makeTimer(seconds, label){
+  let remaining = seconds;
+  let running = false;
+  let t = null;
+
+  const host = el("div",{class:"timer"});
+  const timeEl = el("div",{class:"time"},[formatTime(remaining)]);
+  const controls = el("div",{style:"display:flex;gap:8px;align-items:center;flex-wrap:wrap"});
+  const startBtn = el("button",{class:"btn primary"},["Start"]);
+  const resetBtn = el("button",{class:"btn"},["Reset"]);
+  const lab = el("div",{class:"muted small"},[label || ""]);
+
+  const tick = ()=>{
+    if(!running) return;
+    if(remaining<=0){
+      running=false;
+      startBtn.textContent="Start";
+      beep();
+      toast("Timer terminé ✅");
+      return;
+    }
+    remaining -= 1;
+    timeEl.textContent = formatTime(remaining);
+    t = setTimeout(tick, 1000);
+  };
+
+  startBtn.addEventListener("click", ()=>{
+    running = !running;
+    startBtn.textContent = running ? "Pause" : "Start";
+    if(running){
+      if(t) clearTimeout(t);
+      tick();
+    } else {
+      if(t) clearTimeout(t);
+    }
+  });
+
+  resetBtn.addEventListener("click", ()=>{
+    running=false;
+    if(t) clearTimeout(t);
+    remaining = seconds;
+    timeEl.textContent = formatTime(remaining);
+    startBtn.textContent = "Start";
+  });
+
+  host.appendChild(timeEl);
+  host.appendChild(controls);
+  controls.appendChild(startBtn);
+  controls.appendChild(resetBtn);
+  host.appendChild(lab);
+  return host;
+}
+
+/* ===========================
+   EXERCISE DETAILS
+   =========================== */
+function makeExerciseDetails(ex){
+  const wrap = el("div",{class:"space"});
+  const badges = el("div",{class:"pillrow"});
+  badges.appendChild(el("span",{class:"badge"},[ex.dosage]));
+  badges.appendChild(el("span",{class:"badge"},[ex.intent]));
+  wrap.appendChild(badges);
+
+  const grid1 = el("div",{class:"cols2"});
+  const cues = el("div",{class:"box"});
+  cues.appendChild(el("h4",{},["Coaching cues"]));
+  const cuesUl = el("ul");
+  (ex.coachingCues||[]).forEach(x=> cuesUl.appendChild(el("li",{},[x])));
+  cues.appendChild(cuesUl);
+
+  const breath = el("div",{class:"box"});
+  breath.appendChild(el("h4",{},["Respiration"]));
+  const brUl = el("ul");
+  (ex.breathing||[]).forEach(x=> brUl.appendChild(el("li",{},[x])));
+  breath.appendChild(brUl);
+
+  grid1.appendChild(cues);
+  grid1.appendChild(breath);
+  wrap.appendChild(grid1);
+
+  const grid2 = el("div",{class:"cols2"});
+  const setup = el("div",{class:"box"});
+  setup.appendChild(el("h4",{},["Setup"]));
+  const stUl = el("ul");
+  (ex.setup||[]).forEach(x=> stUl.appendChild(el("li",{},[x])));
+  setup.appendChild(stUl);
+
+  const exec = el("div",{class:"box"});
+  exec.appendChild(el("h4",{},["Exécution"]));
+  const exOl = el("ol");
+  (ex.execution||[]).forEach(x=> exOl.appendChild(el("li",{},[x])));
+  exec.appendChild(exOl);
+
+  grid2.appendChild(setup);
+  grid2.appendChild(exec);
+  wrap.appendChild(grid2);
+
+  const grid3 = el("div",{class:"cols2"});
+  const mistakes = el("div",{class:"box"});
+  mistakes.appendChild(el("h4",{},["Erreurs à éviter"]));
+  const msUl = el("ul");
+  (ex.mistakes||[]).forEach(x=> msUl.appendChild(el("li",{},[x])));
+  mistakes.appendChild(msUl);
+
+  const options = el("div",{class:"box"});
+  options.appendChild(el("h4",{},[ex.options && ex.options.length ? "Options / régressions" : "Focus"]));
+  if(ex.options && ex.options.length){
+    const opUl = el("ul");
+    ex.options.forEach(x=> opUl.appendChild(el("li",{},[x])));
+    options.appendChild(opUl);
+  } else {
+    options.appendChild(el("div",{class:"muted small"},[
+      "Objectif : qualité, contrôle, sensations. Pas de douleur, pas de compensation."
+    ]));
+  }
+
+  grid3.appendChild(mistakes);
+  grid3.appendChild(options);
+  wrap.appendChild(grid3);
+
+  return wrap;
+}
+
+/* ===========================
+   COACHING MODE STEPPER
+   =========================== */
+let coachingSteps = [];
+let currentStepIndex = 0;
+
+function buildSteps(){
+  coachingSteps = [];
+  session.blocks.forEach(b=>{
+    b.exercises.forEach(ex=>{
+      coachingSteps.push({
+        id: `${b.id}:${ex.id}`,
+        title: `${b.title} — ${ex.title}`,
+        block: b,
+        ex
+      });
+    });
+  });
+  $("#stepTotal").textContent = String(coachingSteps.length);
+}
+
+function renderStep(){
+  const step = coachingSteps[currentStepIndex];
+  $("#stepNum").textContent = String(currentStepIndex+1);
+  $("#stepTitle").textContent = step.title;
+
+  // meta
+  const meta = $("#stepMeta");
+  meta.innerHTML="";
+  meta.appendChild(el("span",{class:"badge"},[step.block.durationHint]));
+  meta.appendChild(el("span",{class:"badge"},[step.block.format]));
+  if(step.block.rounds) meta.appendChild(el("span",{class:"badge"},[`${step.block.rounds} tours`]));
+  if(step.block.restSeconds) meta.appendChild(el("span",{class:"badge"},[`Repos ${step.block.restSeconds}s`]));
+
+  // timer
+  const timerHost = $("#timerHost");
+  timerHost.innerHTML="";
+  if(step.ex.timerSeconds){
+    timerHost.appendChild(makeTimer(step.ex.timerSeconds, step.ex.dosage));
+  } else {
+    timerHost.appendChild(el("div",{class:"muted small"},[
+      "Dosage : ", el("span",{class:"kbd"},[step.ex.dosage])
+    ]));
+  }
+
+  // details
+  const details = $("#exerciseDetails");
+  details.innerHTML="";
+  details.appendChild(makeExerciseDetails(step.ex));
+
+  // buttons
+  $("#prevStep").disabled = currentStepIndex===0;
+  $("#nextStep").disabled = currentStepIndex===coachingSteps.length-1;
+
+  // step dots
+  const dots = $("#stepDots");
+  dots.innerHTML="";
+  coachingSteps.forEach((s,idx)=>{
+    const b = el("button",{class:`btn stepBtn ${idx===currentStepIndex ? "primary" : ""}`},[String(idx+1)]);
+    b.addEventListener("click", ()=>{ currentStepIndex=idx; renderStep(); });
+    dots.appendChild(b);
+  });
+}
+
+function initStepperControls(){
+  $("#prevStep").addEventListener("click", ()=>{
+    if(currentStepIndex>0){ currentStepIndex--; renderStep(); }
+  });
+  $("#nextStep").addEventListener("click", ()=>{
+    if(currentStepIndex<coachingSteps.length-1){ currentStepIndex++; renderStep(); }
+  });
+}
+
+/* ===========================
+   CHECK-IN (save local)
+   =========================== */
+const CHECKIN_KEY = "pf_checkin_blandine_v1";
+
+function loadCheckin(){
+  try{
+    const raw = localStorage.getItem(CHECKIN_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+
+function saveCheckin(obj){
+  const next = {...obj, savedAt: new Date().toISOString()};
+  localStorage.setItem(CHECKIN_KEY, JSON.stringify(next));
+  return next;
+}
+
+function renderCheckin(){
+  const data = loadCheckin();
+  const host = $("#checkinBody");
+  host.innerHTML="";
+
+  session.checkInQuestions.forEach(q=>{
+    const box = el("div",{class:"box", style:"margin-bottom:12px"});
+    box.appendChild(el("div",{style:"font-weight:800"},[q.label]));
+
+    if(q.type==="choice"){
+      const row = el("div",{class:"pillrow", style:"margin-top:10px"});
+      q.options.forEach(opt=>{
+        const btn = el("button",{class:`btn ${data[q.id]===opt ? "primary" : ""}`},[opt]);
+        btn.addEventListener("click", ()=>{
+          const updated = saveCheckin({...loadCheckin(), [q.id]: opt});
+          renderCheckin();
+          toast("Check-in sauvegardé ✅");
+        });
+        row.appendChild(btn);
+      });
+      box.appendChild(row);
+    }
+
+    if(q.type==="scale"){
+      const wrap = el("div",{style:"margin-top:10px;display:flex;gap:10px;align-items:center"});
+      const range = el("input",{type:"range", min:"0", max:"10", value: (data[q.id] ?? 5)});
+      const val = el("span",{class:"kbd"},[(data[q.id] ?? 5) + "/10"]);
+      range.addEventListener("input", ()=>{
+        val.textContent = range.value + "/10";
+      });
+      range.addEventListener("change", ()=>{
+        saveCheckin({...loadCheckin(), [q.id]: Number(range.value)});
+        toast("Check-in sauvegardé ✅");
+      });
+      wrap.appendChild(range);
+      wrap.appendChild(val);
+      box.appendChild(wrap);
+    }
+
+    if(q.type==="text"){
+      const ta = el("textarea",{rows:"4", placeholder:"Notes…"},[]);
+      ta.value = data[q.id] ?? "";
+      ta.addEventListener("change", ()=>{
+        saveCheckin({...loadCheckin(), [q.id]: ta.value});
+        toast("Notes sauvegardées ✅");
+      });
+      box.appendChild(el("div",{style:"margin-top:10px"},[ta]));
+    }
+
+    host.appendChild(box);
+  });
+
+  const savedAt = loadCheckin().savedAt;
+  host.appendChild(el("div",{class:"muted small"},[
+    savedAt ? `Dernière sauvegarde : ${new Date(savedAt).toLocaleString("fr-FR")}` : "Sauvegarde locale automatique."
+  ]));
+}
+
+function initCheckin(){
+  $("#resetCheckin").addEventListener("click", ()=>{
+    localStorage.removeItem(CHECKIN_KEY);
+    renderCheckin();
+    toast("Check-in réinitialisé.");
+  });
+}
+
+/* ===========================
+   MODE SWITCH
+   =========================== */
+let mode = "coaching";
+
+function setMode(next){
+  mode = next;
+  const coachingPanel = $("#coachingPanel");
+  const lecturePanel = $("#lecturePanel");
+  const b1 = $("#modeCoaching");
+  const b2 = $("#modeLecture");
+
+  if(mode==="coaching"){
+    coachingPanel.classList.remove("hide");
+    lecturePanel.classList.add("hide");
+    b1.classList.add("primary");
+    b2.classList.remove("primary");
+  } else {
+    coachingPanel.classList.add("hide");
+    lecturePanel.classList.remove("hide");
+    b2.classList.add("primary");
+    b1.classList.remove("primary");
+  }
+}
+
+function initModeButtons(){
+  $("#modeCoaching").addEventListener("click", ()=> setMode("coaching"));
+  $("#modeLecture").addEventListener("click", ()=> setMode("lecture"));
+}
+
+/* ===========================
+   APP INIT
+   =========================== */
+function initApp(){
+  fillBasics();
+
+  buildSteps();
+  initStepperControls();
+  initModeButtons();
+
+  renderStep();
+  renderLecture();
+
+  initCheckin();
+  renderCheckin();
+
+  setMode("coaching");
+  $("#modeCoaching").classList.add("primary");
+}
+
+/* BOOT */
+initGate();
+</script>
+</body>
+</html>
