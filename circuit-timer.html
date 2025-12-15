@@ -3,35 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Circuit Timer (GymBoss-like)</title>
+  <title>Circuit Timer — Premium</title>
   <style>
     :root{
-      --bg:#0b0b0d;
-      --card:#141416;
-      --card2:#101012;
-      --border:#26262c;
-      --muted:rgba(255,255,255,.7);
-      --muted2:rgba(255,255,255,.55);
+      --bg:#07070a;
+      --card:#121217;
+      --card2:#0f0f14;
+      --border:rgba(255,255,255,.10);
+      --border2:rgba(255,255,255,.08);
       --text:#fff;
-      --accent:rgba(255,255,255,.22);
-      --shadow: 0 14px 38px rgba(0,0,0,.5);
+      --muted:rgba(255,255,255,.72);
+      --muted2:rgba(255,255,255,.55);
+
+      /* Glow colors */
+      --c-work: rgba(0,255,160,.28);
+      --c-rest: rgba(255,170,0,.26);
+      --c-go:   rgba(80,160,255,.28);
+      --c-end:  rgba(0,255,160,.22);
+      --glow: rgba(255,255,255,.18);
+
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --radius: 18px;
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(900px 600px at 20% -20%, rgba(120,140,255,.12), transparent 60%),
-                  radial-gradient(900px 600px at 90% 0%, rgba(255,120,180,.10), transparent 60%),
-                  var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
+      background:
+        radial-gradient(900px 520px at 18% -10%, rgba(120,140,255,.16), transparent 60%),
+        radial-gradient(900px 520px at 92% 0%, rgba(255,120,180,.12), transparent 60%),
+        radial-gradient(700px 520px at 50% 110%, rgba(0,255,160,.10), transparent 60%),
+        var(--bg);
+      min-height:100vh;
     }
-    .wrap{max-width:860px;margin:0 auto;padding:18px}
+
+    .wrap{max-width:920px;margin:0 auto;padding:18px}
     .topbar{
       display:flex; gap:12px; align-items:center; justify-content:space-between;
       margin: 8px 0 14px;
     }
     .pill{
-      display:inline-flex; gap:8px; align-items:center;
+      display:inline-flex; gap:8px; align-items:center; justify-content:center;
       background:rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.10);
       border-radius:999px;
@@ -39,49 +53,70 @@
       color:var(--muted);
       font-size:13px;
       white-space:nowrap;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
+
     .title{
       margin:10px 0 6px;
       font-size:28px;
       line-height:1.15;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.2px;
     }
     .subtitle{color:var(--muted); font-size:14px; margin-bottom:14px}
 
     .grid{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.1fr .9fr;
       gap:14px;
     }
-    @media (max-width: 860px){
+    @media (max-width: 920px){
       .grid{grid-template-columns:1fr}
     }
 
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 70%), var(--card);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), transparent 70%), var(--card);
       border:1px solid var(--border);
-      border-radius:18px;
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
+      position:relative;
     }
+
+    /* Premium glow around timer card */
+    .card.timerGlow::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius: calc(var(--radius) + 2px);
+      background:
+        radial-gradient(650px 260px at 18% 10%, var(--glow), transparent 62%),
+        radial-gradient(650px 260px at 88% 0%,  var(--glow), transparent 62%);
+      filter: blur(14px);
+      opacity:.95;
+      z-index:-1;
+    }
+
     .cardHeader{
       padding:14px 16px;
-      border-bottom:1px solid var(--border);
+      border-bottom:1px solid var(--border2);
       display:flex; justify-content:space-between; align-items:center;
+      gap:10px;
     }
     .cardHeader h3{
       margin:0;
-      font-size:14px;
-      letter-spacing:.5px;
+      font-size:13px;
+      letter-spacing:.65px;
       text-transform:uppercase;
       color:var(--muted);
     }
+
     .cardBody{padding:16px}
 
     .timerBig{
       font-size:64px;
-      font-weight:900;
+      font-weight:950;
       letter-spacing:1px;
       font-variant-numeric: tabular-nums;
     }
@@ -91,6 +126,7 @@
       font-size:14px;
       line-height:1.35;
     }
+
     .controls{
       display:flex;
       flex-wrap:wrap;
@@ -100,24 +136,49 @@
     button{
       cursor:pointer;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.07);
       color:#fff;
       padding:10px 14px;
-      font-weight:700;
+      font-weight:800;
       letter-spacing:.2px;
+      transition: transform .08s ease, background .12s ease;
     }
-    button:hover{background:rgba(255,255,255,.09)}
+    button:hover{background:rgba(255,255,255,.10); transform: translateY(-1px);}
     button.primary{
-      background:rgba(0,255,140,.14);
-      border-color:rgba(0,255,140,.22);
+      background:rgba(0,255,160,.16);
+      border-color:rgba(0,255,160,.24);
     }
     button.danger{
-      background:rgba(255,70,90,.14);
-      border-color:rgba(255,70,90,.24);
+      background:rgba(255,70,90,.16);
+      border-color:rgba(255,70,90,.26);
     }
-    button:disabled{
-      opacity:.45; cursor:not-allowed;
+    button:disabled{opacity:.45; cursor:not-allowed; transform:none}
+
+    .toolbar{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      margin-top:12px;
+      padding:10px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .toolLeft, .toolRight{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .toggle{
+      display:flex; align-items:center; gap:8px;
+      color:var(--muted);
+      font-size:13px;
+      user-select:none;
+    }
+    .toggle input{transform: scale(1.1)}
+    .range{
+      display:flex; align-items:center; gap:10px; color:var(--muted); font-size:13px;
+    }
+    input[type="range"]{
+      width:140px;
+      accent-color: rgba(255,255,255,.7);
     }
 
     .progressLine{
@@ -125,76 +186,92 @@
       height:10px;
       border-radius:999px;
       background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.10);
       overflow:hidden;
     }
     .bar{
       height:100%;
       width:0%;
-      background: rgba(255,255,255,.22);
+      background: linear-gradient(90deg, rgba(255,255,255,.22), rgba(255,255,255,.12));
       transition: width .15s linear;
+    }
+
+    /* Flash on interval end */
+    .flash{ animation: flash .20s ease-in-out 2; }
+    @keyframes flash{
+      0%{transform:scale(1); filter:brightness(1)}
+      50%{transform:scale(1.01); filter:brightness(1.45)}
+      100%{transform:scale(1); filter:brightness(1)}
     }
 
     .listHead{
       display:grid;
-      grid-template-columns: 1fr 110px 90px;
+      grid-template-columns: 1fr 120px 92px;
       gap:10px;
       color:var(--muted2);
       font-size:12px;
       padding:12px 16px;
-      border-bottom:1px solid var(--border);
+      border-bottom:1px solid var(--border2);
     }
     .list{
       padding:12px;
       display:flex;
       flex-direction:column;
       gap:8px;
-      max-height: 560px;
+      max-height: 580px;
       overflow:auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.20) transparent;
     }
     .row{
       display:grid;
-      grid-template-columns: 1fr 110px 90px;
+      grid-template-columns: 1fr 120px 92px;
       gap:10px;
       align-items:center;
       padding:12px;
-      border-radius:14px;
-      background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 65%), var(--card2);
-      border:1px solid rgba(255,255,255,.08);
-      transition: transform .08s ease;
+      border-radius:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 60%), var(--card2);
+      border:1px solid rgba(255,255,255,.09);
+      transition: transform .08s ease, border-color .12s ease;
       user-select:none;
     }
-    .row:hover{transform: translateY(-1px)}
+    .row:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.16);}
     .row.active{
-      outline: 2px solid var(--accent);
-      border-color: rgba(255,255,255,.16);
+      outline: 2px solid rgba(255,255,255,.18);
+      border-color: rgba(255,255,255,.18);
       background: linear-gradient(180deg, rgba(255,255,255,.06), transparent 70%), var(--card2);
     }
+
     .label{
       display:flex; flex-direction:column; gap:4px;
       min-width:0;
     }
-    .label .name{font-weight:850; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+    .label .name{
+      font-weight:900;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
     .label .meta{font-size:12px; color:var(--muted2)}
     .badge{
       justify-self:start;
-      padding:5px 10px;
+      padding:6px 10px;
       border-radius:999px;
       font-size:12px;
-      font-weight:800;
-      letter-spacing:.6px;
-      border:1px solid rgba(255,255,255,.12);
+      font-weight:950;
+      letter-spacing:.7px;
+      border:1px solid rgba(255,255,255,.14);
     }
-    .badge.work{background: rgba(0,255,140,.10); border-color: rgba(0,255,140,.18)}
-    .badge.rest{background: rgba(255,170,0,.10); border-color: rgba(255,170,0,.18)}
-    .badge.countdown{background: rgba(80,160,255,.10); border-color: rgba(80,160,255,.18)}
-    .badge.roundrest{background: rgba(255,70,90,.10); border-color: rgba(255,70,90,.18)}
+    .badge.work{background: rgba(0,255,160,.12); border-color: rgba(0,255,160,.22)}
+    .badge.rest{background: rgba(255,170,0,.12); border-color: rgba(255,170,0,.22)}
+    .badge.countdown{background: rgba(80,160,255,.12); border-color: rgba(80,160,255,.22)}
+    .badge.roundrest{background: rgba(255,70,90,.12); border-color: rgba(255,70,90,.22)}
 
     .dur{
       justify-self:end;
       font-variant-numeric: tabular-nums;
-      font-weight:900;
-      color: rgba(255,255,255,.85);
+      font-weight:950;
+      color: rgba(255,255,255,.86);
     }
 
     .note{
@@ -208,7 +285,7 @@
       border-radius:8px;
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
-      font-weight:800;
+      font-weight:900;
       color: rgba(255,255,255,.85);
       margin: 0 2px;
     }
@@ -219,8 +296,8 @@
   <div class="wrap">
 
     <div class="topbar">
-      <div class="pill" id="pillLeft">Circuit</div>
-      <div class="pill" id="pillRight">Mode: GymBoss-like</div>
+      <div class="pill" id="pillLeft">Circuit Timer</div>
+      <div class="pill" id="pillRight">Premium • GymBoss-like</div>
     </div>
 
     <div class="title" id="cTitle">—</div>
@@ -228,7 +305,7 @@
 
     <div class="grid">
       <!-- TIMER -->
-      <div class="card">
+      <div class="card timerGlow" id="timerCard">
         <div class="cardHeader">
           <h3>Chrono</h3>
           <div class="pill" id="statusPill">Prêt</div>
@@ -243,12 +320,35 @@
             <button class="danger" id="btnReset">Reset</button>
           </div>
 
+          <div class="toolbar">
+            <div class="toolLeft">
+              <label class="toggle">
+                <input type="checkbox" id="soundToggle" checked />
+                Sound
+              </label>
+              <label class="toggle">
+                <input type="checkbox" id="countdownBeepToggle" checked />
+                3-2-1
+              </label>
+              <label class="toggle">
+                <input type="checkbox" id="vibrateToggle" checked />
+                Vibration
+              </label>
+            </div>
+            <div class="toolRight">
+              <div class="range">
+                Volume
+                <input type="range" id="volume" min="0" max="100" value="55" />
+              </div>
+            </div>
+          </div>
+
           <div class="progressLine" aria-label="progress">
             <div class="bar" id="bar"></div>
           </div>
 
           <div class="note">
-            Astuces: <span class="kbd">Espace</span> Start/Pause • <span class="kbd">R</span> Reset • clic sur une ligne = jump
+            <span class="kbd">Espace</span> Start/Pause • <span class="kbd">R</span> Reset • clic sur une ligne = jump
           </div>
         </div>
       </div>
@@ -266,7 +366,7 @@
 
 <script>
   // ==========================================================
-  // 1) CONFIG "CIRCUIT" (tu changes ici pour tes blocs)
+  // 1) CONFIG CIRCUIT (exemple)
   // ==========================================================
   const circuit = {
     title: "Séance principale • Bloc A — Cardio drainant bas du corps",
@@ -283,6 +383,8 @@
   // ==========================================================
   // 2) HELPERS
   // ==========================================================
+  const $ = (id) => document.getElementById(id);
+
   function formatMMSS(sec) {
     const s = Math.max(0, sec|0);
     const m = Math.floor(s / 60);
@@ -320,7 +422,68 @@
   }
 
   // ==========================================================
-  // 3) TIMER ENGINE (state machine)
+  // 3) AUDIO (WebAudio) + VIBRATION
+  // ==========================================================
+  let audioCtx = null;
+
+  function ensureAudio(){
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === "suspended") audioCtx.resume();
+  }
+
+  function getVolume(){
+    return ($("volume").value|0) / 100; // 0..1
+  }
+
+  function beep(freq=880, duration=0.08, type="sine", baseVol=0.08){
+    if (!$("soundToggle").checked) return;
+    if (!audioCtx) return;
+
+    const vol = baseVol * getVolume();
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+
+    o.type = type;
+    o.frequency.value = freq;
+
+    // petit envelope pour éviter les clicks
+    const t = audioCtx.currentTime;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(Math.max(0.0001, vol), t + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + duration);
+
+    o.connect(g);
+    g.connect(audioCtx.destination);
+
+    o.start(t);
+    o.stop(t + duration + 0.02);
+  }
+
+  function beepIntervalEnd(){
+    beep(880, 0.08, "square", 0.09);
+  }
+
+  function beepCircuitEnd(){
+    beep(660, 0.10, "sine", 0.10);
+    setTimeout(()=>beep(880, 0.10, "sine", 0.10), 120);
+    setTimeout(()=>beep(990, 0.12, "sine", 0.10), 250);
+  }
+
+  function beep321(secLeft){
+    if (!$("countdownBeepToggle").checked) return;
+    // sons différents pour 3-2-1
+    if (secLeft === 3) beep(520, 0.06, "sine", 0.08);
+    if (secLeft === 2) beep(620, 0.06, "sine", 0.08);
+    if (secLeft === 1) beep(740, 0.07, "sine", 0.10);
+  }
+
+  function vibrate(ms=70){
+    if (!$("vibrateToggle").checked) return;
+    if (navigator.vibrate) navigator.vibrate(ms);
+  }
+
+  // ==========================================================
+  // 4) TIMER ENGINE
   // ==========================================================
   class IntervalTimer {
     constructor(intervals, onUpdate) {
@@ -332,13 +495,15 @@
       this.running = false;
 
       this._t = null;
-      this._intervalStartSeconds = this.remaining; // pour progress bar
+      this._intervalStartSeconds = this.remaining;
+      this._lastRemaining = this.remaining;
     }
 
     start() {
       if (this.running || !this.intervals.length) return;
       this.running = true;
       this._intervalStartSeconds = this.remaining;
+      this._lastRemaining = this.remaining;
       this._t = setInterval(() => this.tick(), 1000);
       this.onUpdate(this.snapshot());
     }
@@ -356,6 +521,7 @@
       this.i = 0;
       this.remaining = this.intervals[0]?.seconds ?? 0;
       this._intervalStartSeconds = this.remaining;
+      this._lastRemaining = this.remaining;
       this.onUpdate(this.snapshot());
     }
 
@@ -364,6 +530,7 @@
       this.i = Math.max(0, Math.min(index, max));
       this.remaining = this.intervals[this.i].seconds;
       this._intervalStartSeconds = this.remaining;
+      this._lastRemaining = this.remaining;
       this.onUpdate(this.snapshot());
     }
 
@@ -372,15 +539,22 @@
 
       this.remaining -= 1;
 
+      // 3-2-1 bips
+      if (this.remaining <= 3 && this.remaining >= 1) beep321(this.remaining);
+
       if (this.remaining <= 0) {
+        // fin d'intervalle
+        onIntervalEnd();
+
         this.i += 1;
 
         if (this.i >= this.intervals.length) {
-          // fini
+          // fin circuit
           this.running = false;
           clearInterval(this._t);
           this._t = null;
           this.remaining = 0;
+          onCircuitEnd();
           this.onUpdate(this.snapshot(true));
           return;
         }
@@ -389,6 +563,7 @@
         this._intervalStartSeconds = this.remaining;
       }
 
+      this._lastRemaining = this.remaining;
       this.onUpdate(this.snapshot());
     }
 
@@ -406,11 +581,9 @@
   }
 
   // ==========================================================
-  // 4) UI RENDER
+  // 5) UI RENDER
   // ==========================================================
   const intervals = buildIntervals(circuit);
-
-  const $ = (id) => document.getElementById(id);
 
   const cTitle = $("cTitle");
   const cMeta = $("cMeta");
@@ -419,6 +592,7 @@
   const intervalList = $("intervalList");
   const statusPill = $("statusPill");
   const bar = $("bar");
+  const timerCard = $("timerCard");
 
   const btnStart = $("btnStart");
   const btnPause = $("btnPause");
@@ -426,6 +600,22 @@
 
   cTitle.textContent = circuit.title;
   cMeta.textContent = `${circuit.rounds} tours • ${circuit.exercises.length} exos • récup fin de tour: ${circuit.restBetweenRounds}s • countdown: ${circuit.countdown}s`;
+
+  function setGlowForType(type){
+    const root = document.documentElement;
+    let glow = "rgba(255,255,255,.18)";
+    if (type === "work") glow = "var(--c-work)";
+    if (type === "rest") glow = "var(--c-rest)";
+    if (type === "countdown") glow = "var(--c-go)";
+    if (type === "roundrest") glow = "var(--c-rest)";
+    root.style.setProperty("--glow", glow);
+  }
+
+  function flashTimer(){
+    timerCard.classList.remove("flash");
+    void timerCard.offsetWidth; // restart anim
+    timerCard.classList.add("flash");
+  }
 
   function renderList(activeIndex) {
     intervalList.innerHTML = "";
@@ -447,7 +637,6 @@
       intervalList.appendChild(row);
     });
 
-    // auto-scroll pour garder l'interval actif visible
     const active = intervalList.querySelector(".row.active");
     if (active) active.scrollIntoView({ block: "nearest", behavior: "smooth" });
   }
@@ -459,11 +648,12 @@
 
   function renderTimer(snap) {
     if (snap.done) {
+      document.documentElement.style.setProperty("--glow", "var(--c-end)");
       bigTime.textContent = "00:00";
       subInfo.textContent = "Terminé ✅";
       statusPill.textContent = "Terminé";
-      statusPill.style.background = "rgba(0,255,140,.12)";
-      statusPill.style.borderColor = "rgba(0,255,140,.20)";
+      statusPill.style.background = "rgba(0,255,160,.12)";
+      statusPill.style.borderColor = "rgba(0,255,160,.20)";
       bar.style.width = "100%";
       setButtons(false, true);
       renderList(Math.max(0, snap.total - 1));
@@ -474,10 +664,13 @@
 
     if (snap.current) {
       const it = snap.current;
+      setGlowForType(it.type);
+
       subInfo.textContent =
         `${badgeLabel(it.type)} • ${it.label}${it.round ? ` — Tour ${it.round}` : ""} • ${snap.index + 1}/${snap.total}`;
+
       statusPill.textContent = snap.running ? "En cours" : "Pause";
-      statusPill.style.background = snap.running ? "rgba(255,255,255,.08)" : "rgba(255,170,0,.10)";
+      statusPill.style.background = snap.running ? "rgba(255,255,255,.07)" : "rgba(255,170,0,.10)";
       statusPill.style.borderColor = snap.running ? "rgba(255,255,255,.12)" : "rgba(255,170,0,.18)";
 
       // Progress bar sur l'interval courant
@@ -493,21 +686,41 @@
     renderList(snap.index);
   }
 
+  // ==========================================================
+  // 6) Hooks (sons + flash + vibration)
+  // ==========================================================
+  function onIntervalEnd(){
+    beepIntervalEnd();
+    vibrate(60);
+    flashTimer();
+  }
+  function onCircuitEnd(){
+    beepCircuitEnd();
+    vibrate(140);
+    flashTimer();
+  }
+
+  // ==========================================================
+  // 7) Init timer + events
+  // ==========================================================
   const timer = new IntervalTimer(intervals, renderTimer);
 
-  // Init
+  // Init render
   renderTimer(timer.snapshot());
   renderList(0);
 
-  // Boutons
-  btnStart.onclick = () => timer.start();
+  btnStart.onclick = () => {
+    ensureAudio(); // iOS/Safari: autorise audio après interaction
+    timer.start();
+  };
   btnPause.onclick = () => timer.pause();
   btnReset.onclick = () => timer.reset();
 
-  // Raccourcis clavier
+  // Shortcuts
   window.addEventListener("keydown", (e) => {
     if (e.code === "Space") {
       e.preventDefault();
+      if (!timer.running) ensureAudio();
       timer.running ? timer.pause() : timer.start();
     }
     if (e.key.toLowerCase() === "r") timer.reset();
