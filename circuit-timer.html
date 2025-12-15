@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Circuit Timer (GymBoss-like)</title>
+  <style>
+    :root{
+      --bg:#0b0b0d;
+      --card:#141416;
+      --card2:#101012;
+      --border:#26262c;
+      --muted:rgba(255,255,255,.7);
+      --muted2:rgba(255,255,255,.55);
+      --text:#fff;
+      --accent:rgba(255,255,255,.22);
+      --shadow: 0 14px 38px rgba(0,0,0,.5);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 600px at 20% -20%, rgba(120,140,255,.12), transparent 60%),
+                  radial-gradient(900px 600px at 90% 0%, rgba(255,120,180,.10), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+    .wrap{max-width:860px;margin:0 auto;padding:18px}
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      margin: 8px 0 14px;
+    }
+    .pill{
+      display:inline-flex; gap:8px; align-items:center;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      padding:8px 12px;
+      color:var(--muted);
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .title{
+      margin:10px 0 6px;
+      font-size:28px;
+      line-height:1.15;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .subtitle{color:var(--muted); font-size:14px; margin-bottom:14px}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:14px;
+    }
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 70%), var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .cardHeader{
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .cardHeader h3{
+      margin:0;
+      font-size:14px;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .cardBody{padding:16px}
+
+    .timerBig{
+      font-size:64px;
+      font-weight:900;
+      letter-spacing:1px;
+      font-variant-numeric: tabular-nums;
+    }
+    .timerSub{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.35;
+    }
+    .controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+    button{
+      cursor:pointer;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      padding:10px 14px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    button:hover{background:rgba(255,255,255,.09)}
+    button.primary{
+      background:rgba(0,255,140,.14);
+      border-color:rgba(0,255,140,.22);
+    }
+    button.danger{
+      background:rgba(255,70,90,.14);
+      border-color:rgba(255,70,90,.24);
+    }
+    button:disabled{
+      opacity:.45; cursor:not-allowed;
+    }
+
+    .progressLine{
+      margin-top:14px;
+      height:10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.09);
+      overflow:hidden;
+    }
+    .bar{
+      height:100%;
+      width:0%;
+      background: rgba(255,255,255,.22);
+      transition: width .15s linear;
+    }
+
+    .listHead{
+      display:grid;
+      grid-template-columns: 1fr 110px 90px;
+      gap:10px;
+      color:var(--muted2);
+      font-size:12px;
+      padding:12px 16px;
+      border-bottom:1px solid var(--border);
+    }
+    .list{
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      max-height: 560px;
+      overflow:auto;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 110px 90px;
+      gap:10px;
+      align-items:center;
+      padding:12px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 65%), var(--card2);
+      border:1px solid rgba(255,255,255,.08);
+      transition: transform .08s ease;
+      user-select:none;
+    }
+    .row:hover{transform: translateY(-1px)}
+    .row.active{
+      outline: 2px solid var(--accent);
+      border-color: rgba(255,255,255,.16);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), transparent 70%), var(--card2);
+    }
+    .label{
+      display:flex; flex-direction:column; gap:4px;
+      min-width:0;
+    }
+    .label .name{font-weight:850; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+    .label .meta{font-size:12px; color:var(--muted2)}
+    .badge{
+      justify-self:start;
+      padding:5px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.6px;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .badge.work{background: rgba(0,255,140,.10); border-color: rgba(0,255,140,.18)}
+    .badge.rest{background: rgba(255,170,0,.10); border-color: rgba(255,170,0,.18)}
+    .badge.countdown{background: rgba(80,160,255,.10); border-color: rgba(80,160,255,.18)}
+    .badge.roundrest{background: rgba(255,70,90,.10); border-color: rgba(255,70,90,.18)}
+
+    .dur{
+      justify-self:end;
+      font-variant-numeric: tabular-nums;
+      font-weight:900;
+      color: rgba(255,255,255,.85);
+    }
+
+    .note{
+      color:var(--muted2);
+      font-size:12px;
+      margin-top:10px;
+    }
+    .kbd{
+      display:inline-block;
+      padding:2px 7px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      font-weight:800;
+      color: rgba(255,255,255,.85);
+      margin: 0 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="pill" id="pillLeft">Circuit</div>
+      <div class="pill" id="pillRight">Mode: GymBoss-like</div>
+    </div>
+
+    <div class="title" id="cTitle">—</div>
+    <div class="subtitle" id="cMeta">—</div>
+
+    <div class="grid">
+      <!-- TIMER -->
+      <div class="card">
+        <div class="cardHeader">
+          <h3>Chrono</h3>
+          <div class="pill" id="statusPill">Prêt</div>
+        </div>
+        <div class="cardBody">
+          <div class="timerBig" id="bigTime">00:00</div>
+          <div class="timerSub" id="subInfo">—</div>
+
+          <div class="controls">
+            <button class="primary" id="btnStart">Start</button>
+            <button id="btnPause" disabled>Pause</button>
+            <button class="danger" id="btnReset">Reset</button>
+          </div>
+
+          <div class="progressLine" aria-label="progress">
+            <div class="bar" id="bar"></div>
+          </div>
+
+          <div class="note">
+            Astuces: <span class="kbd">Espace</span> Start/Pause • <span class="kbd">R</span> Reset • clic sur une ligne = jump
+          </div>
+        </div>
+      </div>
+
+      <!-- LISTE -->
+      <div class="card">
+        <div class="listHead">
+          <div>Interval</div><div>Type</div><div style="text-align:right">Durée</div>
+        </div>
+        <div class="list" id="intervalList"></div>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+  // ==========================================================
+  // 1) CONFIG "CIRCUIT" (tu changes ici pour tes blocs)
+  // ==========================================================
+  const circuit = {
+    title: "Séance principale • Bloc A — Cardio drainant bas du corps",
+    rounds: 3,
+    restBetweenRounds: 30, // sec
+    countdown: 10,         // sec (optionnel)
+    exercises: [
+      { name: "Step-back alterné (sans impact)", work: 40, rest: 30 },
+      { name: "Squat pulse (zéro saut)",         work: 40, rest: 30 },
+      { name: "Fentes arrière alternées",        work: 40, rest: 30 },
+    ]
+  };
+
+  // ==========================================================
+  // 2) HELPERS
+  // ==========================================================
+  function formatMMSS(sec) {
+    const s = Math.max(0, sec|0);
+    const m = Math.floor(s / 60);
+    const r = s % 60;
+    return `${String(m).padStart(2,'0')}:${String(r).padStart(2,'0')}`;
+  }
+
+  function badgeLabel(type) {
+    if (type === "work") return "WORK";
+    if (type === "rest") return "REST";
+    if (type === "countdown") return "GO";
+    return "RÉCUP";
+  }
+
+  function buildIntervals(c) {
+    const arr = [];
+
+    if (c.countdown && c.countdown > 0) {
+      arr.push({ label: "Countdown", type: "countdown", seconds: c.countdown, round: 0 });
+    }
+
+    for (let r = 1; r <= c.rounds; r++) {
+      c.exercises.forEach((ex, i) => {
+        arr.push({ label: ex.name, type: "work", seconds: ex.work, round: r, index: i });
+        if (ex.rest && ex.rest > 0) {
+          arr.push({ label: ex.name, type: "rest", seconds: ex.rest, round: r, index: i });
+        }
+      });
+
+      if (r < c.rounds && c.restBetweenRounds && c.restBetweenRounds > 0) {
+        arr.push({ label: `Repos fin de tour ${r}`, type: "roundrest", seconds: c.restBetweenRounds, round: r });
+      }
+    }
+    return arr;
+  }
+
+  // ==========================================================
+  // 3) TIMER ENGINE (state machine)
+  // ==========================================================
+  class IntervalTimer {
+    constructor(intervals, onUpdate) {
+      this.intervals = intervals;
+      this.onUpdate = onUpdate;
+
+      this.i = 0;
+      this.remaining = intervals[0]?.seconds ?? 0;
+      this.running = false;
+
+      this._t = null;
+      this._intervalStartSeconds = this.remaining; // pour progress bar
+    }
+
+    start() {
+      if (this.running || !this.intervals.length) return;
+      this.running = true;
+      this._intervalStartSeconds = this.remaining;
+      this._t = setInterval(() => this.tick(), 1000);
+      this.onUpdate(this.snapshot());
+    }
+
+    pause() {
+      if (!this.running) return;
+      this.running = false;
+      clearInterval(this._t);
+      this._t = null;
+      this.onUpdate(this.snapshot());
+    }
+
+    reset() {
+      this.pause();
+      this.i = 0;
+      this.remaining = this.intervals[0]?.seconds ?? 0;
+      this._intervalStartSeconds = this.remaining;
+      this.onUpdate(this.snapshot());
+    }
+
+    jumpTo(index) {
+      const max = this.intervals.length - 1;
+      this.i = Math.max(0, Math.min(index, max));
+      this.remaining = this.intervals[this.i].seconds;
+      this._intervalStartSeconds = this.remaining;
+      this.onUpdate(this.snapshot());
+    }
+
+    tick() {
+      if (!this.running) return;
+
+      this.remaining -= 1;
+
+      if (this.remaining <= 0) {
+        this.i += 1;
+
+        if (this.i >= this.intervals.length) {
+          // fini
+          this.running = false;
+          clearInterval(this._t);
+          this._t = null;
+          this.remaining = 0;
+          this.onUpdate(this.snapshot(true));
+          return;
+        }
+
+        this.remaining = this.intervals[this.i].seconds;
+        this._intervalStartSeconds = this.remaining;
+      }
+
+      this.onUpdate(this.snapshot());
+    }
+
+    snapshot(done=false) {
+      return {
+        index: this.i,
+        remaining: this.remaining,
+        current: this.intervals[this.i] ?? null,
+        total: this.intervals.length,
+        running: this.running,
+        intervalStartSeconds: this._intervalStartSeconds,
+        done
+      };
+    }
+  }
+
+  // ==========================================================
+  // 4) UI RENDER
+  // ==========================================================
+  const intervals = buildIntervals(circuit);
+
+  const $ = (id) => document.getElementById(id);
+
+  const cTitle = $("cTitle");
+  const cMeta = $("cMeta");
+  const bigTime = $("bigTime");
+  const subInfo = $("subInfo");
+  const intervalList = $("intervalList");
+  const statusPill = $("statusPill");
+  const bar = $("bar");
+
+  const btnStart = $("btnStart");
+  const btnPause = $("btnPause");
+  const btnReset = $("btnReset");
+
+  cTitle.textContent = circuit.title;
+  cMeta.textContent = `${circuit.rounds} tours • ${circuit.exercises.length} exos • récup fin de tour: ${circuit.restBetweenRounds}s • countdown: ${circuit.countdown}s`;
+
+  function renderList(activeIndex) {
+    intervalList.innerHTML = "";
+
+    intervals.forEach((it, idx) => {
+      const row = document.createElement("div");
+      row.className = `row ${idx === activeIndex ? "active" : ""}`;
+
+      row.innerHTML = `
+        <div class="label">
+          <div class="name" title="${it.label}">${it.label}</div>
+          <div class="meta">${it.round ? `Tour ${it.round}` : ""}</div>
+        </div>
+        <div class="badge ${it.type}">${badgeLabel(it.type)}</div>
+        <div class="dur">${formatMMSS(it.seconds)}</div>
+      `;
+
+      row.addEventListener("click", () => timer.jumpTo(idx));
+      intervalList.appendChild(row);
+    });
+
+    // auto-scroll pour garder l'interval actif visible
+    const active = intervalList.querySelector(".row.active");
+    if (active) active.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+
+  function setButtons(running, done=false){
+    btnStart.disabled = running || done;
+    btnPause.disabled = !running || done;
+  }
+
+  function renderTimer(snap) {
+    if (snap.done) {
+      bigTime.textContent = "00:00";
+      subInfo.textContent = "Terminé ✅";
+      statusPill.textContent = "Terminé";
+      statusPill.style.background = "rgba(0,255,140,.12)";
+      statusPill.style.borderColor = "rgba(0,255,140,.20)";
+      bar.style.width = "100%";
+      setButtons(false, true);
+      renderList(Math.max(0, snap.total - 1));
+      return;
+    }
+
+    bigTime.textContent = formatMMSS(snap.remaining);
+
+    if (snap.current) {
+      const it = snap.current;
+      subInfo.textContent =
+        `${badgeLabel(it.type)} • ${it.label}${it.round ? ` — Tour ${it.round}` : ""} • ${snap.index + 1}/${snap.total}`;
+      statusPill.textContent = snap.running ? "En cours" : "Pause";
+      statusPill.style.background = snap.running ? "rgba(255,255,255,.08)" : "rgba(255,170,0,.10)";
+      statusPill.style.borderColor = snap.running ? "rgba(255,255,255,.12)" : "rgba(255,170,0,.18)";
+
+      // Progress bar sur l'interval courant
+      const start = Math.max(1, snap.intervalStartSeconds);
+      const done = (start - snap.remaining) / start;
+      bar.style.width = `${Math.max(0, Math.min(1, done)) * 100}%`;
+    } else {
+      subInfo.textContent = "—";
+      bar.style.width = "0%";
+    }
+
+    setButtons(snap.running, false);
+    renderList(snap.index);
+  }
+
+  const timer = new IntervalTimer(intervals, renderTimer);
+
+  // Init
+  renderTimer(timer.snapshot());
+  renderList(0);
+
+  // Boutons
+  btnStart.onclick = () => timer.start();
+  btnPause.onclick = () => timer.pause();
+  btnReset.onclick = () => timer.reset();
+
+  // Raccourcis clavier
+  window.addEventListener("keydown", (e) => {
+    if (e.code === "Space") {
+      e.preventDefault();
+      timer.running ? timer.pause() : timer.start();
+    }
+    if (e.key.toLowerCase() === "r") timer.reset();
+  });
+</script>
+</body>
+</html>
