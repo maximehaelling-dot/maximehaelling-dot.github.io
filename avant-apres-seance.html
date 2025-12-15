@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Avant / Après séance — SOURCE</title>
+
+<style>
+:root{
+  --bg0:#070A12; --bg1:#0B1020;
+  --line: rgba(255,255,255,.12);
+  --txt:#EAF0FF; --muted: rgba(234,240,255,.72);
+  --gold:#D7B56D; --blue:#6EA8FF;
+  --shadow: 0 18px 60px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; color:var(--txt);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(900px 500px at 20% 10%, rgba(110,168,255,.20), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(215,181,109,.18), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+  min-height:100vh;
+  padding: 22px 14px 40px;
+}
+.wrap{max-width:980px;margin:0 auto}
+
+.top{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  box-shadow: var(--shadow);
+}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:42px;height:42px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.18);
+  background:
+    radial-gradient(14px 14px at 30% 30%, rgba(215,181,109,.9), transparent 60%),
+    radial-gradient(18px 18px at 70% 70%, rgba(110,168,255,.9), transparent 60%),
+    linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+  display:grid;place-items:center;font-weight:900; letter-spacing:.06em;
+}
+.title h1{margin:0;font-size:18px}
+.title p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.pill{
+  border:1px solid rgba(215,181,109,.35);
+  background: rgba(215,181,109,.12);
+  color:#FFE9B8;
+  padding:8px 12px;border-radius:999px;
+  font-size:12px;font-weight:950;
+  white-space:nowrap;
+}
+
+.card{
+  margin-top:14px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+.inner{padding:16px}
+h2{margin:12px 0 8px; font-size:18px}
+p{margin:0;color:var(--muted);line-height:1.6}
+ul{margin:8px 0 0; padding-left:18px; color:var(--muted); line-height:1.6}
+hr{border:none;height:1px;background:rgba(255,255,255,.10);margin:14px 0}
+
+.block{
+  padding:14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+}
+.block strong{color:rgba(234,240,255,.95)}
+
+.grid{
+  display:grid; gap:12px;
+  grid-template-columns: 1fr;
+}
+@media(min-width:900px){
+  .grid{grid-template-columns: 1fr 1fr;}
+}
+
+.btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  text-decoration:none; padding: 12px 14px;
+  border-radius: 14px; font-weight: 950;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:var(--txt);
+}
+.btn:hover{background: rgba(255,255,255,.09)}
+.btn-blue{border-color: rgba(110,168,255,.35); background: rgba(110,168,255,.12)}
+.small{font-size:12px;color:rgba(234,240,255,.55);line-height:1.6}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">
+      <div class="logo">S</div>
+      <div class="title">
+        <h1>Avant / Après séance</h1>
+        <p>Optimiser chaque entraînement</p>
+      </div>
+    </div>
+    <div class="pill">Guide rapide</div>
+  </div>
+
+  <div class="card">
+    <div class="inner">
+
+      <h2>🟢 AVANT la séance</h2>
+      <div class="grid">
+
+        <div class="block">
+          <strong>Hydratation</strong>
+          <ul>
+            <li>Bois un verre d’eau 30–60 min avant.</li>
+            <li>Ajoute une pincée de sel si tu transpires beaucoup.</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <strong>Alimentation</strong>
+          <ul>
+            <li>Si dernier repas &lt; 2 h : OK.</li>
+            <li>Si &gt; 3 h : petite collation (fruit / yaourt / café).</li>
+            <li>Évite les repas lourds juste avant.</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <strong>État mental</strong>
+          <ul>
+            <li>Objectif clair : “je fais ma séance”.</li>
+            <li>Pas besoin d’être motivé, juste présent.</li>
+            <li>Respire calmement 1 minute.</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <strong>Échauffement</strong>
+          <ul>
+            <li>5–10 minutes minimum.</li>
+            <li>Mobilité + montée progressive.</li>
+            <li>Jamais à froid.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr>
+
+      <h2>🔵 PENDANT la séance</h2>
+      <div class="block">
+        <ul>
+          <li>Concentre-toi sur la technique, pas sur la performance.</li>
+          <li>Respire sur chaque répétition.</li>
+          <li>Si une douleur articulaire apparaît → tu adaptes.</li>
+        </ul>
+      </div>
+
+      <hr>
+
+      <h2>🟣 APRÈS la séance</h2>
+      <div class="grid">
+
+        <div class="block">
+          <strong>Retour au calme</strong>
+          <ul>
+            <li>Respiration lente 2–3 min.</li>
+            <li>Étirements doux si besoin.</li>
+            <li>Objectif : faire redescendre le système nerveux.</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <strong>Hydratation & récupération</strong>
+          <ul>
+            <li>Bois de l’eau dans l’heure qui suit.</li>
+            <li>Repas normal, pas besoin de “surcompenser”.</li>
+            <li>Le sommeil fait 50 % du travail.</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <strong>Auto-évaluation</strong>
+          <ul>
+            <li>Comment tu te sens ? (énergie / fatigue)</li>
+            <li>Douleur inhabituelle ?</li>
+            <li>Si besoin → check-in séance.</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <strong>Règle d’or</strong>
+          <ul>
+            <li>Une séance “faite” vaut toujours mieux qu’une séance parfaite.</li>
+            <li>La constance crée les résultats.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="btns">
+        <a class="btn btn-blue" href="espace-client.html">← Retour Espace Client</a>
+        <a class="btn" href="check-in-seance.html">Check-in séance</a>
+        <a class="btn" href="bien-utiliser-programme.html">Bien utiliser le programme</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
