@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FAQ — SOURCE</title>
+
+<style>
+:root{
+  --bg0:#070A12; --bg1:#0B1020;
+  --line: rgba(255,255,255,.12);
+  --txt:#EAF0FF; --muted: rgba(234,240,255,.72);
+  --gold:#D7B56D; --blue:#6EA8FF;
+  --shadow: 0 18px 60px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; color:var(--txt);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(900px 500px at 20% 10%, rgba(110,168,255,.20), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(215,181,109,.18), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+  min-height:100vh;
+  padding: 22px 14px 40px;
+}
+.wrap{max-width:980px;margin:0 auto}
+
+.top{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  box-shadow: var(--shadow);
+}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:42px;height:42px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.18);
+  background:
+    radial-gradient(14px 14px at 30% 30%, rgba(215,181,109,.9), transparent 60%),
+    radial-gradient(18px 18px at 70% 70%, rgba(110,168,255,.9), transparent 60%),
+    linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+  display:grid;place-items:center;font-weight:900; letter-spacing:.06em;
+}
+.title h1{margin:0;font-size:18px}
+.title p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.pill{
+  border:1px solid rgba(110,168,255,.35);
+  background: rgba(110,168,255,.10);
+  color:#DCEBFF;
+  padding:8px 12px;border-radius:999px;
+  font-size:12px;font-weight:950;
+  white-space:nowrap;
+}
+
+.card{
+  margin-top:14px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+.inner{padding:16px}
+
+.searchWrap{
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  margin-top:10px;
+}
+.search{
+  flex:1;min-width:220px;
+  padding:12px 14px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:var(--txt);
+  outline:none;
+}
+
+details{
+  border-top:1px solid rgba(255,255,255,.10);
+  padding: 12px 16px;
+}
+summary{
+  cursor:pointer;
+  list-style:none;
+  font-weight:950;
+  letter-spacing:.01em;
+}
+summary::-webkit-details-marker{display:none}
+p{margin:10px 0 0;color:var(--muted);line-height:1.6}
+ul{margin:10px 0 0;padding-left:18px;color:var(--muted);line-height:1.6}
+.badge{
+  display:inline-block;
+  margin-top:10px;
+  padding:6px 10px;border-radius:999px;
+  border:1px solid rgba(215,181,109,.35);
+  background: rgba(215,181,109,.12);
+  color:#FFE9B8;
+  font-size:12px;font-weight:900;
+}
+
+.btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  text-decoration:none; padding: 12px 14px;
+  border-radius: 14px; font-weight: 950;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:var(--txt);
+}
+.btn:hover{background: rgba(255,255,255,.09)}
+.btn-blue{border-color: rgba(110,168,255,.35); background: rgba(110,168,255,.12)}
+
+.small{font-size:12px;color:rgba(234,240,255,.55);line-height:1.6;margin-top:10px}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">
+      <div class="logo">S</div>
+      <div class="title">
+        <h1>FAQ — Questions fréquentes</h1>
+        <p>Réponses simples • claires • sans prise de tête</p>
+      </div>
+    </div>
+    <div class="pill">SOURCE</div>
+  </div>
+
+  <div class="card">
+    <div class="inner">
+      <div class="searchWrap">
+        <input id="search" class="search" type="text" placeholder="Tape un mot : resto, fatigue, douleur, séance, vacances…" />
+      </div>
+      <div class="small">Astuce : tu peux rechercher “resto”, “écart”, “douleur”, “vacances”, “poids”, “faim”…</div>
+
+      <!-- 1 -->
+      <details open class="qa">
+        <summary>Si je rate une séance, je fais quoi ?</summary>
+        <p>
+          Rien de spécial : tu reprends simplement sur la prochaine séance prévue.
+          On ne double pas tout, on ne se punit pas.
+        </p>
+        <span class="badge">Régularité &gt; perfection</span>
+      </details>
+
+      <!-- 2 -->
+      <details class="qa">
+        <summary>Je suis fatigué(e) : je m’entraîne quand même ?</summary>
+        <p>
+          Oui, mais on adapte :
+        </p>
+        <ul>
+          <li>Soit tu baisses un peu l’intensité (plus léger)</li>
+          <li>Soit tu réduis le volume (moins de séries)</li>
+          <li>Soit tu fais une séance “mobilité + marche”</li>
+        </ul>
+      </details>
+
+      <!-- 3 -->
+      <details class="qa">
+        <summary>Douleur : comment je sais si c’est normal ?</summary>
+        <p>
+          Courbatures / brûlures musculaires = normal.
+          Douleur articulaire, piquante, qui augmente = on stoppe et on adapte.
+        </p>
+        <p>
+          Si ça persiste : fais un <b>check-in séance</b> pour que j’ajuste.
+        </p>
+      </details>
+
+      <!-- 4 -->
+      <details class="qa">
+        <summary>Je fais un resto / un apéro : c’est foutu ?</summary>
+        <p>
+          Non. Tu profites, tu restes simple :
+        </p>
+        <ul>
+          <li>Priorité protéine + légumes</li>
+          <li>Tu manges lentement</li>
+          <li>Tu reprends normal au repas suivant</li>
+        </ul>
+      </details>
+
+      <!-- 5 -->
+      <details class="qa">
+        <summary>Je grignote / j’ai des fringales : je fais quoi ?</summary>
+        <p>
+          On cherche la cause : faim réelle, stress, fatigue, manque de protéines ou manque d’organisation.
+          Note-le dans ton check-in hebdo, et on ajuste (collations, structure, stratégies).
+        </p>
+      </details>
+
+      <!-- 6 -->
+      <details class="qa">
+        <summary>Je ne vois pas de changement sur la balance… normal ?</summary>
+        <p>
+          Oui, ça peut arriver. Le poids fluctue (eau, digestion, cycle, stress).
+          On regarde aussi :
+        </p>
+        <ul>
+          <li>Mensurations / vêtements</li>
+          <li>Énergie / sommeil</li>
+          <li>Progression à l’entraînement</li>
+        </ul>
+      </details>
+
+      <!-- 7 -->
+      <details class="qa">
+        <summary>Vacances : je fais comment ?</summary>
+        <p>
+          Tu gardes 3 priorités simples :
+        </p>
+        <ul>
+          <li>Marcher beaucoup</li>
+          <li>Protéines à chaque repas</li>
+          <li>Hydratation + sommeil</li>
+        </ul>
+        <p>Et tu reprends normal au retour.</p>
+      </details>
+
+      <!-- 8 -->
+      <details class="qa">
+        <summary>Je n’ai pas le temps : séance minimale ?</summary>
+        <p>
+          Oui. Même 20 minutes bien faites, c’est utile.
+          Fais l’échauffement rapide + 2–3 exercices “essentiels” du programme.
+        </p>
+      </details>
+
+      <!-- 9 -->
+      <details class="qa">
+        <summary>Comment je sais si je progresse ?</summary>
+        <p>
+          Si au fil des semaines tu :
+        </p>
+        <ul>
+          <li>fais plus de reps / meilleure technique</li>
+          <li>es plus régulier(e)</li>
+          <li>as plus d’énergie</li>
+          <li>gères mieux les écarts</li>
+        </ul>
+        <p>→ tu progresses.</p>
+      </details>
+
+      <!-- 10 -->
+      <details class="qa">
+        <summary>Quand je dois te contacter ?</summary>
+        <p>
+          Si douleur persistante, fatigue anormale, grosse baisse de motivation, ou blocage.
+          Sinon, le plus simple : <b>check-in hebdo</b> (et check-in séance si besoin).
+        </p>
+      </details>
+
+      <div class="btns">
+        <a class="btn btn-blue" href="espace-client.html">← Retour Espace Client</a>
+        <a class="btn" href="check-in.html">Check-in hebdo</a>
+        <a class="btn" href="check-in-seance.html">Check-in séance</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const search = document.getElementById("search");
+  const items = Array.from(document.querySelectorAll(".qa"));
+
+  function filter(term){
+    const t = (term || "").trim().toLowerCase();
+    items.forEach(it => {
+      const txt = (it.innerText || "").toLowerCase();
+      it.style.display = (!t || txt.includes(t)) ? "" : "none";
+    });
+  }
+
+  search.addEventListener("input", () => filter(search.value));
+</script>
+</body>
+</html>
