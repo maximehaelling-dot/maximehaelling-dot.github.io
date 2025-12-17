@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PRIME MODE • Upper Body (LUXE) — Noa</title>
+  <meta name="description" content="Séance PRIME MODE Upper Body (Noa) – version premium luxe." />
+
+  <style>
+    :root{
+      --bg-0:#05060a;
+      --bg-1:#0b0f1a;
+      --bg-2:#0f1626;
+      --card:#0b1120cc;
+      --stroke:#1b2a44;
+      --text:#eaf0ff;
+      --muted:#a9b6d3;
+      --gold:#d7b46a;
+      --gold-2:#f0d89a;
+      --blue:#5aa7ff;
+      --ok:#5cffb3;
+      --warn:#ffda6b;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1100px 700px at 15% 10%, rgba(90,167,255,.20), transparent 55%),
+        radial-gradient(900px 600px at 85% 20%, rgba(215,180,106,.18), transparent 60%),
+        radial-gradient(1200px 900px at 55% 100%, rgba(90,255,179,.08), transparent 55%),
+        linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 40%, var(--bg-0) 100%);
+      overflow-x:hidden;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 54px;
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      padding: 26px 22px;
+      border: 1px solid rgba(27,42,68,.85);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(11,15,26,.75), rgba(15,22,38,.55));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(500px 220px at 20% 20%, rgba(240,216,154,.22), transparent 60%),
+        radial-gradient(520px 240px at 80% 25%, rgba(90,167,255,.18), transparent 62%);
+      pointer-events:none;
+    }
+
+    .topline{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:1;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(215,180,106,.35);
+      background: rgba(215,180,106,.08);
+      color: var(--gold-2);
+      font-weight: 700;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      font-size: 12px;
+      width: fit-content;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, var(--gold-2), var(--gold));
+      box-shadow: 0 0 18px rgba(215,180,106,.45);
+    }
+    h1{
+      margin:0;
+      font-size: 30px;
+      letter-spacing: .2px;
+      line-height:1.15;
+    }
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 62ch;
+    }
+
+    .meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:1;
+      justify-content:flex-end;
+    }
+    .badge{
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(27,42,68,.9);
+      background: rgba(11,17,32,.55);
+      color: var(--text);
+      font-size: 13px;
+      min-width: 155px;
+    }
+    .badge strong{color:var(--gold-2)}
+    .badge span{color:var(--muted)}
+
+    /* Grid sections */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+    }
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr}
+      .meta{justify-content:flex-start}
+    }
+
+    .panel{
+      border: 1px solid rgba(27,42,68,.85);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(11,17,32,.70), rgba(11,17,32,.45));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .panel .head{
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(27,42,68,.8);
+      background: linear-gradient(90deg, rgba(215,180,106,.10), rgba(90,167,255,.06));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .panel .head h2{
+      margin:0;
+      font-size: 15px;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      color: var(--gold-2);
+    }
+    .panel .head .time{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      opacity:.95;
+    }
+    .panel .content{padding: 16px}
+
+    /* Cards */
+    .card{
+      border: 1px solid rgba(27,42,68,.85);
+      border-radius: var(--radius2);
+      background: rgba(5,6,10,.35);
+      padding: 14px 14px;
+      margin-bottom: 12px;
+    }
+    .card:last-child{margin-bottom:0}
+    .card h3{
+      margin:0 0 8px 0;
+      font-size: 16px;
+      letter-spacing:.2px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .tag{
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(90,167,255,.35);
+      color: rgba(90,167,255,.95);
+      background: rgba(90,167,255,.08);
+      white-space:nowrap;
+    }
+    .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 10px 0 0;
+    }
+    .chip{
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(27,42,68,.85);
+      background: rgba(11,17,32,.55);
+      color: var(--text);
+    }
+    .chip b{color:var(--gold-2)}
+    .hint{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.45;
+    }
+    .why{
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(215,180,106,.25);
+      background: rgba(215,180,106,.06);
+      color: var(--text);
+      font-size: 13px;
+      line-height:1.45;
+    }
+    .why strong{color:var(--gold-2)}
+
+    /* Score box */
+    .score{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(90,255,179,.22);
+      background: rgba(90,255,179,.06);
+      padding: 14px 14px;
+      margin-top: 12px;
+    }
+    .score h3{
+      margin:0 0 8px 0;
+      font-size: 14px;
+      text-transform:uppercase;
+      letter-spacing:.6px;
+      color: var(--ok);
+    }
+    .score p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+    .score code{font-family:var(--mono);color:var(--text);}
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      text-align:center;
+      color: var(--muted);
+      font-size: 12px;
+      opacity:.9;
+    }
+    .cta{
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(215,180,106,.28);
+      background: linear-gradient(90deg, rgba(215,180,106,.10), rgba(90,167,255,.08));
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing:.2px;
+    }
+    .warn{
+      display:inline-block;
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--warn);
+      opacity:.95;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="topline">
+        <div class="brand">
+          <div class="pill"><span class="dot"></span> PRIME MODE • LUXE EDITION</div>
+          <h1>Upper Body Only — Noa</h1>
+          <p class="subtitle">
+            Séance premium haut du corps : force athlétique, épaules stables, gainage utile, et un challenge fun au battle rope.
+          </p>
+        </div>
+
+        <div class="meta">
+          <div class="badge"><strong>Durée</strong><br><span>50–55 min</span></div>
+          <div class="badge"><strong>Matériel</strong><br><span>Anneaux • Élastique • Haltères • Battle Rope</span></div>
+          <div class="badge"><strong>Bas du corps</strong><br><span>Exclu</span></div>
+        </div>
+      </div>
+
+      <div class="cta">Règle d’or : qualité > quantité • stop à 2 reps de l’échec (RPE 7–8) • zéro rep “sale”.</div>
+      <div class="warn">Coach note : si douleur (épaule/coude/poignet) → réduire amplitude ou passer à la variante plus facile.</div>
+    </section>
+
+    <div class="grid">
+
+      <!-- LEFT: MAIN SESSION -->
+      <section class="panel">
+        <div class="head">
+          <h2>0) Prime Activation</h2>
+          <div class="time">~10 min</div>
+        </div>
+        <div class="content">
+          <div class="card">
+            <h3>Scapular Push-Ups <span class="tag">Activation scapula</span></h3>
+            <div class="row">
+              <div class="chip"><b>2</b> × <b>10</b> reps</div>
+              <div class="chip">Repos <b>20s</b></div>
+            </div>
+            <p class="hint"><b>Exécution :</b> position pompe, bras tendus. Sans plier les coudes : pousser le sol (omoplates s’écartent), puis relâcher (omoplates se rapprochent).</p>
+            <div class="why"><strong>Pourquoi :</strong> prépare les épaules, améliore pompes/tractions, réduit le risque d’irritation.</div>
+          </div>
+
+          <div class="card">
+            <h3>Band Pull Apart <span class="tag">Posture</span></h3>
+            <div class="row">
+              <div class="chip"><b>2</b> × <b>12</b> reps</div>
+              <div class="chip">Repos <b>20s</b></div>
+            </div>
+            <p class="hint"><b>Exécution :</b> bras tendus devant toi, ouvrir la poitrine, tirer l’élastique sans hausser les épaules, contrôle lent au retour.</p>
+            <div class="why"><strong>Pourquoi :</strong> dos “propre”, épaules stables, meilleure posture d’athlète.</div>
+          </div>
+
+          <div class="card">
+            <h3>Dead Hang aux Anneaux <span class="tag">Grip • Épaules</span></h3>
+            <div class="row">
+              <div class="chip"><b>3</b> × <b>20–30s</b></div>
+              <div class="chip">Repos <b>30–45s</b></div>
+            </div>
+            <p class="hint"><b>Exécution :</b> suspension calme, épaules basses, cage neutre, grip actif. Respiration lente.</p>
+            <div class="why"><strong>Pourquoi :</strong> renforce le grip, stabilise l’épaule, donne une vraie sensation “athlete mode”.</div>
+          </div>
+
+          <div class="card">
+            <h3>Shadow Boxing (contrôlé) <span class="tag">Coordination</span></h3>
+            <div class="row">
+              <div class="chip"><b>2</b> × <b>30s</b></div>
+              <div class="chip">Repos <b>30s</b></div>
+            </div>
+            <p class="hint"><b>Exécution :</b> garde le buste gainé, enchaînements simples (jab–cross), vitesse progressive.</p>
+            <div class="why"><strong>Pourquoi :</strong> chauffe le haut du corps, améliore coordination et rythme, fun immédiat.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: SCORE / NOTES -->
+      <aside class="panel">
+        <div class="head">
+          <h2>PRIME Notes</h2>
+          <div class="time">à remplir</div>
+        </div>
+        <div class="content">
+          <div class="score">
+            <h3>Score Challenge</h3>
+            <p>Écris le score après la séance : <code>tours = ____</code></p>
+          </div>
+          <div class="score">
+            <h3>Qualité</h3>
+            <p>Tractions aux anneaux : <code>4×(4–6)</code> propres, sans balancier.</p>
+            <p>Pompes : amplitude contrôlée, corps gainé.</p>
+          </div>
+          <div class="score">
+            <h3>Sensation</h3>
+            <p>Note : <code>facile / moyen / dur</code> + le niveau de kiff (0–10).</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- LEFT: STRENGTH -->
+      <section class="panel">
+        <div class="head">
+          <h2>1) Strength Skills</h2>
+          <div class="time">~25 min</div>
+        </div>
+        <div class="content">
+
+          <div class="card">
+            <h3>Tractions aux Anneaux <span class="tag">Force dos</span></h3>
+            <div class="row">
+              <div class="chip"><b>4</b> × <b>4–6</b> reps</div>
+              <div class="chip">Repos <b>90s</b></div>
+              <div class="chip">Option : <b>élastique</b> ou <b>négatives 4s</b></div>
+            </div>
+            <p class="hint"><b>Cues :</b> gainage serré, épaules basses, tirage fluide. Stop si perte de forme.</p>
+            <div class="why"><strong>Pourquoi :</strong> dos + bras + posture → plus solide en sport, gros boost de confiance.</div>
+          </div>
+
+          <div class="card">
+            <h3>Pompes (variante adaptée) <span class="tag">Poussée</span></h3>
+            <div class="row">
+              <div class="chip"><b>4</b> × <b>6–10</b> reps</div>
+              <div class="chip">Tempo <b>2s ↓ / 1s ↑</b></div>
+              <div class="chip">Repos <b>75s</b></div>
+              <div class="chip">Option : <b>incliné</b> (banc) ou <b>sol</b></div>
+            </div>
+            <p class="hint"><b>Cues :</b> corps en bloc, coudes ~45°, poitrine vers le sol, remonter fort sans casser la ligne.</p>
+            <div class="why"><strong>Pourquoi :</strong> force utile haut du corps + épaules stables → performance et prévention.</div>
+          </div>
+
+          <div class="card">
+            <h3>Rowing Haltère Unilatéral <span class="tag">Équilibre</span></h3>
+            <div class="row">
+              <div class="chip"><b>3</b> × <b>10</b> / bras</div>
+              <div class="chip">Repos <b>60s</b></div>
+            </div>
+            <p class="hint"><b>Cues :</b> dos plat, coude vers la hanche, contrôle total au retour (pas d’élan).</p>
+            <div class="why"><strong>Pourquoi :</strong> équilibre gauche/droite, dos plus fort, meilleure posture.</div>
+          </div>
+
+          <div class="card">
+            <h3>Overhead Press Haltère (léger) <span class="tag">Stabilité épaules</span></h3>
+            <div class="row">
+              <div class="chip"><b>3</b> × <b>8</b> reps</div>
+              <div class="chip">Repos <b>60s</b></div>
+            </div>
+            <p class="hint"><b>Cues :</b> gainage, fessiers serrés, monter sans cambrer, descendre sous contrôle.</p>
+            <div class="why"><strong>Pourquoi :</strong> épaules fortes et stables → meilleur contrôle, moins de tensions.</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- LEFT: CHALLENGE + CORE -->
+      <section class="panel">
+        <div class="head">
+          <h2>2) PRIME Challenge + Core</h2>
+          <div class="time">~18 min</div>
+        </div>
+        <div class="content">
+
+          <div class="card">
+            <h3>PRIME Challenge — AMRAP 10 min <span class="tag">Score</span></h3>
+            <div class="row">
+              <div class="chip">Durée <b>10 min</b></div>
+              <div class="chip">But : <b>tours</b> max</div>
+              <div class="chip">Rythme : <b>efficace</b>, pas chaos</div>
+            </div>
+            <p class="hint"><b>Enchaînement :</b> 6 pompes • 10 shoulder taps • 20s battle rope. Répéter.</p>
+            <div class="why"><strong>Pourquoi :</strong> cardio ludique + coordination + esprit compétiteur. “Prime activé”.</div>
+          </div>
+
+          <div class="card">
+            <h3>Hollow Hold <span class="tag">Gainage</span></h3>
+            <div class="row">
+              <div class="chip"><b>3</b> × <b>20–30s</b></div>
+              <div class="chip">Repos <b>20s</b></div>
+            </div>
+            <p class="hint"><b>Cues :</b> bas du dos collé, côtes rentrées, respiration calme. Variante facile : genoux fléchis.</p>
+            <div class="why"><strong>Pourquoi :</strong> transfert de force + posture athlétique + stabilité globale.</div>
+          </div>
+
+          <div class="card">
+            <h3>Plank Shoulder Taps <span class="tag">Contrôle</span></h3>
+            <div class="row">
+              <div class="chip"><b>2</b> × <b>12 taps</b> total</div>
+              <div class="chip">Repos <b>20s</b></div>
+            </div>
+            <p class="hint"><b>Cues :</b> bassin stable, tap épaule opposée sans “rouler” sur le côté. Plus facile : pieds plus écartés.</p>
+            <div class="why"><strong>Pourquoi :</strong> épaules stables + gainage dynamique + coordination.</div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>Fin : respiration lente + relâchement épaules 2–3 min • Message coach : <b>« Séance validée. PRIME activé. »</b></p>
+    </footer>
+
+  </div>
+</body>
+</html>
