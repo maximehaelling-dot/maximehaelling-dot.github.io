@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mathis — Séance Renfo + WOD (Premium)</title>
+  <meta name="description" content="Séance premium Renfo + WOD pour Mathis — claire, cadrée, dynamique et facile à suivre." />
+  <style>
+    :root{
+      --bg:#070A12;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(0,0,0,.28);
+      --border: rgba(255,255,255,.10);
+      --text: rgba(231,234,243,1);
+      --muted: rgba(231,234,243,.72);
+      --muted2: rgba(231,234,243,.55);
+      --good: rgba(34,197,94,.9);
+      --blue: rgba(56,189,248,.9);
+      --violet: rgba(168,85,247,.9);
+      --shadow: 0 0 0 1px rgba(255,255,255,.08), 0 24px 90px rgba(0,0,0,.58);
+      --radius: 22px;
+      --radius2: 16px;
+      --max: 1120px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 18% 8%, rgba(56,189,248,.18), transparent 55%),
+        radial-gradient(1200px 800px at 82% 28%, rgba(168,85,247,.18), transparent 55%),
+        radial-gradient(1200px 800px at 52% 92%, rgba(34,197,94,.12), transparent 58%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    ::selection{ background: rgba(56,189,248,.25); }
+
+    .wrap{
+      width:100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 18px 46px;
+    }
+
+    /* ===== Premium Header ===== */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      border-radius: calc(var(--radius) + 6px);
+      padding: 22px;
+      isolation:isolate;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(56,189,248,.28), transparent 38%),
+        radial-gradient(circle at 80% 30%, rgba(168,85,247,.26), transparent 40%),
+        radial-gradient(circle at 52% 88%, rgba(34,197,94,.18), transparent 42%);
+      filter: blur(0px);
+      opacity:.55;
+      z-index:-1;
+    }
+    .badges{
+      display:flex; flex-wrap:wrap; gap:10px;
+      align-items:center;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: rgba(231,234,243,.88);
+      font-size: 12px;
+      letter-spacing:.2px;
+      white-space: nowrap;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      box-shadow: 0 0 0 1px rgba(255,255,255,.15);
+    }
+    .title{
+      margin: 14px 0 10px;
+      font-size: clamp(26px, 3.4vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+    .subtitle{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 70ch;
+    }
+
+    .kpis{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      margin-top: 10px;
+    }
+    @media (min-width: 860px){
+      .kpis{ grid-template-columns: 1fr 2fr; }
+    }
+    .kpi{
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.22);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    .kpi .label{
+      display:flex; align-items:center; gap:8px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing:.3px;
+      text-transform: uppercase;
+    }
+    .icon{
+      width:18px; height:18px; display:inline-block;
+      opacity:.9;
+    }
+    .kpi .value{
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: 650;
+    }
+    .intent{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:8px;
+      color: rgba(231,234,243,.86);
+      font-size: 13px;
+    }
+    @media (min-width: 860px){
+      .intent{ grid-template-columns: 1fr 1fr; }
+    }
+    .li{
+      display:flex; gap:10px; align-items:flex-start;
+    }
+    .li i{
+      margin-top: 7px;
+      width: 6px; height:6px; border-radius: 999px;
+      background: rgba(231,234,243,.6);
+      flex: 0 0 auto;
+    }
+
+    /* ===== Controls ===== */
+    .controls{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+      justify-content: space-between;
+      margin: 18px 2px 0;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255,255,255,.12);
+    }
+    .leftControls, .rightControls{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    }
+    .btn{
+      appearance:none;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: rgba(231,234,243,.9);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight:600;
+      font-size: 13px;
+      letter-spacing:.2px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16); }
+    .btn:active{ transform: translateY(0px); }
+    .btn.primary{
+      border-color: rgba(56,189,248,.35);
+      background: linear-gradient(135deg, rgba(56,189,248,.18), rgba(168,85,247,.16));
+    }
+    .btn.good{
+      border-color: rgba(34,197,94,.35);
+      background: linear-gradient(135deg, rgba(34,197,94,.16), rgba(56,189,248,.12));
+    }
+    .toggle{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 9px 12px;
+      border:1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(0,0,0,.20);
+      font-size: 13px;
+      color: var(--muted);
+      cursor:pointer;
+      user-select:none;
+    }
+    .switch{
+      width: 42px; height: 24px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      position:relative;
+      transition: background .2s ease, border-color .2s ease;
+      flex: 0 0 auto;
+    }
+    .switch::after{
+      content:"";
+      position:absolute;
+      top: 50%;
+      left: 3px;
+      transform: translateY(-50%);
+      width: 18px; height: 18px;
+      border-radius: 999px;
+      background: rgba(231,234,243,.88);
+      box-shadow: 0 10px 24px rgba(0,0,0,.35);
+      transition: left .2s ease, background .2s ease;
+    }
+    .toggle[data-on="true"] .switch{
+      background: rgba(34,197,94,.22);
+      border-color: rgba(34,197,94,.40);
+    }
+    .toggle[data-on="true"] .switch::after{ left: 21px; background: rgba(231,234,243,.95); }
+    .toggle strong{ color: rgba(231,234,243,.92); font-weight:700; }
+
+    /* ===== Sections ===== */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      gap: 14px;
+    }
+    .section{
+      border:1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+      transform-origin: top center;
+    }
+    .sectionHeader{
+      display:flex;
+      gap:12px;
+      justify-content: space-between;
+      align-items:flex-start;
+      flex-wrap: wrap;
+    }
+    .h2{
+      margin:0;
+      font-size: 18px;
+      font-weight: 760;
+      letter-spacing: -0.01em;
+    }
+    .p{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 80ch;
+    }
+    .callout{
+      margin-top: 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.24);
+      border-radius: var(--radius2);
+      padding: 12px 12px;
+      font-size: 13px;
+      color: rgba(231,234,243,.86);
+    }
+    .callout b{ color: rgba(231,234,243,.96); }
+    .cols{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media(min-width: 900px){ .cols{ grid-template-columns: 1fr 1fr; } }
+
+    .panel{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius2);
+      padding: 12px;
+    }
+    .panelTitle{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .panelTitle h3{
+      margin:0;
+      font-size: 15px;
+      font-weight: 720;
+    }
+    .panelTitle span{
+      color: var(--muted2);
+      font-size: 12px;
+    }
+    ul.clean{
+      margin: 0; padding: 0; list-style: none;
+      display:grid; gap: 8px;
+      font-size: 13px;
+      color: rgba(231,234,243,.86);
+    }
+
+    /* ===== Exercise cards ===== */
+    .exercise{
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.22);
+      border-radius: var(--radius2);
+      padding: 14px;
+    }
+    .exHead{
+      display:flex;
+      justify-content: space-between;
+      align-items:flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .exName{
+      font-size: 16px;
+      font-weight: 780;
+      margin:0;
+      letter-spacing:-0.01em;
+    }
+    .pill{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: rgba(231,234,243,.86);
+      white-space: nowrap;
+    }
+    .two{
+      margin-top: 10px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media(min-width: 860px){ .two{ grid-template-columns: 1fr 1fr; } }
+
+    .miniTitle{
+      margin: 0 0 6px;
+      font-size: 13px;
+      font-weight: 760;
+      color: rgba(231,234,243,.90);
+      display:flex; align-items:center; gap:8px;
+    }
+    .tagRow{
+      display:flex; flex-wrap: wrap; gap:8px;
+      margin-top: 6px;
+    }
+    .tag{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: rgba(231,234,243,.80);
+    }
+
+    /* ===== WOD list ===== */
+    .wodBox{
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.22);
+      border-radius: var(--radius2);
+      padding: 14px;
+    }
+    .wodTop{
+      display:flex; gap:10px; align-items:center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .wodItem{
+      display:flex; align-items:flex-start; justify-content: space-between;
+      gap:12px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,.05);
+      margin-top: 8px;
+    }
+    .wodItem .name{
+      font-weight: 760;
+      margin:0;
+    }
+    .wodItem .note{
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: var(--muted2);
+    }
+
+    /* ===== Notes coach ===== */
+    .noteGrid{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media(min-width: 900px){ .noteGrid{ grid-template-columns: 1fr 1fr; } }
+    .noteCard{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius2);
+      padding: 12px;
+      color: rgba(231,234,243,.86);
+      font-size: 13px;
+    }
+
+    /* ===== Accordion ===== */
+    details{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 12px 12px;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      user-select:none;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: 760;
+      color: rgba(231,234,243,.92);
+      font-size: 13px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .chev{
+      width: 10px; height: 10px;
+      border-right: 2px solid rgba(231,234,243,.7);
+      border-bottom: 2px solid rgba(231,234,243,.7);
+      transform: rotate(45deg);
+      transition: transform .18s ease;
+      margin-left: 10px;
+      opacity:.9;
+    }
+    details[open] .chev{ transform: rotate(225deg); }
+
+    /* ===== Animations ===== */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .65s ease, transform .65s ease;
+      will-change: transform, opacity;
+    }
+    .reveal.on{
+      opacity:1;
+      transform: translateY(0px);
+    }
+
+    /* ===== Print (clean) ===== */
+    @media print{
+      body{ background: white; color: #111; }
+      .hero, .section{ box-shadow:none; background:white; border-color:#ddd; }
+      .badge, .pill, .tag, .btn, .toggle{ display:none !important; }
+      .subtitle, .p, .callout{ color:#333; }
+      .panel, .exercise, .wodBox, .wodItem, .noteCard{ background:white; border-color:#ddd; }
+      .wrap{ padding: 0; max-width: 100%; }
+      .section{ break-inside: avoid; page-break-inside: avoid; }
+    }
+
+    footer{
+      margin-top: 16px;
+      text-align:center;
+      color: rgba(231,234,243,.5);
+      font-size: 12px;
+    }
+
+    /* Little “glow line” for premium */
+    .lineGlow{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(56,189,248,.5), rgba(168,85,247,.5), transparent);
+      opacity:.55;
+      margin: 14px 0 0;
+    }
+
+    /* tiny helper */
+    .muted{ color: var(--muted); }
+    .mono{ font-family: var(--mono); font-size: 12px; color: rgba(231,234,243,.70); }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <!-- HERO -->
+    <section class="hero reveal">
+      <div class="badges">
+        <span class="badge"><span class="dot"></span> Premium Session</span>
+        <span class="badge">Renfo</span>
+        <span class="badge">Cross training</span>
+        <span class="badge">Haltères</span>
+        <span class="badge">Pompes</span>
+        <span class="badge">Tractions</span>
+      </div>
+
+      <h1 class="title">Mathis — Séance Renfo + WOD (Premium)</h1>
+      <p class="subtitle">
+        Séance complète, structurée et cadrée : <b>échauffement</b> → <b>renforcement haut/bas</b> → <b>WOD type Cross Training</b> → <b>retour au calme</b>.
+        Objectif : un rendu <b>pro, lisible, dynamique</b> — et une exécution <b>toujours propre</b> (qualité &gt; quantité).
+      </p>
+
+      <div class="kpis">
+        <div class="kpi">
+          <div class="label">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 8v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 22a10 10 0 1 0-10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Durée
+          </div>
+          <div class="value">≈ 60 min</div>
+          <div class="mono">Format adolescent : pas d’échec • charges maîtrisées • technique d’abord</div>
+        </div>
+
+        <div class="kpi">
+          <div class="label">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M4 17l4-4 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 6h5v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Intentions
+          </div>
+          <ul class="intent">
+            <li class="li"><i></i><span>Force globale (haut + bas du corps)</span></li>
+            <li class="li"><i></i><span>Bases techniques : gainage, tirage, poussée</span></li>
+            <li class="li"><i></i><span>WOD ludique & dynamique, charges maîtrisées</span></li>
+            <li class="li"><i></i><span>Qualité &gt; quantité (zéro échec)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lineGlow"></div>
+
+      <div class="controls">
+        <div class="leftControls">
+          <button class="btn primary" id="expandAllBtn" type="button">Déplier tout</button>
+          <button class="btn" id="collapseAllBtn" type="button">Replier tout</button>
+          <button class="btn good" id="printBtn" type="button">Imprimer / PDF</button>
+        </div>
+
+        <div class="rightControls">
+          <div class="toggle" id="timerToggle" data-on="false" role="button" tabindex="0" aria-label="Activer le minuteur">
+            <div class="switch"></div>
+            <span><strong>Minuteur</strong> (WOD 12 min)</span>
+          </div>
+          <span class="mono" id="timerLabel">Minuteur inactif</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTIONS -->
+    <section class="grid">
+
+      <!-- Warmup -->
+      <article class="section reveal" id="sec-warmup">
+        <div class="sectionHeader">
+          <div>
+            <h2 class="h2">Échauffement · 10 min</h2>
+            <p class="p">Mise en route progressive — fluide, efficace, sans se cramer.</p>
+          </div>
+        </div>
+
+        <div class="cols">
+          <div class="panel">
+            <div class="panelTitle">
+              <h3>Activation générale</h3>
+              <span>5 min</span>
+            </div>
+            <ul class="clean">
+              <li class="li"><i></i><span>Jumping jacks — 30 s</span></li>
+              <li class="li"><i></i><span>Montées de genoux — 30 s</span></li>
+              <li class="li"><i></i><span>Talons-fesses — 30 s</span></li>
+              <li class="li"><i></i><span>Jump rope (ou simulation corde) — 1 min</span></li>
+              <li class="li"><i></i><span>Cercles de bras + hanches — 1 min (progressif)</span></li>
+            </ul>
+            <p class="p"><b>Note :</b> Intensité progressive, pas à fond.</p>
+          </div>
+
+          <div class="panel">
+            <div class="panelTitle">
+              <h3>Activation spécifique</h3>
+              <span>5 min</span>
+            </div>
+            <ul class="clean">
+              <li class="li"><i></i><span>Squats poids du corps — 2 × 10</span></li>
+              <li class="li"><i></i><span>Pompes inclinées (banc ou box) — 2 × 8</span></li>
+              <li class="li"><i></i><span>Dead hang (suspension passive) — 2 × 20 s</span></li>
+              <li class="li"><i></i><span>Gainage planche — 30 s</span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Strength -->
+      <article class="section reveal" id="sec-strength">
+        <div class="sectionHeader">
+          <div>
+            <h2 class="h2">Bloc 1 — Renforcement musculaire · 25–30 min</h2>
+            <p class="p">Format : <b>circuit contrôlé</b> — <b>3 tours</b> — repos <b>60–90 s</b> entre les tours.</p>
+          </div>
+        </div>
+
+        <div class="callout"><b>Règle :</b> toujours propre. <b>Arrêter avant l’échec</b> (surtout sur les tractions).</div>
+
+        <!-- Exercise 1 -->
+        <div class="exercise">
+          <div class="exHead">
+            <h3 class="exName">1) Goblet Squat (haltère)</h3>
+            <span class="pill">10 reps</span>
+          </div>
+
+          <details>
+            <summary>Consignes & points clés <span class="chev"></span></summary>
+            <div class="two" style="margin-top:10px">
+              <div class="panel">
+                <p class="miniTitle">Consignes</p>
+                <ul class="clean">
+                  <li class="li"><i></i><span>Haltère collé à la poitrine</span></li>
+                  <li class="li"><i></i><span>Descente lente (≈ 3 s), remontée dynamique</span></li>
+                  <li class="li"><i></i><span>Genoux suivent la direction des pieds</span></li>
+                  <li class="li"><i></i><span>Tronc gainé, poitrine fière</span></li>
+                </ul>
+              </div>
+              <div class="panel">
+                <p class="miniTitle">Cibles</p>
+                <div class="tagRow">
+                  <span class="tag">Quadriceps</span><span class="tag">Fessiers</span><span class="tag">Gainage</span>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="exercise">
+          <div class="exHead">
+            <h3 class="exName">2) Pompes strictes</h3>
+            <span class="pill">8–10 reps (max propre)</span>
+          </div>
+
+          <details>
+            <summary>Consignes, options & technique <span class="chev"></span></summary>
+            <div class="two" style="margin-top:10px">
+              <div class="panel">
+                <p class="miniTitle">Consignes</p>
+                <ul class="clean">
+                  <li class="li"><i></i><span>Corps gainé, aligné (tête–bassin–talons)</span></li>
+                  <li class="li"><i></i><span>Poitrine proche du sol (sans casser le gainage)</span></li>
+                  <li class="li"><i></i><span>Coudes à ~45°</span></li>
+                </ul>
+
+                <div style="height:10px"></div>
+                <p class="miniTitle">Options</p>
+                <ul class="clean">
+                  <li class="li"><i></i><span>Fatigue : pompes inclinées (banc/box)</span></li>
+                  <li class="li"><i></i><span>Progression : tempo 2 s en descente</span></li>
+                </ul>
+              </div>
+              <div class="panel">
+                <p class="miniTitle">Cibles</p>
+                <div class="tagRow">
+                  <span class="tag">Pecs</span><span class="tag">Épaules</span><span class="tag">Triceps</span><span class="tag">Core</span>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Exercise 3 -->
+        <div class="exercise">
+          <div class="exHead">
+            <h3 class="exName">3) Rowing haltère (un bras)</h3>
+            <span class="pill">10 reps / bras</span>
+          </div>
+
+          <details>
+            <summary>Consignes & stabilité <span class="chev"></span></summary>
+            <div class="two" style="margin-top:10px">
+              <div class="panel">
+                <p class="miniTitle">Consignes</p>
+                <ul class="clean">
+                  <li class="li"><i></i><span>Dos neutre, gainage verrouillé</span></li>
+                  <li class="li"><i></i><span>Épaule basse, tirer le coude vers la hanche</span></li>
+                  <li class="li"><i></i><span>Contrôle : 1 s de pause en haut</span></li>
+                </ul>
+              </div>
+              <div class="panel">
+                <p class="miniTitle">Cibles</p>
+                <div class="tagRow">
+                  <span class="tag">Dos</span><span class="tag">Biceps</span><span class="tag">Stabilité scapulaire</span>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Exercise 4 -->
+        <div class="exercise">
+          <div class="exHead">
+            <h3 class="exName">4) Fentes arrière alternées</h3>
+            <span class="pill">8 reps / jambe</span>
+          </div>
+
+          <details>
+            <summary>Consignes & options <span class="chev"></span></summary>
+            <div class="two" style="margin-top:10px">
+              <div class="panel">
+                <p class="miniTitle">Consignes</p>
+                <ul class="clean">
+                  <li class="li"><i></i><span>Grand pas vers l’arrière</span></li>
+                  <li class="li"><i></i><span>Tronc droit, genou avant stable</span></li>
+                  <li class="li"><i></i><span>Pousser le sol avec le talon (contrôle)</span></li>
+                </ul>
+
+                <div style="height:10px"></div>
+                <p class="miniTitle">Options</p>
+                <ul class="clean">
+                  <li class="li"><i></i><span>Haltères légers ou poids du corps</span></li>
+                </ul>
+              </div>
+              <div class="panel">
+                <p class="miniTitle">Cibles</p>
+                <div class="tagRow">
+                  <span class="tag">Fessiers</span><span class="tag">Ischios</span><span class="tag">Coordination</span>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Exercise 5 -->
+        <div class="exercise">
+          <div class="exHead">
+            <h3 class="exName">5) Tractions (volume maîtrisé)</h3>
+            <span class="pill">3–5 reps (zéro échec)</span>
+          </div>
+
+          <details>
+            <summary>Consignes, options & contrôle <span class="chev"></span></summary>
+            <div class="two" style="margin-top:10px">
+              <div class="panel">
+                <p class="miniTitle">Consignes</p>
+                <ul class="clean">
+                  <li class="li"><i></i><span>Gainage (hollow léger)</span></li>
+                  <li class="li"><i></i><span>Tirer les coudes vers les côtes</span></li>
+                  <li class="li"><i></i><span>Contrôle total, pas d’élan</span></li>
+                </ul>
+
+                <div style="height:10px"></div>
+                <p class="miniTitle">Options</p>
+                <ul class="clean">
+                  <li class="li"><i></i><span>Tractions assistées</span></li>
+                  <li class="li"><i></i><span>Tractions négatives (3–5 s en descente)</span></li>
+                </ul>
+
+                <p class="p"><b>Rappel :</b> on stoppe <b>avant</b> l’échec. Objectif = technique + confiance.</p>
+              </div>
+              <div class="panel">
+                <p class="miniTitle">Cibles</p>
+                <div class="tagRow">
+                  <span class="tag">Dos</span><span class="tag">Biceps</span><span class="tag">Scapulas</span>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Exercise 6 -->
+        <div class="exercise">
+          <div class="exHead">
+            <h3 class="exName">6) Gainage dynamique — planche + taps épaules</h3>
+            <span class="pill">20–30 s</span>
+          </div>
+
+          <details>
+            <summary>Consignes & stabilité <span class="chev"></span></summary>
+            <div class="two" style="margin-top:10px">
+              <div class="panel">
+                <p class="miniTitle">Consignes</p>
+                <ul class="clean">
+                  <li class="li"><i></i><span>Bassin stable (éviter la rotation)</span></li>
+                  <li class="li"><i></i><span>Pieds légèrement écartés si besoin</span></li>
+                  <li class="li"><i></i><span>Respiration contrôlée</span></li>
+                </ul>
+              </div>
+              <div class="panel">
+                <p class="miniTitle">Cibles</p>
+                <div class="tagRow">
+                  <span class="tag">Core</span><span class="tag">Stabilité épaules</span>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+      </article>
+
+      <!-- WOD -->
+      <article class="section reveal" id="sec-wod">
+        <div class="sectionHeader">
+          <div>
+            <h2 class="h2">Bloc 2 — WOD type Cross Training · 12–15 min</h2>
+            <p class="p"><b>AMRAP 12 min</b> : autant de tours que possible en 12 minutes. Objectif : <b>fluidité</b>, <b>cardio</b>, <b>technique</b>.</p>
+          </div>
+        </div>
+
+        <div class="callout"><b>Règle :</b> si la technique baisse → ralentir / réduire reps. On garde une posture propre.</div>
+
+        <div class="wodBox">
+          <div class="wodTop">
+            <span class="dot" style="width:12px;height:12px"></span>
+            <span>Enchaînement AMRAP — répéter en boucle pendant 12 min</span>
+          </div>
+
+          <div class="wodItem">
+            <div>
+              <p class="name">1) Dumbbell Thrusters</p>
+              <p class="note">Charge légère, amplitude propre, tronc gainé.</p>
+            </div>
+            <div class="pill">8 reps</div>
+          </div>
+
+          <div class="wodItem">
+            <div>
+              <p class="name">2) Pompes</p>
+              <p class="note">Strictes ou inclinées selon la fatigue.</p>
+            </div>
+            <div class="pill">6 reps</div>
+          </div>
+
+          <div class="wodItem">
+            <div>
+              <p class="name">3) Dumbbell Deadlift</p>
+              <p class="note">Dos neutre, gainage, pousser dans le sol.</p>
+            </div>
+            <div class="pill">6 reps</div>
+          </div>
+
+          <div class="wodItem">
+            <div>
+              <p class="name">4) Tractions</p>
+              <p class="note">Assistées si besoin. Toujours propre.</p>
+            </div>
+            <div class="pill">3 reps</div>
+          </div>
+
+          <div class="wodItem">
+            <div>
+              <p class="name">5) Corde à sauter</p>
+              <p class="note">Sinon : 20 jumping jacks.</p>
+            </div>
+            <div class="pill">20 sauts</div>
+          </div>
+        </div>
+
+        <div style="height:10px"></div>
+        <details>
+          <summary>Repères coaching (rythme & gestion) <span class="chev"></span></summary>
+          <ul class="clean" style="margin-top:10px">
+            <li class="li"><i></i><span>Départ à rythme “contrôlé” : on garde de la marge.</span></li>
+            <li class="li"><i></i><span>Thrusters : si la posture se dégrade → réduire charge ou reps.</span></li>
+            <li class="li"><i></i><span>Tractions : jamais à l’échec, même sur le WOD.</span></li>
+            <li class="li"><i></i><span>Objectif : régularité + respiration + fluidité.</span></li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Cooldown -->
+      <article class="section reveal" id="sec-cooldown">
+        <div class="sectionHeader">
+          <div>
+            <h2 class="h2">Retour au calme · 5 min</h2>
+            <p class="p">On redescend — relâchement, respiration, récupération.</p>
+          </div>
+        </div>
+
+        <ul class="clean" style="margin-top:12px">
+          <li class="li"><i></i><span>Étirements doux : dos / épaules / hanches</span></li>
+          <li class="li"><i></i><span>Respiration lente : inspire nez — expire bouche (2–3 min)</span></li>
+          <li class="li"><i></i><span>Suspension passive — 30 s (si possible)</span></li>
+        </ul>
+      </article>
+
+      <!-- Notes coach -->
+      <article class="section reveal" id="sec-notes">
+        <div class="sectionHeader">
+          <div>
+            <h2 class="h2">Notes coach (important)</h2>
+            <p class="p">Cadrage sécurité & qualité — parfait pour un adolescent et une progression propre.</p>
+          </div>
+        </div>
+
+        <div class="noteGrid">
+          <div class="noteCard">Adolescent : <b>pas d’échec</b>, pas de charge lourde, priorité posture.</div>
+          <div class="noteCard">Tractions : <b>qualité &gt; quantité</b> (volume volontairement bas).</div>
+          <div class="noteCard">Réduire les reps du WOD plutôt que la technique.</div>
+          <div class="noteCard">Séance idéale <b>hors jour de match</b>.</div>
+        </div>
+      </article>
+
+    </section>
+
+    <footer class="reveal">
+      Généré pour un suivi coaching premium — clair, net, précis.
+    </footer>
+
+  </main>
+
+  <script>
+    // ===== Reveal on scroll (premium feel) =====
+    const revealEls = [...document.querySelectorAll(".reveal")];
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("on");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el=>io.observe(el));
+
+    // ===== Expand / collapse all details =====
+    const allDetails = () => [...document.querySelectorAll("details")];
+
+    document.getElementById("expandAllBtn").addEventListener("click", ()=>{
+      allDetails().forEach(d => d.open = true);
+      scrollToSection("sec-strength");
+    });
+
+    document.getElementById("collapseAllBtn").addEventListener("click", ()=>{
+      allDetails().forEach(d => d.open = false);
+      scrollToSection("sec-warmup");
+    });
+
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // ===== Print / PDF =====
+    document.getElementById("printBtn").addEventListener("click", ()=> window.print());
+
+    // ===== WOD Timer (12 minutes) =====
+    const toggle = document.getElementById("timerToggle");
+    const label = document.getElementById("timerLabel");
+
+    let timerOn = false;
+    let interval = null;
+    let remaining = 12 * 60; // 12 min in seconds
+
+    function fmt(sec){
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+    }
+
+    function setLabel(){
+      if(!timerOn){
+        label.textContent = "Minuteur inactif";
+        return;
+      }
+      label.textContent = `WOD — ${fmt(remaining)} restantes`;
+    }
+
+    function startTimer(){
+      clearInterval(interval);
+      interval = setInterval(()=>{
+        remaining--;
+        if(remaining <= 0){
+          remaining = 0;
+          setLabel();
+          clearInterval(interval);
+          // Little finish feedback
+          label.textContent = "✅ WOD terminé — 12:00 écoulées";
+          navigator.vibrate?.(180);
+          flashTitle();
+          return;
+        }
+        setLabel();
+      }, 1000);
+    }
+
+    function stopTimer(){
+      clearInterval(interval);
+      interval = null;
+    }
+
+    function flashTitle(){
+      const old = document.title;
+      let i = 0;
+      const flash = setInterval(()=>{
+        document.title = (i % 2 === 0) ? "✅ WOD TERMINÉ — Mathis" : old;
+        i++;
+        if(i > 10){
+          clearInterval(flash);
+          document.title = old;
+        }
+      }, 350);
+    }
+
+    function setToggle(on){
+      timerOn = on;
+      toggle.dataset.on = String(on);
+      if(on){
+        // reset to 12:00 at start
+        remaining = 12 * 60;
+        setLabel();
+        startTimer();
+        // auto scroll to WOD section for convenience
+        document.getElementById("sec-wod").scrollIntoView({ behavior:"smooth", block:"start" });
+      }else{
+        stopTimer();
+        setLabel();
+      }
+    }
+
+    toggle.addEventListener("click", ()=> setToggle(!timerOn));
+    toggle.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        setToggle(!timerOn);
+      }
+    });
+
+    setLabel();
+  </script>
+</body>
+</html>
